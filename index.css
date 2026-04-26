@@ -1,0 +1,127 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+h1 {
+  font-size: 44px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+
+p {
+  background-color: yellow;
+  padding: 24px;
+}
+
+header > div {
+  margin: 20px;
+}
+
+.logo {
+  font-size: 33px;
+  font-weight: bold;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #333;
+}
+
+.nav-btn:hover {
+  background-color: #333;
+  color: white;
+}
+
+.preview-container {
+  display: flex;
+  gap: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.button-list {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: auto;
+}
+
+.project-btn {
+  padding: 15px 20px;
+  background-color: rgba(255, 255, 255, 0.362);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  outline: none;
+}
+
+.project-btn:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.project-btn.active {
+  background-color: #333;
+  color: white;
+  border-color: white;
+}
+
+.project-display {
+  flex: 1;
+  background-color: white;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+
+  overflow: hidden;
+}
+
+.project-display img {
+  width: 100%;
+  height: 100%;
+  background-color: #e0e0e0;
+  border-radius: 0;
+  margin-bottom: 0;
+  object-fit: cover;
+}
+
+.project-display h2 {
+  font-size: 24px;
+  margin: 20px;
+  margin-bottom: 10px;
+}
+
+.project-display p {
+  background-color: transparent;
+  padding: 0 20px 20px 20px;
+  color: #666;
+  line-height: 1.6;
+}

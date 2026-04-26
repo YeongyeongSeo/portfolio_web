@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sooniy Portfolio</title>
+    <link rel="stylesheet" href="index.css" />
+
+    <style>
+      header {
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">Sooniy Portfolio</div>
+      <div class="nav-menu">
+        <button class="nav-btn">projects</button>
+        <button class="nav-btn">Profile</button>
+        <button class="nav-btn">Archive</button>
+      </div>
+    </header>
+
+    <section class="portfolio-preview">
+      <div class="preview-container">
+        <div class="project-display">
+          <div class="image-wrapper">
+            <img id="projectImage" src="./Group 2506.png" alt="프로젝트" />
+            <div class="button-list">
+              <button class="project-btn active" onclick="showProject(0)">
+                Live Studio
+              </button>
+              <button class="project-btn" onclick="showProject(1)">
+                Smart View
+              </button>
+              <button class="project-btn" onclick="showProject(2)">
+                Dr.Jhone
+              </button>
+              <button class="project-btn" onclick="showProject(3)">
+                교육원 아카이브
+              </button>
+              <button class="project-btn" onclick="showProject(3)">
+                에이넥스 자사 홈페이지
+              </button>
+              <button class="project-btn" onclick="showProject(3)">
+                에이넥스 교육원
+              </button>
+            </div>
+          </div>
+          <h2 id="projectTitle">프로젝트 1</h2>
+          <p id="projectDesc">프로젝트 설명이 여기에 나타납니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const projects = [
+        { title: "프로젝트 1", desc: "첫 번째 프로젝트 설명" },
+        { title: "프로젝트 2", desc: "두 번째 프로젝트 설명" },
+        { title: "프로젝트 3", desc: "세 번째 프로젝트 설명" },
+        { title: "프로젝트 4", desc: "네 번째 프로젝트 설명" },
+      ];
+
+      function showProject(index) {
+        document.getElementById("projectTitle").textContent =
+          projects[index].title;
+        document.getElementById("projectDesc").textContent =
+          projects[index].desc;
+
+        document
+          .querySelectorAll(".project-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        document
+          .querySelectorAll(".project-btn")
+          [index].classList.add("active");
+      }
+    </script>
+  </body>
+</html>
