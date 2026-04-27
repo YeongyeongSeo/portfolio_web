@@ -1,20 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seoyeongyeong · UIUX & Industrial Designer</title>
+    <title>Seoyeongyeong · Digital × Product Designer</title>
     <meta
       name="description"
-      content="서연경 — UIUX, Product, and Motion Designer based in Seoul. Crafting intuitive experiences from data to objects."
+      content="서연경 — 5년차 디자이너. 웹·앱·AI·브랜드·제품까지, 매체를 가리지 않는 크로스미디엄 디자이너. iF Design Award 수상."
     />
 
-    <!-- Pretendard (Korean) -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
     />
-    <!-- Display + Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -33,6 +31,7 @@
         --orange-3: #ffa845;
         --yellow: #ffcb52;
         --text: #f5f1ec;
+        --text-2: #d8d2c8;
         --muted: rgba(245, 241, 236, 0.58);
         --dim: rgba(245, 241, 236, 0.35);
         --line: rgba(245, 241, 236, 0.1);
@@ -66,7 +65,6 @@
         letter-spacing: -0.005em;
       }
 
-      /* Film-grain noise */
       body::before {
         content: "";
         position: fixed;
@@ -133,7 +131,7 @@
       nav.primary {
         display: flex;
         align-items: center;
-        gap: 36px;
+        gap: 30px;
       }
       nav.primary a {
         font-size: 14px;
@@ -208,7 +206,6 @@
         align-items: center;
         overflow: hidden;
       }
-
       .hero::before {
         content: "";
         position: absolute;
@@ -230,7 +227,6 @@
         z-index: 0;
         animation: drift 14s ease-in-out infinite alternate;
       }
-
       .hero::after {
         content: "";
         position: absolute;
@@ -302,7 +298,7 @@
         display: block;
         font-family: var(--body);
         font-weight: 700;
-        font-size: clamp(40px, 6.5vw, 110px);
+        font-size: clamp(36px, 5.8vw, 100px);
         letter-spacing: -0.04em;
         margin-bottom: 6px;
       }
@@ -320,7 +316,7 @@
       }
 
       .hero-sub {
-        max-width: 480px;
+        max-width: 520px;
         color: var(--muted);
         font-size: 17px;
         line-height: 1.6;
@@ -334,12 +330,13 @@
       .hero-meta {
         display: flex;
         align-items: center;
-        gap: 28px;
+        gap: 24px;
         color: var(--dim);
         font-family: var(--mono);
         font-size: 12px;
         letter-spacing: 0.05em;
         text-transform: uppercase;
+        flex-wrap: wrap;
       }
       .hero-meta span {
         display: inline-flex;
@@ -374,14 +371,12 @@
         display: grid;
         place-items: center;
       }
-
       .orb {
         position: absolute;
         inset: 0;
         display: grid;
         place-items: center;
       }
-      /**/
       .orb-disc {
         width: 420px;
         height: 420px;
@@ -415,7 +410,6 @@
         mix-blend-mode: screen;
       }
 
-      /* Floating UI cards over orb */
       .float-card {
         position: absolute;
         background: rgba(20, 17, 13, 0.78);
@@ -438,7 +432,7 @@
       .float-card.fc-2 {
         bottom: 14%;
         right: 0;
-        width: 210px;
+        width: 220px;
         animation: floaty 7s ease-in-out infinite reverse;
       }
       .float-card.fc-3 {
@@ -448,7 +442,7 @@
         width: 260px;
         text-align: center;
         padding: 18px;
-        animation: floaty 8s ease-in-out infinite;
+        animation: floaty-c 8s ease-in-out infinite;
       }
       @keyframes floaty {
         0%,
@@ -458,9 +452,6 @@
         50% {
           transform: translateY(-12px) rotate(1deg);
         }
-      }
-      .fc-3 {
-        animation-name: floaty-c;
       }
       @keyframes floaty-c {
         0%,
@@ -509,13 +500,13 @@
         width: 78%;
       }
       .fc-2 .bar i {
-        width: 42%;
+        width: 95%;
       }
 
       .float-card.fc-3 .big {
         font-family: var(--display);
         font-weight: 800;
-        font-size: 46px;
+        font-size: 44px;
         line-height: 1;
         letter-spacing: -0.04em;
         background: linear-gradient(135deg, var(--yellow), var(--orange-2));
@@ -529,7 +520,6 @@
         margin-top: 6px;
       }
 
-      /* Categories row */
       .hero-categories {
         grid-column: 1 / -1;
         margin-top: auto;
@@ -572,7 +562,7 @@
         color: var(--dim);
       }
 
-      /* ======================= SECTION SHARED ======================= */
+      /* ======================= SECTIONS ======================= */
       section {
         position: relative;
       }
@@ -674,6 +664,13 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
       }
+      .stat .v small {
+        font-size: 0.45em;
+        color: var(--muted);
+        -webkit-text-fill-color: var(--muted);
+        margin-left: 4px;
+        font-weight: 600;
+      }
       .stat .l {
         margin-top: 10px;
         font-family: var(--mono);
@@ -714,6 +711,433 @@
         letter-spacing: 0.12em;
         color: var(--dim);
         font-weight: 500;
+      }
+
+      /* ======================= EXPERIENCE ======================= */
+      #experience {
+        background: var(--bg);
+        border-top: 1px solid var(--line);
+      }
+
+      .timeline {
+        position: relative;
+        margin-top: 20px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 219px;
+        top: 14px;
+        bottom: 14px;
+        width: 1px;
+        background: linear-gradient(
+          180deg,
+          var(--orange-2) 0%,
+          var(--orange-1) 30%,
+          var(--line-2) 100%
+        );
+        z-index: 1;
+      }
+
+      .tl-row {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 60px;
+        padding: 36px 0;
+        border-bottom: 1px solid var(--line);
+        position: relative;
+        transition: background 0.35s ease;
+      }
+      .tl-row:first-of-type {
+        padding-top: 0;
+      }
+      .tl-row:last-of-type {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+      .tl-row:hover {
+        background: rgba(255, 122, 46, 0.02);
+      }
+
+      .tl-date {
+        text-align: right;
+        padding-right: 40px;
+        padding-top: 4px;
+      }
+      .tl-period {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--text);
+        letter-spacing: 0.02em;
+        line-height: 1.4;
+      }
+      .tl-duration {
+        margin-top: 6px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--dim);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .tl-content {
+        position: relative;
+        padding-left: 32px;
+      }
+      .tl-dot {
+        position: absolute;
+        left: -7px;
+        top: 8px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 2px solid var(--orange-2);
+        box-shadow: 0 0 0 4px var(--bg);
+        z-index: 2;
+      }
+      .tl-row.current .tl-dot {
+        background: var(--orange-1);
+        border-color: var(--yellow);
+        box-shadow:
+          0 0 0 4px var(--bg),
+          0 0 16px var(--orange-2);
+        animation: pulseDot 2s ease-in-out infinite;
+      }
+      @keyframes pulseDot {
+        0%,
+        100% {
+          box-shadow:
+            0 0 0 4px var(--bg),
+            0 0 16px var(--orange-2);
+        }
+        50% {
+          box-shadow:
+            0 0 0 4px var(--bg),
+            0 0 24px var(--orange-1);
+        }
+      }
+      .tl-row.education .tl-dot {
+        background: var(--bg);
+        border-color: var(--muted);
+      }
+
+      .tl-tag {
+        display: inline-block;
+        padding: 3px 10px;
+        background: var(--bg-3);
+        border: 1px solid var(--line-2);
+        border-radius: 999px;
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 12px;
+      }
+      .tl-row.current .tl-tag {
+        background: rgba(255, 122, 46, 0.12);
+        border-color: rgba(255, 122, 46, 0.4);
+        color: var(--orange-3);
+      }
+      .tl-row.award-host .tl-tag {
+        background: rgba(255, 203, 82, 0.1);
+        border-color: rgba(255, 203, 82, 0.3);
+        color: var(--yellow);
+      }
+      .tl-company {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(24px, 2.6vw, 36px);
+        letter-spacing: -0.025em;
+        line-height: 1.15;
+        margin-bottom: 6px;
+      }
+      .tl-company .en {
+        color: var(--muted);
+        font-weight: 500;
+        font-size: 0.65em;
+        margin-left: 8px;
+        letter-spacing: -0.01em;
+      }
+      .tl-role {
+        font-size: 14px;
+        color: var(--orange-3);
+        font-weight: 500;
+        margin-bottom: 14px;
+      }
+      .tl-desc {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 16px;
+        max-width: 640px;
+      }
+      .tl-desc strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .tl-projects {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .tl-chip {
+        padding: 6px 12px;
+        background: rgba(255, 122, 46, 0.06);
+        border: 1px solid rgba(255, 122, 46, 0.2);
+        border-radius: 6px;
+        font-size: 12px;
+        color: var(--text-2);
+        font-family: var(--mono);
+        transition: all 0.25s;
+      }
+      .tl-chip:hover {
+        background: rgba(255, 122, 46, 0.12);
+        color: var(--text);
+        border-color: var(--orange-2);
+      }
+      .tl-chip.award {
+        background: rgba(255, 203, 82, 0.08);
+        border-color: rgba(255, 203, 82, 0.3);
+        color: var(--yellow);
+      }
+      .tl-chip.award::before {
+        content: "🏆 ";
+      }
+
+      /* Achievements highlights */
+      .tl-highlight {
+        margin-top: 16px;
+        padding: 14px 18px;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 203, 82, 0.06),
+          transparent 80%
+        );
+        border-left: 2px solid var(--yellow);
+        border-radius: 0 8px 8px 0;
+        font-size: 13px;
+        color: var(--text-2);
+        line-height: 1.55;
+        max-width: 580px;
+      }
+      .tl-highlight strong {
+        color: var(--yellow);
+        font-weight: 600;
+        font-family: var(--display);
+      }
+
+      /* Capabilities Callout (for Inex) */
+      .tl-capabilities {
+        margin-top: 18px;
+        padding: 22px 24px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 122, 46, 0.08),
+          rgba(255, 75, 28, 0.04)
+        );
+        border: 1px solid rgba(255, 122, 46, 0.25);
+        border-radius: 14px;
+        max-width: 640px;
+        position: relative;
+        overflow: hidden;
+      }
+      .tl-capabilities::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 240px;
+        height: 240px;
+        background: radial-gradient(circle, var(--orange-1), transparent 70%);
+        filter: blur(50px);
+        opacity: 0.25;
+        pointer-events: none;
+      }
+      .tl-cap-head {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--orange-3);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+      }
+      .tl-cap-head::before {
+        content: "✦";
+        color: var(--yellow);
+        font-size: 14px;
+      }
+      .tl-cap-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 24px;
+        position: relative;
+      }
+      .tl-cap-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .tl-cap-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: rgba(255, 122, 46, 0.12);
+        border: 1px solid rgba(255, 122, 46, 0.25);
+        display: grid;
+        place-items: center;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+      .tl-cap-text {
+        flex: 1;
+        min-width: 0;
+      }
+      .tl-cap-title {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: -0.015em;
+        color: var(--text);
+        line-height: 1.3;
+        margin-bottom: 2px;
+      }
+      .tl-cap-sub {
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .tl-cap-volume {
+        grid-column: 1 / -1;
+        margin-top: 6px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 122, 46, 0.15);
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        font-family: var(--display);
+      }
+      .tl-cap-volume .num {
+        font-weight: 800;
+        font-size: 38px;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        background: linear-gradient(135deg, var(--yellow), var(--orange-1));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .tl-cap-volume .label {
+        font-family: var(--body);
+        font-size: 12px;
+        color: var(--text-2);
+        line-height: 1.4;
+      }
+      .tl-cap-volume .label b {
+        color: var(--orange-3);
+        font-weight: 500;
+      }
+
+      /* Awards section */
+      .awards-block {
+        margin-top: 100px;
+        padding-top: 60px;
+        border-top: 1px solid var(--line);
+      }
+      .awards-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+      .awards-head h3 {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: clamp(32px, 3.6vw, 48px);
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+      .awards-head h3 em {
+        font-style: normal;
+        background: linear-gradient(105deg, var(--yellow), var(--orange-2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .awards-head p {
+        color: var(--muted);
+        font-size: 14px;
+        max-width: 320px;
+        line-height: 1.6;
+      }
+
+      .award-list {
+        border-top: 1px solid var(--line);
+      }
+      .award-row {
+        display: grid;
+        grid-template-columns: 100px 1fr auto 100px;
+        gap: 32px;
+        align-items: center;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--line);
+        transition: background 0.35s ease;
+        cursor: default;
+      }
+      .award-row:hover {
+        background: linear-gradient(
+          90deg,
+          rgba(255, 203, 82, 0.04),
+          transparent 70%
+        );
+      }
+      .award-year {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 36px;
+        letter-spacing: -0.03em;
+        color: var(--yellow);
+        line-height: 1;
+      }
+      .award-name {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(20px, 2.2vw, 28px);
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+      .award-issuer {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 6px;
+      }
+      .award-project {
+        font-size: 13px;
+        color: var(--muted);
+        text-align: right;
+        font-style: italic;
+      }
+      .award-icon {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255, 203, 82, 0.1);
+        border: 1px solid rgba(255, 203, 82, 0.3);
+        color: var(--yellow);
+        font-size: 20px;
       }
 
       /* ======================= WORKS ======================= */
@@ -787,6 +1211,17 @@
         font-size: 11px;
         color: var(--dim);
       }
+      .project .duration {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 3px 8px;
+        background: var(--bg-3);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+      }
       .project .title {
         font-family: var(--display);
         font-weight: 700;
@@ -798,6 +1233,24 @@
         font-size: 14px;
         color: var(--muted);
         line-height: 1.55;
+      }
+      .project .award-badge {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        padding: 6px 12px;
+        background: rgba(255, 203, 82, 0.15);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 203, 82, 0.4);
+        border-radius: 999px;
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--yellow);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        z-index: 4;
+        font-weight: 500;
       }
       .project .arrow-tag {
         position: absolute;
@@ -823,6 +1276,17 @@
       .project .arrow-tag svg {
         color: var(--text);
       }
+      .project .company-tag {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .project .company-tag b {
+        color: var(--text);
+        font-weight: 500;
+      }
 
       /* Span layouts */
       .span-7 {
@@ -839,6 +1303,457 @@
       }
 
       /* ----- Custom thumbs (no images) ----- */
+
+      /* INEX 4: AI Content Pipeline */
+      .thumb-inex-pipeline {
+        background: radial-gradient(
+          ellipse at 30% 30%,
+          #ff7a2e 0%,
+          #c9341a 35%,
+          #5a1a0a 80%
+        );
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .thumb-inex-pipeline::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 28px,
+            rgba(255, 255, 255, 0.04) 28px,
+            rgba(255, 255, 255, 0.04) 29px
+          ),
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 28px,
+            rgba(255, 255, 255, 0.03) 28px,
+            rgba(255, 255, 255, 0.03) 29px
+          );
+      }
+      .ip-grid {
+        width: 84%;
+        height: 76%;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 4px;
+        position: relative;
+        z-index: 2;
+      }
+      .ip-cell {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 3px;
+        backdrop-filter: blur(4px);
+        position: relative;
+        overflow: hidden;
+      }
+      .ip-cell.media-1 {
+        background: linear-gradient(135deg, #ffcb52, #ff7a2e);
+      }
+      .ip-cell.media-2 {
+        background: linear-gradient(135deg, #c084fc, #ff7a2e);
+      }
+      .ip-cell.media-3 {
+        background: linear-gradient(135deg, #4ade80, #22d3ee);
+      }
+      .ip-cell.media-4 {
+        background: linear-gradient(135deg, #ff5e8a, #c084fc);
+      }
+      .ip-cell.video::after {
+        content: "▶";
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 10px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      }
+      .ip-counter {
+        position: absolute;
+        top: 22px;
+        right: 26px;
+        z-index: 3;
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 203, 82, 0.35);
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--yellow);
+        letter-spacing: 0.05em;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .ip-counter::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--yellow);
+        box-shadow: 0 0 8px var(--yellow);
+        animation: blink 1.2s ease-in-out infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      .ip-tag {
+        position: absolute;
+        bottom: 22px;
+        left: 26px;
+        z-index: 3;
+        color: white;
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: 26px;
+        letter-spacing: -0.025em;
+        line-height: 1;
+      }
+      .ip-tag small {
+        display: block;
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 500;
+        color: rgba(255, 220, 180, 0.85);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        margin-top: 6px;
+      }
+
+      /* INEX 1: Homepage */
+      .thumb-inex-home {
+        background: linear-gradient(
+          135deg,
+          #0a1628 0%,
+          #0e2440 50%,
+          #1a3863 100%
+        );
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+      .ih-browser {
+        width: 78%;
+        height: 78%;
+        background: #050a14;
+        border: 1px solid rgba(100, 200, 255, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        display: flex;
+        flex-direction: column;
+      }
+      .ih-bar {
+        height: 22px;
+        background: rgba(255, 255, 255, 0.04);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 10px;
+      }
+      .ih-bar .b {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .ih-content {
+        flex: 1;
+        padding: 16px 20px;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap: 10px;
+      }
+      .ih-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .ih-logo {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 13px;
+        color: #5dc8ff;
+        letter-spacing: -0.02em;
+      }
+      .ih-menu {
+        display: flex;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 7px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .ih-hero {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 16px;
+      }
+      .ih-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .ih-h1 {
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: 18px;
+        line-height: 1.05;
+        color: white;
+        letter-spacing: -0.03em;
+      }
+      .ih-h1 b {
+        background: linear-gradient(90deg, #5dc8ff, #93f9ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .ih-btn {
+        margin-top: 10px;
+        width: fit-content;
+        padding: 5px 12px;
+        background: linear-gradient(90deg, #1a8aff, #5dc8ff);
+        border-radius: 999px;
+        font-family: var(--mono);
+        font-size: 7px;
+        color: white;
+        font-weight: 600;
+      }
+      .ih-vis {
+        background: radial-gradient(
+          circle,
+          rgba(93, 200, 255, 0.4) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        position: relative;
+      }
+      .ih-vis::after {
+        content: "";
+        position: absolute;
+        inset: 25%;
+        border-radius: 50%;
+        background: radial-gradient(circle, #5dc8ff, #1a4078);
+        box-shadow: 0 0 30px rgba(93, 200, 255, 0.5);
+      }
+
+      /* INEX 2: Training Center */
+      .thumb-inex-training {
+        background: linear-gradient(
+          135deg,
+          #1a1612 0%,
+          #2a2018 60%,
+          #3d2a1a 100%
+        );
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+      .it-grid {
+        width: 80%;
+        height: 78%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .it-card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 200, 130, 0.12),
+          rgba(255, 200, 130, 0.04)
+        );
+        border: 1px solid rgba(255, 200, 130, 0.18);
+        border-radius: 6px;
+        padding: 10px 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+      }
+      .it-card.featured {
+        background: linear-gradient(135deg, #d97742, #f4a05f);
+        border-color: transparent;
+        color: white;
+      }
+      .it-cat {
+        font-family: var(--mono);
+        font-size: 7px;
+        color: rgba(255, 200, 130, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .it-card.featured .it-cat {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .it-title {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 1.15;
+        color: rgb(245, 220, 180);
+        letter-spacing: -0.02em;
+      }
+      .it-card.featured .it-title {
+        color: white;
+        font-size: 14px;
+      }
+      .it-progress {
+        height: 3px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .it-progress::after {
+        content: "";
+        display: block;
+        height: 100%;
+        background: rgba(255, 200, 130, 0.8);
+      }
+      .it-card:nth-child(1) .it-progress::after {
+        width: 75%;
+      }
+      .it-card:nth-child(2) .it-progress::after {
+        width: 100%;
+        background: white;
+      }
+      .it-card:nth-child(3) .it-progress::after {
+        width: 40%;
+      }
+      .it-card:nth-child(4) .it-progress::after {
+        width: 60%;
+      }
+      .it-meta {
+        font-family: var(--mono);
+        font-size: 7px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* INEX 3: AI Chatbot */
+      .thumb-inex-chatbot {
+        background: linear-gradient(
+          135deg,
+          #1a0a2e 0%,
+          #2a0e4a 50%,
+          #3d1466 100%
+        );
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .thumb-inex-chatbot::before {
+        content: "";
+        position: absolute;
+        top: -20%;
+        left: -20%;
+        width: 60%;
+        height: 60%;
+        background: radial-gradient(circle, #00ffaa 0%, transparent 70%);
+        filter: blur(40px);
+        opacity: 0.4;
+      }
+      .ic-stage {
+        width: 75%;
+        height: 80%;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(150, 100, 255, 0.3);
+        border-radius: 14px;
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        position: relative;
+        z-index: 2;
+      }
+      .ic-bubble {
+        padding: 8px 12px;
+        border-radius: 12px;
+        font-size: 10px;
+        line-height: 1.3;
+        max-width: 85%;
+      }
+      .ic-bubble.bot {
+        background: rgba(150, 100, 255, 0.15);
+        border: 1px solid rgba(150, 100, 255, 0.25);
+        color: rgba(255, 255, 255, 0.9);
+        border-radius: 4px 12px 12px 12px;
+        align-self: flex-start;
+      }
+      .ic-bubble.user {
+        background: linear-gradient(135deg, #00ffaa, #00d4aa);
+        color: #1a0a2e;
+        border-radius: 12px 12px 4px 12px;
+        align-self: flex-end;
+        font-weight: 600;
+      }
+      .ic-typing {
+        display: flex;
+        gap: 3px;
+        padding: 10px 14px;
+        background: rgba(150, 100, 255, 0.15);
+        border: 1px solid rgba(150, 100, 255, 0.25);
+        border-radius: 12px;
+        align-self: flex-start;
+        width: fit-content;
+      }
+      .ic-typing span {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #c084fc;
+        animation: bounce 1.4s infinite;
+      }
+      .ic-typing span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .ic-typing span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      @keyframes bounce {
+        0%,
+        60%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.5;
+        }
+        30% {
+          transform: translateY(-3px);
+          opacity: 1;
+        }
+      }
+      .ic-avatar {
+        position: absolute;
+        top: -16px;
+        right: -10px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #00ffaa, #c084fc);
+        border: 2px solid rgba(0, 0, 0, 0.6);
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+        box-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
+      }
+
       /* Project: Livestudio (medical monitor dark) */
       .thumb-livestudio {
         background:
@@ -904,7 +1819,6 @@
           transparent
         );
       }
-
       .ls-cell .v {
         font-family: var(--display);
         font-weight: 700;
@@ -940,7 +1854,7 @@
         opacity: 0.7;
       }
 
-      /* Project: Before Tenminute (purple weather) */
+      /* Before Tenminute */
       .thumb-before {
         background: radial-gradient(
           ellipse at 30% 30%,
@@ -1041,7 +1955,7 @@
         text-transform: uppercase;
       }
 
-      /* Project: Korail (blue) */
+      /* Korail */
       .thumb-korail {
         background: linear-gradient(
           135deg,
@@ -1122,7 +2036,7 @@
         margin-top: 6px;
       }
 
-      /* Project: Corentec (light grey product) */
+      /* Corentec */
       .thumb-corentec {
         background: radial-gradient(
           ellipse at 50% 50%,
@@ -1201,7 +2115,7 @@
         margin-top: 4px;
       }
 
-      /* Project: NINJA (carbon) */
+      /* NINJA */
       .thumb-ninja {
         background: linear-gradient(
           135deg,
@@ -1287,7 +2201,6 @@
         background: radial-gradient(circle, #f5f1ec 30%, #888 100%);
         box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.4);
       }
-
       .ninja-tag {
         position: absolute;
         bottom: 22px;
@@ -1309,7 +2222,7 @@
         font-weight: 500;
       }
 
-      /* Project: MINSK (pink/green motion) */
+      /* MINSK */
       .thumb-minsk {
         background: linear-gradient(
           135deg,
@@ -1499,7 +2412,7 @@
         color: var(--bg);
         border-radius: 999px;
         font-family: var(--display);
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 600;
         letter-spacing: -0.02em;
         transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -1522,8 +2435,30 @@
         transform: rotate(45deg);
       }
 
+      .contact-info {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        position: relative;
+      }
+      .contact-info span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .contact-info b {
+        color: var(--text);
+        font-weight: 500;
+      }
+
       .socials {
-        margin-top: 60px;
+        margin-top: 40px;
         display: flex;
         justify-content: center;
         gap: 36px;
@@ -1566,7 +2501,7 @@
         gap: 16px;
       }
 
-      /* ======================= SCROLL REVEAL ======================= */
+      /* ======================= REVEAL ======================= */
       .reveal {
         opacity: 0;
         transform: translateY(28px);
@@ -1579,16 +2514,16 @@
         transform: translateY(0);
       }
       .reveal.delay-1 {
-        transition-delay: 0.1s;
+        transition-delay: 0.08s;
       }
       .reveal.delay-2 {
-        transition-delay: 0.2s;
+        transition-delay: 0.16s;
       }
       .reveal.delay-3 {
-        transition-delay: 0.3s;
+        transition-delay: 0.24s;
       }
       .reveal.delay-4 {
-        transition-delay: 0.4s;
+        transition-delay: 0.32s;
       }
 
       /* ======================= RESPONSIVE ======================= */
@@ -1640,6 +2575,61 @@
           grid-template-columns: 1fr;
           gap: 60px;
         }
+
+        /* Timeline mobile */
+        .timeline::before {
+          left: 6px;
+        }
+        .tl-row {
+          grid-template-columns: 1fr;
+          gap: 16px;
+          padding: 28px 0 28px 32px;
+        }
+        .tl-date {
+          text-align: left;
+          padding: 0;
+        }
+        .tl-content {
+          padding-left: 0;
+        }
+        .tl-dot {
+          left: -29px;
+        }
+        .tl-cap-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .tl-cap-volume .num {
+          font-size: 32px;
+        }
+        .tl-capabilities {
+          padding: 18px 16px;
+        }
+
+        .award-row {
+          grid-template-columns: 60px 1fr;
+          grid-template-areas: "year name" "year issuer" ". project";
+          gap: 8px 20px;
+        }
+        .award-year {
+          grid-area: year;
+          font-size: 28px;
+        }
+        .award-name {
+          grid-area: name;
+        }
+        .award-issuer {
+          grid-area: issuer;
+        }
+        .award-project {
+          grid-area: project;
+          text-align: left;
+          margin-top: 4px;
+        }
+        .award-row .award-icon {
+          display: none;
+        }
+
         .works-grid {
           grid-template-columns: 1fr;
           gap: 24px;
@@ -1651,7 +2641,7 @@
           grid-column: span 1;
         }
         nav.primary {
-          gap: 18px;
+          gap: 14px;
         }
         nav.primary a:not(.btn-cta) {
           display: none;
@@ -1702,6 +2692,7 @@
       <nav class="primary">
         <a href="#home" class="active">Home</a>
         <a href="#about">About</a>
+        <a href="#experience">Experience</a>
         <a href="#works">Works</a>
         <a href="#contact" class="btn-cta">
           Get in Touch
@@ -1729,12 +2720,12 @@
       <div class="hero-left">
         <div class="hero-greeting reveal">
           <span class="dot"></span>
-          <span>Hey, I'm a designer based in Seoul</span>
+          <span>5년차 디자이너 · Design + Code + AI + Video</span>
         </div>
 
         <h1 class="hero-title">
           <span class="ko reveal delay-1">서연경</span>
-          <span class="en reveal delay-2">UIUX & Product</span>
+          <span class="en reveal delay-2">Design × Code</span>
           <span
             class="en reveal delay-3"
             style="
@@ -1743,42 +2734,41 @@
               background-clip: text;
               -webkit-text-fill-color: transparent;
             "
-            >Designer.</span
+            >× AI.</span
           >
         </h1>
 
         <p class="hero-sub reveal delay-3">
-          <strong>데이터를 인터페이스로, 사물을 경험으로.</strong><br />
-          의료 모니터링부터 모바일 앱, 산업 제품까지 — 사용자가 의식하지 않고
-          자연스럽게 닿는 디자인을 만듭니다.
+          <strong>디자인 + 코드 + AI + 영상편집까지.</strong><br />
+          매체를 가리지 않고, 도구도 가리지 않는 5년차 디자이너입니다. 가장 최근
+          아이넥스에서는 <strong>AI 프롬프트와 코드 개발</strong>로 하루 평균
+          <strong>120개의 컨텐츠</strong>를 생산했습니다.
         </p>
 
         <div class="hero-meta reveal delay-4">
-          <span><span class="pulse"></span>Available for 2025 projects</span>
-          <span>· Industrial Design Major</span>
-          <span>· Portfolio v.5</span>
+          <span><span class="pulse"></span>Available · 2026.05+</span>
+          <span>· iF Design Award 2021</span>
+          <span>· 120 assets / day with AI</span>
         </div>
       </div>
 
       <div class="hero-right">
-        <div class="orb">
-          <div class="orb-disc"></div>
-        </div>
+        <div class="orb"><div class="orb-disc"></div></div>
 
         <div class="float-card fc-1">
-          <div class="label">Live · #01 UIUX</div>
-          <div class="num">06<small>projects</small></div>
+          <div class="label">Peak Output · @ Inex</div>
+          <div class="num">120<small>/day</small></div>
           <div class="bar"><i></i></div>
         </div>
 
         <div class="float-card fc-3">
           <div class="big">Hi.</div>
-          <div class="big-sub">반갑습니다 · 2024 / 2025</div>
+          <div class="big-sub">반갑습니다 · Design × Code × AI</div>
         </div>
 
         <div class="float-card fc-2">
-          <div class="label">Disciplines</div>
-          <div class="num" style="font-size: 18px">UIUX · Product · Motion</div>
+          <div class="label">Career</div>
+          <div class="num">04<small>y 8m</small></div>
           <div class="bar"><i></i></div>
         </div>
       </div>
@@ -1786,23 +2776,23 @@
       <div class="hero-categories">
         <div class="cat-item reveal delay-1">
           <div class="num">#01</div>
-          <div class="title">UI / UX Design</div>
-          <div class="desc">App, Web, Dashboard</div>
+          <div class="title">Web & App</div>
+          <div class="desc">홈페이지 · 플랫폼 · 모바일</div>
         </div>
         <div class="cat-item reveal delay-2">
           <div class="num">#02</div>
-          <div class="title">Product Design</div>
-          <div class="desc">Industrial, Hardware</div>
+          <div class="title">AI × Content</div>
+          <div class="desc">프롬프트 · 대량 생산 · 챗봇</div>
         </div>
         <div class="cat-item reveal delay-3">
           <div class="num">#03</div>
-          <div class="title">Motion Graphics</div>
-          <div class="desc">Branding, Storytelling</div>
+          <div class="title">Code × Video</div>
+          <div class="desc">웹 퍼블리싱 · 영상 편집</div>
         </div>
         <div class="cat-item reveal delay-4">
           <div class="num">#04</div>
-          <div class="title">Creative Direction</div>
-          <div class="desc">Concept to Delivery</div>
+          <div class="title">Brand × Product</div>
+          <div class="desc">모션 · iF Award 수상</div>
         </div>
       </div>
     </section>
@@ -1810,14 +2800,14 @@
     <!-- ============= MARQUEE ============= -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>Selected&nbsp;Works</span>
-        <span>2024 / 2025</span>
-        <span>Selected&nbsp;Works</span>
-        <span>UIUX · Product · Motion</span>
-        <span>Selected&nbsp;Works</span>
-        <span>2024 / 2025</span>
-        <span>Selected&nbsp;Works</span>
-        <span>UIUX · Product · Motion</span>
+        <span>Design&nbsp;×&nbsp;Code&nbsp;×&nbsp;AI</span>
+        <span>120&nbsp;Assets&nbsp;/&nbsp;Day</span>
+        <span>Design&nbsp;×&nbsp;Code&nbsp;×&nbsp;AI</span>
+        <span>iF&nbsp;Design&nbsp;Award&nbsp;2021</span>
+        <span>Design&nbsp;×&nbsp;Code&nbsp;×&nbsp;AI</span>
+        <span>120&nbsp;Assets&nbsp;/&nbsp;Day</span>
+        <span>Design&nbsp;×&nbsp;Code&nbsp;×&nbsp;AI</span>
+        <span>iF&nbsp;Design&nbsp;Award&nbsp;2021</span>
       </div>
     </div>
 
@@ -1831,67 +2821,440 @@
           </h2>
         </div>
         <div class="section-side reveal delay-2">
-          산업디자인을 전공하며 화면 너머의 디자인을 함께 탐구해 왔습니다. 손에
-          잡히는 제품과 손가락으로 만지는 인터페이스, 두 영역을 잇는 자리에서
-          작업합니다.
+          산업디자인을 전공한 뒤, 5년간 4개 회사에서 웹·앱·AI·하드웨어까지
+          다양한 매체를 다뤄왔습니다. 특정 도메인보다는 매체와 사용자의 맥락에
+          맞는 디자인을 찾는 작업을 좋아합니다.
         </div>
       </div>
 
       <div class="about-grid">
         <div class="about-text reveal">
           <p>
-            저는 <strong>UIUX와 산업 제품을 함께 다루는 디자이너</strong>입니다.
-            의료 모니터링 시스템 같은 데이터 집약적 인터페이스부터, 매일
-            사용하는 모바일 앱과 손에 들리는 하드웨어까지 — 영역을 가리지 않고
-            작업합니다.
+            저는 <strong>디자인 · 코드 · AI · 영상편집</strong>을 모두 도구로
+            사용하는 디자이너입니다. 성신여대 산업디자인과를 졸업한 뒤
+            코렌텍·더블랙·메쥬·아이넥스에서 5년간 작업하면서, 의료기기
+            산업디자인 → 모빌리티 하드웨어 → B2B 플랫폼 UI/UX → 웹·교육
+            플랫폼·AI 챗봇·콘텐츠 자동화까지 매번 다른 매체와 도구를
+            익혀왔습니다.
           </p>
           <p>
-            좋은 디자인은 사용자가 의식하지 않을 때 가장 잘 작동한다고 믿습니다.
-            그래서 화려함보다 명료함을, 트렌드보다 맥락을 우선합니다.
+            특히 가장 최근 6개월간 아이넥스에서는 단순 디자인을 넘어
+            <strong
+              >AI 프롬프트로 사례·이미지·영상 콘텐츠를 하루 평균 120개씩 대량
+              생산</strong
+            >하고, <strong>HTML/CSS/JS로 직접 웹페이지를 퍼블리싱</strong>하고
+            기능까지 추가하는 —
+            <mark
+              style="
+                background: linear-gradient(
+                  180deg,
+                  transparent 60%,
+                  rgba(255, 122, 46, 0.25) 60%
+                );
+                color: var(--text);
+                padding: 0 2px;
+              "
+              >디자이너이자 빌더(builder)</mark
+            >로서의 작업 방식을 쌓았습니다.
+          </p>
+          <p>
+            2020년 코렌텍 인공관절 케이스 프로젝트로
+            <strong>iF Design Award</strong>와
+            <strong>인간공학디자인상 BEST OF BEST</strong>를 수상했습니다.
+            도구가 디자인부터 코드, AI, 영상까지 확장됐지만 — 사용자 리서치에서
+            출발한다는 작업 방식 한 가지만큼은 5년 동안 변하지 않았습니다.
           </p>
         </div>
 
         <div class="reveal delay-2">
           <div class="about-stats">
             <div class="stat">
-              <div class="v">06</div>
+              <div class="v">04<small>y 8m</small></div>
+              <div class="l">Years working</div>
+            </div>
+            <div class="stat">
+              <div class="v">120<small>/day</small></div>
+              <div class="l">AI content peak</div>
+            </div>
+            <div class="stat">
+              <div class="v">09<small> +</small></div>
               <div class="l">Projects shipped</div>
             </div>
             <div class="stat">
-              <div class="v">03</div>
-              <div class="l">Disciplines</div>
-            </div>
-            <div class="stat">
-              <div class="v">04+</div>
-              <div class="l">Years exploring</div>
-            </div>
-            <div class="stat">
-              <div class="v">∞</div>
-              <div class="l">Iterations loved</div>
+              <div class="v">03<small> 🏆</small></div>
+              <div class="l">Awards / honors</div>
             </div>
           </div>
 
           <div class="skills-block">
-            <h4>Tools / Stack</h4>
+            <h4>Design Tools</h4>
             <div class="skills-row">
               <span class="skill-tag">Figma</span>
-              <span class="skill-tag">Adobe Illustrator</span>
+              <span class="skill-tag">Adobe XD</span>
+              <span class="skill-tag">Sketch</span>
+              <span class="skill-tag">Illustrator</span>
               <span class="skill-tag">Photoshop</span>
+              <span class="skill-tag">InDesign</span>
+            </div>
+
+            <h4 style="margin-top: 28px">AI · Code · Video</h4>
+            <div class="skills-row">
+              <span class="skill-tag">ChatGPT</span>
+              <span class="skill-tag">Gemini</span>
+              <span class="skill-tag">Prompt Engineering</span>
+              <span class="skill-tag">HTML / CSS / JS</span>
+              <span class="skill-tag">아임웹 (No-code)</span>
               <span class="skill-tag">After Effects</span>
+              <span class="skill-tag">Premiere</span>
+            </div>
+
+            <h4 style="margin-top: 28px">3D · Product</h4>
+            <div class="skills-row">
               <span class="skill-tag">Rhino</span>
               <span class="skill-tag">KeyShot</span>
               <span class="skill-tag">SolidWorks</span>
-              <span class="skill-tag">Premiere</span>
+              <span class="skill-tag">3ds Max</span>
+              <span class="skill-tag">Maya</span>
+              <span class="skill-tag">SketchUp</span>
             </div>
 
             <h4 style="margin-top: 28px">Focus Areas</h4>
             <div class="skills-row">
-              <span class="skill-tag">Data Visualization</span>
-              <span class="skill-tag">Mobile App UX</span>
+              <span class="skill-tag">AI Content Pipeline</span>
+              <span class="skill-tag">Web Publishing</span>
+              <span class="skill-tag">Web Design</span>
+              <span class="skill-tag">App / Mobile UX</span>
+              <span class="skill-tag">AI Interface</span>
+              <span class="skill-tag">Brand Identity</span>
               <span class="skill-tag">Service Design</span>
+              <span class="skill-tag">Design System</span>
+              <span class="skill-tag">Motion Graphics</span>
+              <span class="skill-tag">Video Editing</span>
+              <span class="skill-tag">User Research</span>
               <span class="skill-tag">Industrial Product</span>
-              <span class="skill-tag">Brand Motion</span>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= EXPERIENCE ============= -->
+    <section class="section-pad" id="experience">
+      <div class="section-head">
+        <div class="reveal">
+          <div class="section-eyebrow">Experience — 02</div>
+          <h2 class="section-title"><em>다섯 챕터,</em><br />하나의 실천.</h2>
+        </div>
+        <div class="section-side reveal delay-2">
+          산업디자인 → 하드웨어 → 플랫폼 UX → 웹/AI 인터페이스. 매 챕터마다
+          매체와 클라이언트가 바뀌었지만, 사용자 리서치라는 출발점은 한 번도
+          바뀌지 않았습니다. 이 변화의 폭이 곧 저의 강점입니다.
+        </div>
+      </div>
+
+      <div class="timeline">
+        <!-- NOW -->
+        <div class="tl-row current reveal">
+          <div class="tl-date">
+            <div class="tl-period">2026.05 —</div>
+            <div class="tl-duration">Now</div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-dot"></div>
+            <div class="tl-tag">Available</div>
+            <div class="tl-company">
+              에이전시·스튜디오에서의 다음 챕터를 찾고 있습니다
+              <span class="en">Open to agency roles</span>
+            </div>
+            <div class="tl-role">
+              Design × Code × AI · 빠른 사이클 · 대량 생산
+            </div>
+            <div class="tl-desc">
+              디자인 + 코드 + AI + 영상편집까지 다루는 5년차 디자이너. 다양한
+              클라이언트와 매체를 동시에 다루는 에이전시 환경에서, 빠른 사이클과
+              높은 생산성으로 결과물을 만들어내는 다음 챕터를 기다리고 있습니다.
+            </div>
+          </div>
+        </div>
+
+        <!-- INEX -->
+        <div class="tl-row reveal">
+          <div class="tl-date">
+            <div class="tl-period">2025.11 — 2026.05</div>
+            <div class="tl-duration">6 months</div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-dot"></div>
+            <div class="tl-tag">Most Recent · AI-augmented</div>
+            <div class="tl-company">
+              아이넥스 <span class="en">Inex Inc.</span>
+            </div>
+            <div class="tl-role">
+              UI/UX Designer · AI Content × Web Publishing
+            </div>
+            <div class="tl-desc">
+              디자인을 넘어
+              <strong>AI 프롬프트로 콘텐츠를 대량 생산</strong>하고,
+              <strong>HTML/CSS/JS 코드로 웹페이지를 직접 퍼블리싱</strong>하며
+              기능까지 추가하는 방식으로 작업했습니다. 6개월 동안 홈페이지·교육
+              플랫폼·AI 챗봇이라는 완전히 다른 세 프로젝트를 빠른 사이클로
+              끝내는 동시에, 매일 평균 120개의 이미지·영상 콘텐츠를 자동화
+              워크플로우로 생산했습니다.
+            </div>
+
+            <!-- Capabilities Callout -->
+            <div class="tl-capabilities">
+              <div class="tl-cap-head">Beyond Design · 4 Capabilities</div>
+              <div class="tl-cap-grid">
+                <div class="tl-cap-item">
+                  <div class="tl-cap-icon">🤖</div>
+                  <div class="tl-cap-text">
+                    <div class="tl-cap-title">AI Content Generation</div>
+                    <div class="tl-cap-sub">
+                      프롬프트 엔지니어링으로 이미지·영상 사례 자동화
+                    </div>
+                  </div>
+                </div>
+                <div class="tl-cap-item">
+                  <div class="tl-cap-icon">💻</div>
+                  <div class="tl-cap-text">
+                    <div class="tl-cap-title">Web Publishing</div>
+                    <div class="tl-cap-sub">
+                      HTML / CSS / JS로 퍼블리싱 + 기능 개발
+                    </div>
+                  </div>
+                </div>
+                <div class="tl-cap-item">
+                  <div class="tl-cap-icon">🎬</div>
+                  <div class="tl-cap-text">
+                    <div class="tl-cap-title">Video Editing</div>
+                    <div class="tl-cap-sub">
+                      사례 영상 편집 및 시각 자료 제작
+                    </div>
+                  </div>
+                </div>
+                <div class="tl-cap-item">
+                  <div class="tl-cap-icon">⚡</div>
+                  <div class="tl-cap-text">
+                    <div class="tl-cap-title">Sprint Cycles</div>
+                    <div class="tl-cap-sub">6개월 / 3 프로젝트 / 빠른 전환</div>
+                  </div>
+                </div>
+                <div class="tl-cap-volume">
+                  <div class="num">
+                    120<span
+                      style="
+                        font-size: 20px;
+                        color: var(--text-2);
+                        -webkit-text-fill-color: var(--text-2);
+                        margin-left: 4px;
+                      "
+                      >/day</span
+                    >
+                  </div>
+                  <div class="label">
+                    평균 <b>일일 콘텐츠 생산량</b><br />이미지 + 영상 사례
+                    (프롬프트 기반)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tl-projects">
+              <span class="tl-chip">홈페이지 디자인</span>
+              <span class="tl-chip">교육원 플랫폼</span>
+              <span class="tl-chip">AI 챗봇 인터페이스</span>
+              <span class="tl-chip">AI Content Pipeline</span>
+              <span class="tl-chip">Web Publishing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 오즈 코딩스쿨 -->
+        <div class="tl-row reveal">
+          <div class="tl-date">
+            <div class="tl-period">2025.01 — 2025.07</div>
+            <div class="tl-duration">7 months</div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-dot"></div>
+            <div class="tl-tag">AI × No-code · Bootcamp</div>
+            <div class="tl-company">
+              오즈 코딩스쿨 <span class="en">Bootcamp</span>
+            </div>
+            <div class="tl-role">UI/UX × AI 디자인 · No-code Web</div>
+            <div class="tl-desc">
+              UI/UX 업계 동향과 디자인×AI 접목 가능성을 심화 학습.
+              <strong
+                >ChatGPT, Gemini를 활용한 사용자 경험 혁신 워크플로우</strong
+              >와 <strong>아임웹 기반 노코드 웹디자인</strong>을 실습했습니다.
+              이 시기에 익힌 AI 활용법이 곧바로 아이넥스 입사 후 콘텐츠 대량
+              생산 워크플로우의 기반이 되었습니다.
+            </div>
+            <div class="tl-projects">
+              <span class="tl-chip">ChatGPT / Gemini</span>
+              <span class="tl-chip">Prompt Workflow</span>
+              <span class="tl-chip">No-code Web</span>
+              <span class="tl-chip">UX Trends</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MEZOO -->
+        <div class="tl-row reveal">
+          <div class="tl-date">
+            <div class="tl-period">2022.08 — 2025.01</div>
+            <div class="tl-duration">2 years 6 months</div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-dot"></div>
+            <div class="tl-tag">Longest tenure</div>
+            <div class="tl-company">메쥬 <span class="en">Mezoo</span></div>
+            <div class="tl-role">디자인팀 주임연구원 · UI/UX Designer</div>
+            <div class="tl-desc">
+              B2B 플랫폼의
+              <strong
+                >UI/UX 설계, 디자인 시스템 구축, 사용자 플로우 매핑, 프로토타입
+                제작</strong
+              >까지 풀 사이클을 담당했습니다. 데이터 집약 인터페이스의 시각
+              위계를 설계하고, 까다로운 산업 표준을 디자인에 녹이며 개발팀과
+              긴밀하게 협업했습니다.
+            </div>
+            <div class="tl-highlight">
+              <strong>Impact</strong> — 신규 앱 UI 개편 후 사용자 만족도
+              <strong>+20%p</strong> 상승, 앱스토어 평점
+              <strong>4.0 → 4.5</strong> 달성.
+            </div>
+            <div class="tl-projects">
+              <span class="tl-chip">Livestudio · 모니터링 플랫폼</span>
+              <span class="tl-chip">Design System</span>
+              <span class="tl-chip">User Flow / IA</span>
+              <span class="tl-chip">Prototype</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- THE BLACK -->
+        <div class="tl-row reveal">
+          <div class="tl-date">
+            <div class="tl-period">2021.02 — 2021.12</div>
+            <div class="tl-duration">11 months</div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-dot"></div>
+            <div class="tl-tag">Hardware</div>
+            <div class="tl-company">
+              더블랙 <span class="en">The Black</span>
+            </div>
+            <div class="tl-role">제품개발부서 · 금속 / 제품 디자이너</div>
+            <div class="tl-desc">
+              오토바이 블루투스 기기 및 액세서리의
+              <strong>기획·디자인·기구설계·거래처관리</strong>까지 풀 사이클을
+              담당. 협력사와의 긴밀한 커뮤니케이션으로 양산 품질을 확보했습니다.
+            </div>
+            <div class="tl-highlight">
+              <strong>Outcome</strong> — 신규 블루투스 디바이스 액세서리 2종
+              출시, 초기 생산 목표 대비 <strong>120% 판매 달성</strong>.
+            </div>
+            <div class="tl-projects">
+              <span class="tl-chip">NINJA · 헬멧 모듈</span>
+              <span class="tl-chip">Mass Production</span>
+              <span class="tl-chip">Mechanical Design</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CORENTEC -->
+        <div class="tl-row award-host reveal">
+          <div class="tl-date">
+            <div class="tl-period">2020.02 — 2020.10</div>
+            <div class="tl-duration">9 months</div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-dot"></div>
+            <div class="tl-tag">Award-winning project</div>
+            <div class="tl-company">
+              코렌텍 <span class="en">Corentec</span>
+            </div>
+            <div class="tl-role">프리랜서 · 산업디자이너 / UX 리서처</div>
+            <div class="tl-desc">
+              의료기기 부품 디자인 및 사용자 조사 연구를 수행. 수술실 의료진을
+              직접 인터뷰하며 <strong>인공관절 케이스 리디자인</strong>을
+              진행했고, 인체공학적 디자인을 반영한 프로토타입까지 검증했습니다.
+            </div>
+            <div class="tl-highlight">
+              <strong>Outcome</strong> — 신규 인공관절 케이스 디자인 제안,
+              의료진 평가에서 기존 대비 <strong>안정성 25% 향상</strong>. 이
+              프로젝트가 <strong>iF Design Award (2021)</strong>와
+              <strong>인간공학디자인상 BEST OF BEST (2020)</strong>를
+              받았습니다.
+            </div>
+            <div class="tl-projects">
+              <span class="tl-chip award">iF Design Award 2021</span>
+              <span class="tl-chip award">EDA BEST OF BEST 2020</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="tl-row education reveal">
+          <div class="tl-date">
+            <div class="tl-period">2015.03 — 2020.02</div>
+            <div class="tl-duration">5 years</div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-dot"></div>
+            <div class="tl-tag">Education</div>
+            <div class="tl-company">
+              성신여자대학교 <span class="en">Sungshin Women's Univ.</span>
+            </div>
+            <div class="tl-role">산업디자인과 학사 · 학점 3.1 / 4.5</div>
+            <div class="tl-desc">
+              산업디자인을 전공하며 제품·UX 양쪽을 함께 다뤘습니다. 재학 중 삼성
+              산학협력 프로젝트, 삼성웰스토리 서포터즈 등을 통해 협업과 사용자
+              조사 경험을 쌓았습니다.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AWARDS -->
+      <div class="awards-block">
+        <div class="awards-head reveal">
+          <h3>Awards &amp; <em>Recognition.</em></h3>
+          <p>
+            사용자 리서치를 출발점으로 삼는 작업이 외부에서도 좋은 평가를
+            받았습니다.
+          </p>
+        </div>
+
+        <div class="award-list">
+          <div class="award-row reveal">
+            <div class="award-year">2021</div>
+            <div>
+              <div class="award-name">iF DESIGN AWARD</div>
+              <div class="award-issuer">International Forum Design</div>
+            </div>
+            <div class="award-icon">★</div>
+            <div class="award-project">코렌텍 인공관절 케이스</div>
+          </div>
+          <div class="award-row reveal delay-1">
+            <div class="award-year">2020</div>
+            <div>
+              <div class="award-name">인간공학디자인상 BEST OF BEST</div>
+              <div class="award-issuer">Ergonomic Design Award (EDA)</div>
+            </div>
+            <div class="award-icon">★</div>
+            <div class="award-project">코렌텍 인공관절 케이스</div>
+          </div>
+          <div class="award-row reveal delay-2">
+            <div class="award-year">2017</div>
+            <div>
+              <div class="award-name">장려상</div>
+              <div class="award-issuer">삼성웰스토리 공모전</div>
+            </div>
+            <div class="award-icon">·</div>
+            <div class="award-project">학식업체 사용자 조사 기획</div>
           </div>
         </div>
       </div>
@@ -1901,20 +3264,254 @@
     <section class="section-pad" id="works" style="padding-top: 60px">
       <div class="section-head">
         <div class="reveal">
-          <div class="section-eyebrow">Selected Works — 02</div>
+          <div class="section-eyebrow">Selected Works — 03</div>
           <h2 class="section-title">
-            <em>여섯 개의</em> 프로젝트,<br />하나의 시선.
+            <em>열 개의</em> 프로젝트,<br />다섯 매체.
           </h2>
         </div>
         <div class="section-side reveal delay-2">
-          UIUX 셋, Product 둘, Motion 하나. 매체는 다르지만 같은 질문에서
-          출발했습니다 — 이건 누구를 위한, 어떤 순간을 위한 디자인인가.
+          2020년 코렌텍부터 2026년 아이넥스까지. 디자인뿐 아니라 코드, AI, 영상
+          — 다양한 매체와 도구로 만든 결과물들입니다.
         </div>
       </div>
 
       <div class="works-grid">
-        <!-- Project 01: Livestudio -->
+        <!-- INEX 0: AI CONTENT PIPELINE (featured/full width) -->
+        <article
+          class="project span-12 reveal"
+          tabindex="0"
+          style="grid-column: span 12"
+        >
+          <div class="thumb thumb-inex-pipeline" style="aspect-ratio: 22/8">
+            <div class="ip-grid">
+              <div class="ip-cell media-1"></div>
+              <div class="ip-cell media-2 video"></div>
+              <div class="ip-cell media-3"></div>
+              <div class="ip-cell media-4"></div>
+              <div class="ip-cell media-1 video"></div>
+              <div class="ip-cell media-2"></div>
+              <div class="ip-cell media-3"></div>
+              <div class="ip-cell media-4 video"></div>
+              <div class="ip-cell media-1"></div>
+              <div class="ip-cell media-2"></div>
+              <div class="ip-cell media-3 video"></div>
+              <div class="ip-cell media-4"></div>
+              <div class="ip-cell media-2"></div>
+              <div class="ip-cell media-3"></div>
+              <div class="ip-cell media-1 video"></div>
+              <div class="ip-cell media-4"></div>
+              <div class="ip-cell media-1"></div>
+              <div class="ip-cell media-3"></div>
+              <div class="ip-cell media-2 video"></div>
+              <div class="ip-cell media-4"></div>
+              <div class="ip-cell media-3"></div>
+              <div class="ip-cell media-1"></div>
+              <div class="ip-cell media-4"></div>
+              <div class="ip-cell media-2"></div>
+            </div>
+            <div class="ip-counter">120 / day · live</div>
+            <div class="ip-tag">
+              AI Content Pipeline
+              <small>Prompt × Image × Video × Web</small>
+            </div>
+          </div>
+          <div class="arrow-tag">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="row">
+              <div class="cat">Featured · AI × Code × Video</div>
+              <div class="duration">2025.11 — 2026.05 · ongoing</div>
+            </div>
+            <div class="title">AI 콘텐츠 대량 생산 워크플로우</div>
+            <div class="desc">
+              아이넥스 재직 중 운영한 AI 기반 콘텐츠 자동화 워크플로우. 프롬프트
+              엔지니어링으로 이미지·영상 사례를 하루 평균
+              <strong style="color: var(--orange-3)">120개</strong> 생산하고,
+              동시에 HTML/CSS/JS로 웹페이지 퍼블리싱 및 기능 추가까지 직접
+              진행한 — 디자인을 넘어선 풀스택 콘텐츠 빌더 작업입니다.
+            </div>
+            <div class="company-tag">@ <b>아이넥스</b> · 6 months · 2026</div>
+          </div>
+        </article>
+
+        <!-- INEX 1: Homepage (recent, span 7) -->
         <article class="project span-7 reveal" tabindex="0">
+          <div class="thumb thumb-inex-home">
+            <div class="ih-browser">
+              <div class="ih-bar">
+                <div class="b"></div>
+                <div class="b"></div>
+                <div class="b"></div>
+              </div>
+              <div class="ih-content">
+                <div class="ih-nav">
+                  <div class="ih-logo">INEX</div>
+                  <div class="ih-menu">
+                    <span>About</span><span>Service</span><span>Contact</span>
+                  </div>
+                </div>
+                <div class="ih-hero">
+                  <div class="ih-text">
+                    <div class="ih-h1">
+                      Build the<br /><b>future, today.</b>
+                    </div>
+                    <div class="ih-btn">Get Started →</div>
+                  </div>
+                  <div class="ih-vis"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow-tag">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="row">
+              <div class="cat">UIUX · Web</div>
+              <div class="duration">2025.11 — 2026.01</div>
+            </div>
+            <div class="title">Inex — 홈페이지 디자인</div>
+            <div class="desc">
+              아이넥스 코퍼레이트 사이트 리뉴얼. 브랜드 메시지를 명료하게
+              전달하면서, 모바일까지 동일한 임팩트를 유지하도록 설계했습니다.
+            </div>
+            <div class="company-tag">
+              @ <b>아이넥스</b> · UIUX Designer · 2026
+            </div>
+          </div>
+        </article>
+
+        <!-- INEX 2: Training Center (span 5) -->
+        <article class="project span-5 reveal delay-1" tabindex="0">
+          <div class="thumb thumb-inex-training">
+            <div class="it-grid">
+              <div class="it-card featured">
+                <div class="it-cat">Featured Course</div>
+                <div class="it-title">Foundation Course</div>
+                <div class="it-progress"></div>
+                <div class="it-meta">In Progress · 75%</div>
+              </div>
+              <div class="it-card">
+                <div class="it-cat">Module 02</div>
+                <div class="it-title">Advanced Practice</div>
+                <div class="it-progress"></div>
+                <div class="it-meta">Completed</div>
+              </div>
+              <div class="it-card">
+                <div class="it-cat">Module 03</div>
+                <div class="it-title">Specialty Track</div>
+                <div class="it-progress"></div>
+                <div class="it-meta">3 / 8 lessons</div>
+              </div>
+              <div class="it-card">
+                <div class="it-cat">Module 04</div>
+                <div class="it-title">Final Project</div>
+                <div class="it-progress"></div>
+                <div class="it-meta">Locked</div>
+              </div>
+            </div>
+          </div>
+          <div class="arrow-tag">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="row">
+              <div class="cat">UIUX · Platform</div>
+              <div class="duration">2026.01 — 2026.03</div>
+            </div>
+            <div class="title">Inex — 교육원 플랫폼</div>
+            <div class="desc">
+              학습자가 코스 진행률을 한눈에 파악할 수 있는 교육 플랫폼 디자인.
+              모듈 단위 진도 시각화와 체계적 정보 위계.
+            </div>
+            <div class="company-tag">
+              @ <b>아이넥스</b> · UIUX Designer · 2026
+            </div>
+          </div>
+        </article>
+
+        <!-- INEX 3: AI Chatbot (span 4) -->
+        <article class="project span-4 reveal" tabindex="0">
+          <div class="thumb thumb-inex-chatbot">
+            <div class="ic-stage">
+              <div class="ic-avatar">✦</div>
+              <div class="ic-bubble bot">안녕하세요! 무엇을 도와드릴까요?</div>
+              <div class="ic-bubble user">교육 일정 알려줘</div>
+              <div class="ic-typing">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+          <div class="arrow-tag">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="row">
+              <div class="cat">UIUX · AI</div>
+              <div class="duration">2026.03 — 2026.05</div>
+            </div>
+            <div class="title">Inex — AI 챗봇</div>
+            <div class="desc">
+              대화형 AI 인터페이스 디자인. 응답 대기·추천·인용 등 AI 특화 UI
+              패턴을 정립했습니다.
+            </div>
+            <div class="company-tag">
+              @ <b>아이넥스</b> · UIUX Designer · 2026
+            </div>
+          </div>
+        </article>
+
+        <!-- LIVESTUDIO @ MEZOO (span 4) -->
+        <article class="project span-4 reveal delay-1" tabindex="0">
           <div class="thumb thumb-livestudio">
             <div class="ls-monitor">
               <div class="ls-cell">
@@ -2036,25 +3633,65 @@
           </div>
           <div class="meta">
             <div class="row">
-              <div class="cat">UIUX · 00-1 / Healthcare</div>
-              <div class="year">2024</div>
+              <div class="cat">UIUX · Platform</div>
+              <div class="duration">2023 — 2024</div>
             </div>
-            <div class="title">Livestudio — 환자 실시간 모니터링</div>
+            <div class="title">Livestudio</div>
             <div class="desc">
-              ECG·혈압·체온·혈당까지 다양한 생체 신호를 한 화면에 집약. 한정된
-              공간에서 더 많은 데이터를 직관적으로 인지할 수 있도록 시각 계층을
-              재설계했습니다.
+              실시간 데이터 모니터링 인터페이스. 다중 채널 데이터를 한 화면에
+              통합하는 시각 계층을 재설계했습니다.
             </div>
+            <div class="company-tag">@ <b>메쥬</b> · UI/UX Designer · 2.5y</div>
           </div>
         </article>
 
-        <!-- Project 02: Before Tenminute -->
-        <article class="project span-5 reveal delay-1" tabindex="0">
-          <div class="thumb thumb-before">
-            <div class="bt-bubble b1">
-              <strong>17°</strong>
-              오늘 아침
+        <!-- CORENTEC (span 4) - AWARD WINNER -->
+        <article class="project span-4 reveal delay-2" tabindex="0">
+          <div class="thumb thumb-corentec">
+            <div class="corentec-stack">
+              <div class="corentec-box b1"></div>
+              <div class="corentec-box b2"></div>
+              <div class="corentec-box b3"></div>
             </div>
+            <div class="corentec-tag">
+              Corentec
+              <small>iF Award · EDA Best of Best</small>
+            </div>
+          </div>
+          <div class="award-badge">🏆 iF Design Award</div>
+          <div class="arrow-tag">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </div>
+          <div class="meta">
+            <div class="row">
+              <div class="cat">Product · Industrial</div>
+              <div class="duration">2020.02 — 2020.10</div>
+            </div>
+            <div class="title">Corentec — Surgical Case</div>
+            <div class="desc">
+              사용자 인터뷰와 현장 참관에서 출발한 산업 제품 디자인. 안정성 25%
+              향상으로 iF Design Award · EDA Best of Best 수상.
+            </div>
+            <div class="company-tag">@ <b>코렌텍</b> · 프리랜서 · 9m</div>
+          </div>
+        </article>
+
+        <!-- BEFORE TENMINUTE (span 7) -->
+        <article class="project span-7 reveal" tabindex="0">
+          <div class="thumb thumb-before">
+            <div class="bt-bubble b1"><strong>17°</strong>오늘 아침</div>
             <div class="bt-phone">
               <div class="bt-time">7:00 · 출근 10분 전</div>
               <div class="bt-temp">17<small>°</small></div>
@@ -2080,19 +3717,20 @@
           </div>
           <div class="meta">
             <div class="row">
-              <div class="cat">UIUX · 00-2 / Mobile App</div>
-              <div class="year">2024</div>
+              <div class="cat">UIUX · Mobile App</div>
+              <div class="duration">2024</div>
             </div>
             <div class="title">출근 10분 전</div>
             <div class="desc">
-              하루를 바꾸는 10분 전, 나만을 위한 날씨 경험. 날씨로 시작해
-              행동으로 완성되는 모바일 앱.
+              하루를 바꾸는 10분 전. 날씨로 시작해 행동으로 완성되는 모바일 앱
+              디자인.
             </div>
+            <div class="company-tag">Personal Project · 2024</div>
           </div>
         </article>
 
-        <!-- Project 03: Korail -->
-        <article class="project span-5 reveal" tabindex="0">
+        <!-- KORAIL (span 5) -->
+        <article class="project span-5 reveal delay-1" tabindex="0">
           <div class="thumb thumb-korail">
             <div class="korail-train">
               <div class="car head"></div>
@@ -2121,59 +3759,19 @@
           </div>
           <div class="meta">
             <div class="row">
-              <div class="cat">UIUX · 00-3 / Redesign</div>
-              <div class="year">2024</div>
+              <div class="cat">UIUX · Redesign</div>
+              <div class="duration">2024</div>
             </div>
             <div class="title">Korail Redesign</div>
             <div class="desc">
-              여정 선택과 열차 조회의 사용자 경험을 향상시키고, 인터페이스의
-              시각적 계층 구조를 새롭게 정리한 코레일 앱 리디자인.
+              코레일 앱 리디자인. 여정 선택과 열차 조회의 시각적 계층을 새로
+              정리했습니다.
             </div>
+            <div class="company-tag">Personal Project · 2024</div>
           </div>
         </article>
 
-        <!-- Project 04: Corentec -->
-        <article class="project span-7 reveal delay-1" tabindex="0">
-          <div class="thumb thumb-corentec">
-            <div class="corentec-stack">
-              <div class="corentec-box b1"></div>
-              <div class="corentec-box b2"></div>
-              <div class="corentec-box b3"></div>
-            </div>
-            <div class="corentec-tag">
-              Corentec
-              <small>Redefining the Surgical Case</small>
-            </div>
-          </div>
-          <div class="arrow-tag">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
-          </div>
-          <div class="meta">
-            <div class="row">
-              <div class="cat">Product · 00-4 / Medical</div>
-              <div class="year">2024</div>
-            </div>
-            <div class="title">Corentec — Surgical Case</div>
-            <div class="desc">
-              Stable · Smart · Intuitive. 복잡해지는 수술 환경에서 정밀함과
-              안전성을 동시에 받치는 차세대 수술 기구 케이스 디자인.
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 05: NINJA -->
+        <!-- NINJA (span 6) -->
         <article class="project span-6 reveal" tabindex="0">
           <div class="thumb thumb-ninja">
             <div class="ninja-disc"></div>
@@ -2199,18 +3797,19 @@
           </div>
           <div class="meta">
             <div class="row">
-              <div class="cat">Product · 00-5 / Hardware</div>
-              <div class="year">2024</div>
+              <div class="cat">Product · Hardware</div>
+              <div class="duration">2021.03 — 2021.10</div>
             </div>
             <div class="title">NINJA</div>
             <div class="desc">
-              헬멧에 부착되는 모듈형 하드웨어. 카본 텍스처와 LED 패턴을 살린
-              양산형 프로토타입까지 진행한 산업 제품.
+              헬멧 모듈형 블루투스 디바이스. 양산형 프로토타입까지 진행, 출시 후
+              판매 목표 120% 달성.
             </div>
+            <div class="company-tag">@ <b>더블랙</b> · 제품디자이너 · 11m</div>
           </div>
         </article>
 
-        <!-- Project 06: MINSK -->
+        <!-- MINSK (span 6) -->
         <article class="project span-6 reveal delay-1" tabindex="0">
           <div class="thumb thumb-minsk">
             <div class="minsk-blob mb1"></div>
@@ -2238,14 +3837,15 @@
           </div>
           <div class="meta">
             <div class="row">
-              <div class="cat">Motion · 00-6 / Branding</div>
-              <div class="year">2024</div>
+              <div class="cat">Motion · Branding</div>
+              <div class="duration">2024</div>
             </div>
             <div class="title">MINSK</div>
             <div class="desc">
-              멸종위기 동물 밍크의 이야기를 담은 게임 프로모션. 페이크 퍼
-              브랜드의 메시지를 모션 그래픽과 캐릭터 스토리로 풀어낸 작업.
+              멸종위기 동물 밍크 스토리의 게임 프로모션. 페이크 퍼 브랜드의
+              메시지를 모션 그래픽으로 풀어냈습니다.
             </div>
+            <div class="company-tag">Personal Project · 2024</div>
           </div>
         </article>
       </div>
@@ -2267,17 +3867,14 @@
 
     <!-- ============= CONTACT ============= -->
     <section id="contact">
-      <div class="contact-eyebrow reveal">Contact — 03</div>
+      <div class="contact-eyebrow reveal">Contact — 04</div>
       <h2 class="contact-title reveal delay-1">
         Let's make<br />
         <em>something good.</em>
       </h2>
 
-      <a
-        href="mailto:hello@seoyeongyeong.kr"
-        class="contact-email reveal delay-2"
-      >
-        hello@seoyeongyeong.kr
+      <a href="mailto:werqrs200@gmail.com" class="contact-email reveal delay-2">
+        werqrs200@gmail.com
         <span class="icon">
           <svg
             width="18"
@@ -2295,6 +3892,12 @@
         </span>
       </a>
 
+      <div class="contact-info reveal delay-3">
+        <span><b>📞</b> 010-2485-1999</span>
+        <span><b>📍</b> 경기 수원 / 서울 전지역</span>
+        <span><b>💼</b> 정규직 · 면접 후 협의</span>
+      </div>
+
       <div class="socials reveal delay-3">
         <a href="#">Behance</a>
         <a href="#">Instagram</a>
@@ -2305,9 +3908,9 @@
 
     <!-- ============= FOOTER ============= -->
     <footer>
-      <div>© 2024 Seoyeongyeong · Industrial Design</div>
-      <div>Designed &amp; built in Seoul</div>
-      <div>v.5 / Sep 2024</div>
+      <div>© 2026 Seoyeongyeong · Web · App · AI · Brand · Product</div>
+      <div>Designed &amp; built in Seoul / Suwon</div>
+      <div>v.6 / Apr 2026</div>
     </footer>
 
     <script>
@@ -2323,12 +3926,11 @@
         },
         { threshold: 0.12, rootMargin: "0px 0px -50px 0px" },
       );
-
       document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
-      // Active nav link based on scroll
+      // Active nav
       const navLinks = document.querySelectorAll('nav.primary a[href^="#"]');
-      const sections = ["home", "about", "works", "contact"]
+      const sections = ["home", "about", "experience", "works", "contact"]
         .map((id) => document.getElementById(id))
         .filter(Boolean);
       const setActive = () => {
@@ -2348,7 +3950,7 @@
       window.addEventListener("scroll", setActive, { passive: true });
       setActive();
 
-      // Subtle parallax for orb
+      // Hero orb parallax
       const orb = document.querySelector(".orb-disc");
       const heroSection = document.querySelector(".hero");
       if (orb && heroSection) {
