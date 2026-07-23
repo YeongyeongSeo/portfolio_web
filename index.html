@@ -7,9 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+KR:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Abyssinica+SIL&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
     <style>
       * {
         box-sizing: border-box;
@@ -58,34 +59,41 @@
       .glow {
         position: absolute;
         z-index: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(20px);
+      }
+
+      .glow-1 {
+        width: 857px;
+        height: 857px;
+        top: -452px;
+        left: calc(50% - 1212px);
+        background: radial-gradient(circle, rgba(138, 159, 255, 0.65) 0%, rgba(138, 159, 255, 0) 72%);
+      }
+
+      .glow-2 {
+        width: 857px;
+        height: 857px;
+        top: 217px;
+        left: calc(50% - 1378px);
+        background: radial-gradient(circle, rgba(210, 190, 245, 0.55) 0%, rgba(210, 190, 245, 0) 72%);
+      }
+
+      .glow-3 {
         width: 735px;
         height: 735px;
-        border-radius: 50%;
-        filter: blur(16px);
-        pointer-events: none;
+        top: 147px;
+        left: calc(50% - 418px);
+        background: radial-gradient(circle, rgba(197, 149, 250, 0.6) 0%, rgba(197, 149, 250, 0) 72%);
       }
 
-      .glow-blue {
-        background: radial-gradient(circle, rgba(138, 159, 255, 0.5), rgba(138, 159, 255, 0) 68%);
-      }
-
-      .glow-purple {
-        background: radial-gradient(circle, rgba(189, 151, 255, 0.42), rgba(189, 151, 255, 0) 68%);
-      }
-
-      .glow-left {
-        top: -410px;
-        left: -270px;
-      }
-
-      .glow-mid {
-        top: 120px;
-        left: calc(50% - 430px);
-      }
-
-      .glow-right {
-        top: 460px;
-        right: -90px;
+      .glow-4 {
+        width: 735px;
+        height: 734px;
+        top: 472px;
+        left: calc(50% - 85px);
+        background: radial-gradient(circle, rgba(130, 168, 255, 0.6) 0%, rgba(130, 168, 255, 0) 72%);
       }
 
       .container {
@@ -104,7 +112,7 @@
         gap: 10px;
         padding-top: 50px;
         font-size: 24px;
-        font-weight: 700;
+        font-weight: 600;
       }
 
       .brand::before {
@@ -129,18 +137,56 @@
       }
 
       .hero-mark {
-        display: inline-flex;
+        position: absolute;
+        left: -79px;
+        top: 6px;
         width: 63px;
         height: 63px;
-        margin: 0 8px -10px;
+      }
+
+      .hero-mark::before {
+        content: "";
+        position: absolute;
+        width: 87%;
+        height: 87%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         border-radius: 50%;
-        background:
-          linear-gradient(45deg, transparent 43%, #111 44%, #111 56%, transparent 57%),
-          linear-gradient(-45deg, transparent 43%, #111 44%, #111 56%, transparent 57%);
-        transform: rotate(45deg);
+        background: #d9d9d9;
+        border: 3px solid #fff;
+      }
+
+      .hero-mark::after {
+        content: "";
+        position: absolute;
+        width: 27.5%;
+        height: 27.5%;
+        left: 78%;
+        top: 84%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: #61d1b1;
+        border: 2px solid #fff;
+      }
+
+      .sparkle {
+        position: absolute;
+        background: #141414;
+        clip-path: polygon(
+          50% 0%,
+          56.4% 43.6%,
+          100% 50%,
+          56.4% 56.4%,
+          50% 100%,
+          43.6% 56.4%,
+          0% 50%,
+          43.6% 43.6%
+        );
       }
 
       .prompt-row {
+        position: relative;
         display: flex;
         flex-wrap: wrap;
         gap: 13px;
@@ -164,31 +210,30 @@
         white-space: nowrap;
       }
 
-      .spark {
-        position: relative;
-        width: 22px;
-        height: 22px;
+      .marquee-star {
         flex: 0 0 auto;
+        width: clamp(34px, 4vw, 57px);
+        height: clamp(34px, 4vw, 57px);
+        clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
       }
 
-      .spark::before,
-      .spark::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        margin: auto;
-        background: #9aa9ff;
-        border-radius: 2px;
+      .marquee-star.gray {
+        background: #d9d9d9;
       }
 
-      .spark::before {
-        width: 100%;
-        height: 5px;
-      }
-
-      .spark::after {
-        width: 5px;
-        height: 100%;
+      .marquee-star.grad {
+        background: linear-gradient(90deg, #8e9bff, #843dff);
       }
 
       .searchbar {
@@ -209,11 +254,11 @@
 
       .section-title {
         margin: 0 0 42px;
-        font-family: "Noto Serif KR", Georgia, serif;
-        font-size: clamp(44px, 6vw, 88px);
-        font-weight: 700;
-        line-height: 0.95;
-        letter-spacing: -0.04em;
+        font-family: "Pretendard", "Inter", sans-serif;
+        font-size: clamp(34px, 4.5vw, 55px);
+        font-weight: 600;
+        line-height: 1.09;
+        letter-spacing: -0.02em;
       }
 
       .work-section {
@@ -258,6 +303,18 @@
         background: #fafafa;
       }
 
+      .media.pale-blue {
+        background: #f2f5ff;
+      }
+
+      .media.purple-solid {
+        background: #cdb1ff;
+      }
+
+      .media.tall {
+        height: 407px;
+      }
+
       .media img {
         position: absolute;
         object-fit: cover;
@@ -265,25 +322,29 @@
         box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.12);
       }
 
-      .inex-main {
-        width: 31%;
-        height: 78%;
-        left: 7%;
-        top: 11%;
+      .inex-imac {
+        width: 41.3%;
+        height: 98.77%;
+        left: 5.3%;
+        top: 11.3%;
+        object-fit: contain;
+        box-shadow: none;
+        border-radius: 0;
+        opacity: 0.8;
       }
 
-      .inex-detail {
-        width: 17%;
-        height: 64%;
-        left: 46%;
-        top: 15%;
+      .inex-browser {
+        width: 28.35%;
+        height: 158.7%;
+        left: 38%;
+        top: 27.27%;
       }
 
-      .mockup-site {
-        width: 33%;
-        height: 58%;
-        right: 7%;
-        top: 17%;
+      .inex-portrait {
+        width: 28.35%;
+        height: 158.7%;
+        left: 67.74%;
+        top: -74.69%;
       }
 
       .ai-shot-left {
@@ -316,12 +377,59 @@
       }
 
       .live-bg {
-        width: 101%;
-        height: 112%;
-        left: -1%;
-        top: -21%;
+        width: 100.85%;
+        height: 214.6%;
+        left: -0.85%;
+        top: -37.03%;
         object-fit: cover;
         box-shadow: none;
+        border-radius: 0;
+      }
+
+      .live-mockup {
+        width: 33.51%;
+        height: 109.6%;
+        left: 2.16%;
+        top: -9.91%;
+        object-fit: contain;
+        box-shadow: none;
+        border-radius: 0;
+        opacity: 0.8;
+      }
+
+      .live-modal {
+        width: 15.1%;
+        height: 44.9%;
+        left: 49.15%;
+        top: 14%;
+      }
+
+      .live-palette {
+        width: 11.4%;
+        height: 56.27%;
+        left: 82.05%;
+        top: 14%;
+      }
+
+      .live-form {
+        width: 11.4%;
+        height: 67.06%;
+        left: 36.44%;
+        top: 14%;
+      }
+
+      .live-typo {
+        width: 16.8%;
+        height: 58.31%;
+        left: 65.1%;
+        top: 14%;
+      }
+
+      .live-panel {
+        width: 27.43%;
+        height: 45.77%;
+        left: 50.54%;
+        top: 49.27%;
       }
 
       .phone {
@@ -341,7 +449,10 @@
       }
 
       .product-shot,
-      .minsk-shot {
+      .minsk-shot,
+      .archive-shot,
+      .ninja-shot,
+      .korail-shot {
         width: 100%;
         height: 104%;
         left: 0;
@@ -350,30 +461,46 @@
         box-shadow: none;
       }
 
+      .drjhon-portrait {
+        width: 35%;
+        height: 136%;
+        left: 9%;
+        top: 8%;
+        box-shadow: none;
+      }
+
+      .drjhon-card {
+        width: 33%;
+        height: 66%;
+        left: 48%;
+        top: 27%;
+      }
+
       .project-body {
         padding: 64px 20px 24px;
       }
 
       .project-kicker {
         margin: 0 0 12px;
-        font-size: 22px;
-        font-weight: 800;
-        line-height: 1.55;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.7;
       }
 
       .project-title {
         margin: 0 0 12px;
-        font-size: clamp(32px, 3.3vw, 44px);
-        font-weight: 800;
-        line-height: 1.15;
-        letter-spacing: -0.03em;
+        font-family: "Pretendard", "Inter", sans-serif;
+        font-size: clamp(26px, 2.6vw, 33px);
+        font-weight: 700;
+        line-height: 1.33;
+        letter-spacing: -0.02em;
       }
 
       .project-desc {
         max-width: 1180px;
         margin: 0 0 18px;
-        font-size: 24px;
-        line-height: 1.42;
+        font-size: 20px;
+        line-height: 1.7;
       }
 
       .tags {
@@ -386,10 +513,10 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 44px;
-        padding: 7px 10px;
+        min-height: 34px;
+        padding: 7px 14px;
         border-radius: 999px;
-        font-size: 20px;
+        font-size: 15px;
         line-height: 1.2;
       }
 
@@ -438,9 +565,10 @@
       }
 
       .marquee-track span {
+        font-family: "Pretendard", "Inter", sans-serif;
         font-size: clamp(34px, 4vw, 64px);
-        font-weight: 800;
-        line-height: 1.2;
+        font-weight: 700;
+        line-height: 1.23;
         white-space: nowrap;
       }
 
@@ -467,25 +595,25 @@
         width: 735px;
         height: 735px;
         border-radius: 50%;
-        filter: blur(16px);
         z-index: -1;
+        filter: blur(20px);
       }
 
       .contact::before {
-        left: calc(50% - 540px);
+        left: calc(50% - 539px);
         top: 30px;
-        background: radial-gradient(circle, rgba(138, 159, 255, 0.42), rgba(138, 159, 255, 0) 68%);
+        background: radial-gradient(circle, rgba(197, 149, 250, 0.6) 0%, rgba(197, 149, 250, 0) 72%);
       }
 
       .contact::after {
         left: calc(50% - 224px);
         top: 215px;
-        background: radial-gradient(circle, rgba(189, 151, 255, 0.34), rgba(189, 151, 255, 0) 68%);
+        background: radial-gradient(circle, rgba(130, 168, 255, 0.6) 0%, rgba(130, 168, 255, 0) 72%);
       }
 
       .contact-title {
         margin: 0 0 80px;
-        font-family: Georgia, "Times New Roman", serif;
+        font-family: "Abyssinica SIL", Georgia, serif;
         font-size: clamp(58px, 9vw, 140px);
         font-weight: 400;
         line-height: 1;
@@ -497,6 +625,7 @@
         background: linear-gradient(90deg, #8e9bff, #843dff);
         -webkit-background-clip: text;
         background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
       .email-pill {
@@ -509,8 +638,9 @@
         border-radius: 100px;
         background: linear-gradient(90deg, #b0b9ff, #bd97ff);
         color: #fff;
+        font-family: "Pretendard", "Inter", sans-serif;
         font-size: clamp(24px, 3.2vw, 44px);
-        font-weight: 800;
+        font-weight: 700;
       }
 
       .email-pill::after {
@@ -536,6 +666,7 @@
       }
 
       .socials a {
+        font-family: "Pretendard", "Inter", sans-serif;
         font-size: 28px;
         color: #1e1e1e;
       }
@@ -568,9 +699,12 @@
         }
 
         .hero-mark {
+          position: static;
+          display: inline-block;
           width: 38px;
           height: 38px;
-          margin-bottom: -6px;
+          margin-right: 8px;
+          vertical-align: middle;
         }
 
         .prompt-row {
@@ -670,23 +804,27 @@
         }
       }
     </style>
-  </head>
+  <style>.hero{display:none !important} .project-card:not(#tmp-check){display:none !important}</style></head>
   <body>
     <main class="page">
-      <div class="glow glow-blue glow-left"></div>
-      <div class="glow glow-blue glow-mid"></div>
-      <div class="glow glow-purple glow-right"></div>
+      <div class="glow glow-1"></div>
+      <div class="glow glow-2"></div>
+      <div class="glow glow-3"></div>
+      <div class="glow glow-4"></div>
 
       <header class="brand">Sooniy Seo</header>
 
       <section class="hero container">
         <h1 class="hero-copy">
-          I'm Seo Yeon-gyeong
           <span class="hero-mark" aria-hidden="true"></span>
-          a UIUX Designer who structures complex digital experiences. I started in physical product design and moved into healthcare, web, and AI-related UX - turning complex systems, data, and user contexts into clear, usable interfaces.
+          I'm Seo Yeon-gyeong — a UIUX Designer who structures complex digital experiences. I started in physical product design and moved into healthcare, web, and AI-related UX — turning complex systems, data, and user contexts into clear, usable interfaces.
         </h1>
 
         <div class="prompt-row" aria-label="quick questions">
+          <span class="sparkle" aria-hidden="true" style="width: 22px; height: 22px; left: 138px; top: -16px"></span>
+          <span class="sparkle" aria-hidden="true" style="width: 16px; height: 16px; left: 226px; top: -6px"></span>
+          <span class="sparkle" aria-hidden="true" style="width: 22px; height: 22px; left: -18px; top: 58px"></span>
+          <span class="sparkle" aria-hidden="true" style="width: 16px; height: 16px; left: 356px; top: 66px"></span>
           <a class="prompt" href="#work">see my work ↙</a>
           <span class="prompt">how do you ship?</span>
           <span class="prompt">what designer are you?</span>
@@ -700,10 +838,10 @@
         <h2 class="section-title">Project 2025 -</h2>
         <div class="work-grid">
           <article class="project-card wide">
-            <div class="media soft-purple">
-              <img class="inex-main" src="assets/figma/inex-main.png" alt="Inex homepage main screen" />
-              <img class="inex-detail" src="assets/figma/inex-detail.png" alt="Inex detail screen" />
-              <img class="mockup-site" src="assets/figma/mockup-site.png" alt="Inex web mockup" />
+            <div class="media purple-solid tall">
+              <img class="inex-imac" src="assets/figma/imac.png" alt="Inex homepage on iMac mockup" />
+              <img class="inex-browser" src="assets/figma/inex-solution.png" alt="Inex solution page screen" />
+              <img class="inex-portrait" src="assets/figma/inex-solution.png" alt="Inex solution page scroll view" />
             </div>
             <div class="project-body">
               <p class="project-kicker">01. Recent main・Web UX</p>
@@ -718,6 +856,22 @@
           </article>
 
           <article class="project-card">
+            <div class="media white">
+              <img class="archive-shot" src="assets/figma/macbook.png" alt="Inex archive screen on laptop mockup" />
+            </div>
+            <div class="project-body">
+              <p class="project-kicker">02. Recent・Education UX</p>
+              <h3 class="project-title">Inex 아카이브</h3>
+              <p class="project-desc">법정교육, 공통역량, 리더십역량 등 확장된 교육 카테고리를 사용자가 빠르게 탐색하도록 구조화한 웹 UX</p>
+              <div class="tags">
+                <span class="tag red">Recent</span>
+                <span class="tag blue">Education</span>
+                <span class="tag green">Category UX</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
             <div class="media soft-blue">
               <img class="ai-shot-left" src="assets/figma/ai-workflow-2.png" alt="AI workflow screen" />
               <img class="ai-shot-center" src="assets/figma/ai-workflow-3.png" alt="AI workflow main screen" />
@@ -725,11 +879,11 @@
             </div>
             <div class="project-body">
               <p class="project-kicker">04. Recent・AI Workflow</p>
-              <h3 class="project-title">Inex 아이디어 랩</h3>
-              <p class="project-desc">AI를 활용한 업무 흐름을 정리하고 질문, 결과, 반복 과정을 한 화면 안에서 관리할 수 있도록 설계한 워크플로우 UI</p>
+              <h3 class="project-title">AI 영상 사례 생산</h3>
+              <p class="project-desc">Claude 프롬프트, 대본 생성, 73장 자막 PNG 제작 흐름을 연결해 대량 콘텐츠 생산 속도를 높인 업무 자동화 사례</p>
               <div class="tags">
-                <span class="tag red">Recent</span>
                 <span class="tag green">AI Workflow</span>
+                <span class="tag red">Efficiency</span>
               </div>
             </div>
           </article>
@@ -757,7 +911,13 @@
         <div class="work-grid">
           <article class="project-card wide">
             <div class="media white">
-              <img class="live-bg" src="assets/figma/live-studio-bg.png" alt="Live Studio ECG dashboard screens" />
+              <img class="live-bg" src="assets/figma/live-studio-bg.png" alt="Live Studio background pattern" />
+              <img class="live-mockup" src="assets/figma/live-mockup.png" alt="Live Studio dashboard on iMac mockup" />
+              <img class="live-modal" src="assets/figma/live-modal.png" alt="Live Studio assign data modal" />
+              <img class="live-palette" src="assets/figma/live-palette.png" alt="Live Studio design system color palette" />
+              <img class="live-form" src="assets/figma/live-form.png" alt="Live Studio patient registration form" />
+              <img class="live-typo" src="assets/figma/live-typography.png" alt="Live Studio typography spec" />
+              <img class="live-panel" src="assets/figma/live-panel.png" alt="Live Studio message panel" />
             </div>
             <div class="project-body">
               <p class="project-kicker">05. Healthcare Web</p>
@@ -787,6 +947,23 @@
             </div>
           </article>
 
+          <article class="project-card" id="tmp-check">
+            <div class="media pale-blue">
+              <img class="drjhon-portrait" src="assets/figma/inex-main.png" alt="Dr.Jhon wellness app mockup" />
+              <img class="drjhon-card" src="assets/figma/inex-detail.png" alt="Dr.Jhon app detail screen" />
+            </div>
+            <div class="project-body">
+              <p class="project-kicker">07. UX Case・Wellness</p>
+              <h3 class="project-title">Dr.Jhon</h3>
+              <p class="project-desc">의료기기 기반 심전도 데이터를 일반 사용자가 이해 가능한 건강관리 경험으로 확장한 웰니스 모바일 앱</p>
+              <div class="tags">
+                <span class="tag blue">Wellness</span>
+                <span class="tag red">B2C UX</span>
+                <span class="tag green">AI Assistant</span>
+              </div>
+            </div>
+          </article>
+
           <article class="project-card">
             <div class="media white">
               <img class="product-shot" src="assets/figma/product-case.png" alt="Corentec surgical case product design" />
@@ -796,9 +973,39 @@
               <h3 class="project-title">Corentec Surfical Case</h3>
               <p class="project-desc">수술 현장 관찰과 수술 프로세스 분석을 바탕으로 인공관절 케이스 내부를 모듈화하고 양산・수상까지 이어진 프로젝트</p>
               <div class="tags">
-                <span class="tag red">Product UX</span>
+                <span class="tag red">B2C UX</span>
                 <span class="tag brown">AI UX</span>
                 <span class="tag blue">Observation</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="media white">
+              <img class="ninja-shot" src="assets/figma/ninja.png" alt="Ninja motorcycle bluetooth product design" />
+            </div>
+            <div class="project-body">
+              <p class="project-kicker">09. Product Design</p>
+              <h3 class="project-title">Ninja</h3>
+              <p class="project-desc">오토바이 블루투스 제품의 자사 고유 외형 콘셉트를 제안하고 실제 생산・양산까지 연결한 전자제품 디자인 프로젝트</p>
+              <div class="tags">
+                <span class="tag red">Electronic Product</span>
+                <span class="tag brown">Manufacturing</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="media white">
+              <img class="korail-shot" src="assets/figma/mockup-site.png" alt="Korail redesign app mockup" />
+            </div>
+            <div class="project-body">
+              <p class="project-kicker">11. App Redesign</p>
+              <h3 class="project-title">Korail Redesign</h3>
+              <p class="project-desc">코레일 앱의 주요 기능 접근성과 화면 흐름을 사용성 관점에서 다시 정리한 개인 앱 리디자인 프로젝트</p>
+              <div class="tags">
+                <span class="tag blue">Redesign</span>
+                <span class="tag blue">Mobile App</span>
               </div>
             </div>
           </article>
@@ -821,15 +1028,14 @@
 
           <article class="project-card">
             <div class="media white">
-              <img class="full-shot" src="assets/figma/macbook.png" alt="K-Rail redesign presentation mockup" />
             </div>
             <div class="project-body">
-              <p class="project-kicker">13. App Redesign</p>
-              <h3 class="project-title">K-Rail Redesign</h3>
-              <p class="project-desc">앱 예약 흐름과 정보 구조를 재정리해 빠른 확인과 이동 중심의 사용성을 개선한 리디자인 프로젝트</p>
+              <p class="project-kicker">13. Visual Design</p>
+              <h3 class="project-title">브로셔 디자인</h3>
+              <p class="project-desc">다양한 회사의 판촉물과 브로셔 작업을 통해 정보 배치, 인쇄물 구성, 그래픽 톤앤매너를 다룬 시각디자인 작업</p>
               <div class="tags">
-                <span class="tag blue">App UX</span>
-                <span class="tag green">Redesign</span>
+                <span class="tag brown">Graphic</span>
+                <span class="tag blue">Editorial</span>
               </div>
             </div>
           </article>
@@ -838,16 +1044,17 @@
 
       <section class="marquee-band" aria-label="design statement">
         <div class="marquee-track">
+          <i class="marquee-star gray" aria-hidden="true"></i>
           <span>좋은 디자인은 보이지 않습니다</span>
-          <i class="spark" aria-hidden="true"></i>
+          <i class="marquee-star grad" aria-hidden="true"></i>
           <span>let's build something</span>
-          <i class="spark" aria-hidden="true"></i>
+          <i class="marquee-star grad" aria-hidden="true"></i>
           <span>From data to objects</span>
-          <i class="spark" aria-hidden="true"></i>
+          <i class="marquee-star gray" aria-hidden="true"></i>
           <span>좋은 디자인은 보이지 않습니다</span>
-          <i class="spark" aria-hidden="true"></i>
+          <i class="marquee-star grad" aria-hidden="true"></i>
           <span>let's build something</span>
-          <i class="spark" aria-hidden="true"></i>
+          <i class="marquee-star grad" aria-hidden="true"></i>
           <span>From data to objects</span>
         </div>
       </section>
