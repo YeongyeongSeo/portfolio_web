@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inex 홈페이지 디자인 — Sooniy Seo</title>
+
+<!-- 폰트: 한글은 Pretendard, 숫자/영문 라벨은 Space Grotesk -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+
+<style>
+  /* ============================================
+     DESIGN TOKENS — 원본 SVG(피그마)에서 추출한 값
+     ============================================ */
+  :root {
+    /* Color */
+    --bg: #FAFAFA;
+    --surface: #FFFFFF;
+    --text: #171717;
+    --text-secondary: #6D6D6D;
+    --text-tertiary: #A3A3A3;
+    --border: #E1E1E1;
+    --border-light: #F0F0F0;
+    --placeholder: #D9D9D9;
+    --placeholder-2: #F0F0F0;
+    --card-bg: #F4F4F4;
+    --accent-blue: #3762EA;
+    --accent-blue-bg: #E9EFFC;
+    --accent-red: #B15555;
+    --accent-red-bg: #FFF1F1;
+    --accent-tan: #F7EEEB;
+    --badge-black: #111111;
+
+    /* Type */
+    --font-kr: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    --font-en: 'Space Grotesk', var(--font-kr);
+
+    /* Layout */
+    --content-max: 1200px;
+    --sidebar-w: 200px;
+    --gutter: 40px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-kr);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ============================================
+     HEADER
+     ============================================ */
+  .site-header {
+    border-bottom: 1px solid var(--border-light);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .site-header .wrap {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .back-link svg { width: 16px; height: 16px; }
+  .site-header .brand {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .site-header .spacer { width: 60px; } /* back-link 폭 균형용 */
+
+  /* ============================================
+     HERO
+     ============================================ */
+  .hero {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .hero .eyebrow {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+  .hero .eyebrow .divider { margin: 0 6px; color: var(--text-tertiary); }
+  .hero h1 {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    max-width: 820px;
+    margin-bottom: 28px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .badge-shipped {
+    background: var(--badge-black);
+    color: #fff;
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 7px 14px;
+    border-radius: 100px;
+  }
+  .pill {
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  /* ============================================
+     TL;DR — 사이드바 + 요약 테이블
+     ============================================ */
+  .tldr {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    gap: var(--gutter);
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 48px 32px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .tldr-label {
+    font-family: var(--font-en);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+  }
+  .sidebar-nav {
+    position: sticky;
+    top: 88px;
+    align-self: start;
+  }
+  .sidebar-nav a {
+    display: block;
+    padding: 7px 12px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    border-radius: 6px;
+    border: 1px solid transparent;
+  }
+  .sidebar-nav a:hover { color: var(--text); }
+  .sidebar-nav a.active {
+    color: var(--text);
+    font-weight: 600;
+    border-color: #0062D3;
+    background: var(--accent-blue-bg);
+  }
+
+  .tldr-table { border-top: 1px solid var(--border-light); }
+  .tldr-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .tldr-row .k {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+  .tldr-row .v { font-size: 15px; }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 32px;
+  }
+  .stat-row .stat + .stat { border-left: 1px solid var(--border-light); padding-left: 32px; }
+  .stat .num {
+    font-family: var(--font-en);
+    font-size: 40px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .stat .num .arrow { color: var(--text-tertiary); font-weight: 400; }
+  .stat .label { font-size: 13.5px; color: var(--text-secondary); margin-top: 6px; }
+
+  /* ============================================
+     CONTENT SECTIONS (Background / Problem / Approach ...)
+     ============================================ */
+  .section {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    gap: var(--gutter);
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 56px 32px;
+    border-bottom: 1px solid var(--border-light);
+    scroll-margin-top: 88px;
+  }
+  .section-tag {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .section-body { max-width: 760px; }
+  .section-body h2 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  .section-body p {
+    font-size: 15.5px;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .section-body p.muted { color: var(--text-secondary); }
+
+  .media-grid { display: grid; gap: 10px; margin-top: 28px; }
+  .media-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .media-block {
+    background: var(--placeholder);
+    border-radius: 8px;
+    aspect-ratio: 16/10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9c9c9c;
+    font-size: 13px;
+  }
+  .media-block.tall { aspect-ratio: 16/13; }
+  .media-block.dark { background: #0A0A0A; color: #555; }
+
+  .observation {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .observation.right { justify-content: flex-end; }
+  .observation .dot {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--placeholder);
+    flex-shrink: 0;
+  }
+  .observation .bubble {
+    background: var(--placeholder-2);
+    border-radius: 10px;
+    padding: 16px 18px;
+    max-width: 560px;
+  }
+  .observation .bubble .obs-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .observation .bubble p { font-size: 14px; margin: 0; color: var(--text); }
+
+  .list-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 32px;
+    margin: 20px 0;
+  }
+  .list-2col div {
+    font-size: 14.5px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .list-2col div::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--text-tertiary);
+  }
+
+  .toggle-group {
+    display: inline-flex;
+    background: var(--placeholder-2);
+    border-radius: 100px;
+    padding: 4px;
+    margin: 4px 0 20px;
+  }
+  .toggle-group button {
+    font-family: var(--font-en);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 8px 20px;
+    border-radius: 100px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+  .toggle-group button.is-active { background: var(--badge-black); color: #fff; }
+
+  .caption-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 28px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .caption-list span::before { content: "•"; margin-right: 8px; color: var(--text-tertiary); }
+
+  .process-flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 28px;
+  }
+  .process-chip {
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 14px 26px;
+    text-align: center;
+  }
+  .process-chip .t { font-size: 14px; font-weight: 500; }
+  .process-chip .s {
+    font-family: var(--font-en);
+    font-size: 10px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.04em;
+    margin-top: 3px;
+  }
+  .process-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 14px;
+  }
+  .process-link .line { width: 20px; height: 1px; background: var(--border); }
+  .process-link .pt { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-blue); }
+
+  .outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 24px;
+  }
+  .outcome-grid .stat + .stat { border-left: 1px solid var(--border-light); padding-left: 32px; }
+  .outcome-grid .stat .desc { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+
+  /* ============================================
+     TRY IT / MORE CASE STUDIES / FOOTER
+     ============================================ */
+  .more-projects {
+    padding: 56px 0;
+  }
+  .more-projects .heading { font-size: 15px; color: var(--text-secondary); margin-bottom: 24px; }
+  .project-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .project-card { }
+  .project-card .thumb {
+    background: var(--placeholder);
+    border-radius: 8px;
+    aspect-ratio: 16/10;
+    margin-bottom: 18px;
+    overflow: hidden;
+  }
+  .project-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .project-card .meta { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+  .project-card h3 { font-size: 19px; font-weight: 600; margin-bottom: 8px; }
+  .project-card .desc { font-size: 14px; color: var(--text-secondary); margin-bottom: 14px; }
+  .project-card .tags { display: flex; gap: 6px; }
+  .tag {
+    font-size: 11.5px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    background: var(--accent-tan);
+    border: 1px solid #EDDACC;
+    color: #8A6A56;
+  }
+  .tag.blue { background: var(--accent-blue-bg); border-color: #97B3EF; color: var(--accent-blue); }
+  .tag.red { background: var(--accent-red-bg); border-color: #FFBDBD; color: var(--accent-red); }
+  .tag.brown { background: var(--accent-tan); border-color: #EDDACC; color: var(--accent-red); }
+
+  .site-footer {
+    border-top: 1px solid var(--border-light);
+    padding: 28px 0;
+  }
+  .site-footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: var(--text-tertiary);
+  }
+
+  /* ============================================
+     REAL SCREENSHOT / DIAGRAM (Background section)
+     ============================================ */
+  .real-shot {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  .real-shot img { width: 100%; display: block; }
+
+  .diagram-caption {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    margin: 28px 0 10px;
+  }
+
+  .diagram {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .diagram-title {
+    padding: 14px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .diagram-columns {
+    display: flex;
+    align-items: stretch;
+    background: #F3F5FF;
+    padding: 24px 24px 0;
+    gap: 0;
+  }
+  .diagram-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .diagram-seam { width: 24px; }
+  .diagram-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: #fffdfd;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .diagram-avatar img { width: 26px; height: 26px; }
+  .diagram-persona-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+  }
+  .diagram-arrow {
+    margin: 10px 0;
+    color: var(--text-tertiary);
+    font-size: 18px;
+  }
+  .diagram-panel {
+    flex: 1;
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    padding: 32px 16px;
+    text-align: center;
+  }
+  .diagram-panel.blue { background: rgba(149, 188, 255, 0.17); }
+  .diagram-panel.red { background: rgba(255, 157, 148, 0.17); }
+  .diagram-panel .t { font-size: 17px; font-weight: 600; color: rgba(0, 0, 0, 0.6); }
+  .diagram-panel .s { font-size: 13px; color: rgba(0, 0, 0, 0.5); margin-top: 6px; }
+  .diagram-footer {
+    background: var(--surface);
+    padding: 14px;
+    display: flex;
+    justify-content: center;
+  }
+  .diagram-tag {
+    border: 1px dashed #c4c4c4;
+    border-radius: 2px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #ff3232;
+  }
+
+  /* ============================================
+     OBSERVATION BOXES (Problem section)
+     ============================================ */
+  .obs-label-combined {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 24px 0 12px;
+  }
+  .obs-box {
+    background: #F3F5FF;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    min-height: 95px;
+    margin-bottom: 10px;
+  }
+  .obs-box p { margin: 0; font-size: 15px; }
+
+  /* ============================================
+     3-COLUMN CAPTION LIST (Approach / Audit section)
+     ============================================ */
+  .caption-row-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px 24px;
+    margin-top: 20px;
+  }
+  .caption-row-3 li {
+    list-style: disc;
+    margin-left: 18px;
+    font-size: 14.5px;
+    color: var(--text);
+  }
+
+  .process-arrow {
+    color: var(--text-tertiary);
+    font-size: 18px;
+    padding: 0 16px;
+  }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 860px) {
+    .tldr, .section { grid-template-columns: 1fr; }
+    .sidebar-nav { position: static; display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+    .sidebar-nav a { padding: 6px 10px; }
+    .tldr-row, .list-2col, .media-grid.cols-2, .outcome-grid, .stat-row, .project-cards, .caption-row-3, .diagram-columns {
+      grid-template-columns: 1fr;
+    }
+    .stat-row .stat + .stat, .outcome-grid .stat + .stat { border-left: none; padding-left: 0; border-top: 1px solid var(--border-light); padding-top: 16px; margin-top: 16px; }
+    .hero h1 { font-size: 28px; }
+    .diagram-columns { flex-direction: column; gap: 20px; padding: 20px; }
+    .diagram-seam { display: none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============================================
+       HEADER
+       ============================================ -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="../index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        Back
+      </a>
+      <div class="brand">Sooniy Seo</div>
+      <div class="spacer"></div>
+    </div>
+  </header>
+
+  <!-- ============================================
+       HERO
+       프로젝트마다 교체: 상단 라벨 / 타이틀 / 배지 / 메타 pill
+       ============================================ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Case study ・Corporate Website</div>
+      <h1>교육원과 뒤섞여 있던 아이넥스 코퍼레이트 사이트를, 회사를 위한 홍보 사이트로 분리하다.</h1>
+      <div class="hero-meta">
+        <span class="badge-shipped">SHIPPED</span>
+        <span class="pill">2026.04.01 - 2026.04.30・1개월</span>
+        <span class="pill">UI/UX Designer</span>
+        <span class="pill">Corporate・Education B2B</span>
+        <span class="pill">Figma・Claude Code</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TL;DR — 좌측 sticky 사이드 내비 + 우측 요약 테이블 + 핵심 지표
+       ============================================ -->
+  <section class="tldr">
+    <aside>
+      <div class="tldr-label">TL;DR</div>
+      <nav class="sidebar-nav">
+        <a href="#background" class="active">Background</a>
+        <a href="#problem">Problem</a>
+        <a href="#approach">Approach</a>
+        <a href="#process">Process</a>
+        <a href="#outcome">Outcome</a>
+        <a href="#learned">Learned</a>
+        <a href="#tryit">Try It</a>
+      </nav>
+    </aside>
+    <div>
+      <div class="tldr-table">
+        <div class="tldr-row">
+          <div class="k">Background</div>
+          <div class="v">아이넥스 코퍼레이트 사이트, 교육 사업이 커지면서 회사 소개와 교육원 콘텐츠가 한 사이트 안에 뒤섞여 있었다.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="k">Problem</div>
+          <div class="v">외부 업체・파트너가 방문했을 때 필요한 건 "회사 소개"인데, 사이트엔 교육원 정보가 더 크게 자리잡고 있었다. 회사 홍보 전용 사이트가 필요한 상황.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="k">Approach</div>
+          <div class="v">교육원 관련 콘텐츠는 별도 사이트로 완전히 분리하고, 코퍼레이트 사이트 상단에 교육원으로 이동하는 버튼만 배치, 메인은 영상 중심의 회사 홍보 정보로 재구성.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="k">Outcome</div>
+          <div class="v">외부에 회사를 소개할 때 필요한 정보만 남아, 방문자가 목적에 맞는 사이트로 더 직관적으로 이동할 수 있게 됨.</div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">1 <span class="arrow">→</span> 2</div>
+          <div class="label">사이트 구조 분리 (코퍼레이트 / 교육원)</div>
+        </div>
+        <div class="stat">
+          <div class="num">1개월</div>
+          <div class="label">기획부터 리뉴얼까지</div>
+        </div>
+        <div class="stat">
+          <div class="num">Solo</div>
+          <div class="label">담당 디자이너</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BACKGROUND
+       ============================================ -->
+  <section class="section" id="background">
+    <div class="section-tag">Background</div>
+    <div class="section-body">
+      <h2>하나의 사이트, 두개의 얼굴.</h2>
+      <p>아이넥스 코퍼레이트는 산업 교육(법정교육, 공통역량, 리더십 등)을 주력으로 하는 회사다. 사업이 교육원 중심으로 커지면서, 원래 회사 소개를 위해 만들어졌던 코퍼레이트 사이트에도 교육원 콘텐츠가 점점 더 많이 쌓였다.</p>
+      <p class="muted">회사를 알아야 하는 사람과, 교육 과정을 찾아야 하는 사람은 애초에 다른 사람이었다.</p>
+
+      <div class="real-shot">
+        <img src="../assets/figma/inex-homepage/before-screenshot.png" alt="기존 아이넥스 코퍼레이트 사이트 화면" />
+      </div>
+
+      <div class="diagram-caption">기존 회사 사이트</div>
+      <div class="diagram">
+        <div class="diagram-title">아이넥스 코퍼레이트 사이트</div>
+        <div class="diagram-columns">
+          <div class="diagram-col">
+            <div class="diagram-avatar"><img src="../assets/figma/inex-homepage/profile-icon.svg" alt="" /></div>
+            <div class="diagram-persona-label">외부 파트너</div>
+            <div class="diagram-arrow">↓</div>
+            <div class="diagram-panel blue">
+              <div class="t">회사 소개</div>
+              <div class="s">연혁・인사말</div>
+            </div>
+          </div>
+          <div class="diagram-seam"></div>
+          <div class="diagram-col">
+            <div class="diagram-avatar"><img src="../assets/figma/inex-homepage/profile-icon.svg" alt="" /></div>
+            <div class="diagram-persona-label">예비 수강생</div>
+            <div class="diagram-arrow">↓</div>
+            <div class="diagram-panel red">
+              <div class="t">교육원 콘텐츠</div>
+              <div class="s">법정교육・공통역량</div>
+            </div>
+          </div>
+        </div>
+        <div class="diagram-footer"><span class="diagram-tag">메뉴 구조 혼재</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PROBLEM — 관찰(Observation) 카드 형식
+       ============================================ -->
+  <section class="section" id="problem">
+    <div class="section-tag">Problem</div>
+    <div class="section-body">
+      <h2>교육원 구조가 아니라, 외부에 보여줄 홍보 사이트가 필요했다.</h2>
+      <p>기존 사이트는 사실상 교육원 사이트에 회사 소개 페이지 하나가 얹힌 형태에 가까웠다. 정작 회사에 대한 정보를 찾아야 하는 외부 업체・파트너 입장에서는 탐색이 불편했다.</p>
+      <div class="obs-label-combined">Observation #1 / Observation #2</div>
+      <div class="obs-box">
+        <p>외부 업체가 사이트에 들어와도 교육 과정 목록부터 마주하게 돼, 회사 소개까지 도달하는 경로가 멀었다.</p>
+      </div>
+      <div class="obs-box">
+        <p>교육원 콘텐츠와 회사 소개 콘텐츠가 같은 사이트, 같은 내비게이션 위계 안에 섞여 있어 각각의 메시지가 흐려지고 있었다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       APPROACH — 리스트 + Before/After 토글
+       ============================================ -->
+  <section class="section" id="approach">
+    <div class="section-tag">Audit</div>
+    <div class="section-body">
+      <h2>합치지 않고, 나눴다.</h2>
+      <p>콘텐츠를 정리하는 대신, 두 사이트로 구조 자체를 분리하는 방향을 택했다. 코퍼레이트 사이트는 회사를 보여주는 데만 집중하고, 교육원 콘텐츠는 별도 사이트로 넘겼다.</p>
+      <div class="list-2col">
+        <div>교육원 관련 콘텐츠 전체를 별도 사이트로 이관</div>
+        <div>코퍼레이트 사이트 상단에 교육원 사이트 이동 버튼 배치</div>
+        <div>메인 화면을 영상 중심의 회사 소개 콘텐츠로 재구성</div>
+        <div>교육 과정 정보는 완전히 제거, 회사 홍보 목적에만 집중</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="approach-2">
+    <div class="section-tag"></div>
+    <div class="section-body">
+      <div class="toggle-group">
+        <button class="is-active">BEFORE</button>
+        <button>AFTER</button>
+      </div>
+      <div class="media-block tall"></div>
+      <ul class="caption-row-3">
+        <li>교육 과정 목록이 최상단을 차지</li>
+        <li>회사 소개는 하단에 묻혀 있음</li>
+        <li>방문 목적에 따른 경로 분기 없음</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================
+       WORKFLOW / PROCESS — 프로세스 단계 칩
+       ============================================ -->
+  <section class="section" id="process">
+    <div class="section-tag">Scale</div>
+    <div class="section-body">
+      <h2>1개월, 1인 디자이너로 구조부터 화면까지.</h2>
+      <p>기존 사이트 콘텐츠 감사부터 새 사이트맵 설계, 비주얼 디자인까지 혼자 담당했습니다. 개발팀과는 화면 단위로 리뷰하며 진행했다.</p>
+      <div class="process-flow">
+        <div class="process-chip"><div class="t">Figma sketch</div><div class="s">ROUGH DIRECTION</div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-chip"><div class="t">Claude Code</div><div class="s">DESIGN + BUILD</div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-chip"><div class="t">PR</div><div class="s">REVIEW</div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-chip"><div class="t">Production</div><div class="s">SHIPPED</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       OUTCOME — 3단 지표
+       ============================================ -->
+  <section class="section" id="outcome">
+    <div class="section-tag">System</div>
+    <div class="section-body">
+      <h2>정보가 아니라, 목적이 분리됐다.</h2>
+      <div class="outcome-grid">
+        <div class="stat">
+          <div class="num">11 <span class="arrow">→</span> 1</div>
+          <div class="label">독립된 사이트</div>
+          <div class="desc">코퍼레이트 / 교육원으로 목적 분리</div>
+        </div>
+        <div class="stat">
+          <div class="num">8</div>
+          <div class="label">메인 내 교육 콘텐츠</div>
+          <div class="desc">회사 소개 목적에만 집중</div>
+        </div>
+        <div class="stat">
+          <div class="num">0</div>
+          <div class="label">클릭</div>
+          <div class="desc">교육원 사이트로 즉시 이동 가능</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       LEARNED — 회고
+       ============================================ -->
+  <section class="section" id="learned">
+    <div class="section-tag">Workflow</div>
+    <div class="section-body">
+      <h2>콘텐츠를 정리하기 전에, 방문자를 먼저 나눠야 한다.</h2>
+      <p style="margin-bottom: 32px;">처음엔 한 사이트 안에서 메뉴 구조만 정리하는 방향도 고려했다. 하지만 이 사이트를 찾는 사람이 "회사를 알고 싶은 사람"과 "교육을 듣고 싶은 사람"으로 애초에 나뉜다는 걸 인정하고 나니, 답은 정리가 아니라 분리였다.</p>
+      <p>같은 정보 구조 안에서 아무리 잘 나눠도 두 목적이 경쟁하게 된다는 걸 배운 프로젝트였다.</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TRY IT — 인터랙티브 데모 (해당 시)
+       ============================================ -->
+  <section class="section" id="tryit">
+    <div class="section-tag">Try it</div>
+    <div class="section-body">
+      <h2>회사 소개만 남은, 가벼운 코퍼레이트 사이트.</h2>
+      <p>영상 중심의 메인 화면과, 필요한 사람만 한 클릭으로 넘어갈 수 있는 교육원 사이트 링크로 정리했다.</p>
+      <div class="media-block dark"></div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MORE CASE STUDIES — 다음 프로젝트 2개
+       ============================================ -->
+  <section class="more-projects">
+    <div class="wrap">
+      <div class="heading">More case studies</div>
+      <div class="project-cards">
+        <a class="project-card" href="inex-education-platform%20.html">
+          <div class="thumb"><img src="../assets/figma/inex-homepage/thumb-education.png" alt="Inex 교육원 플랫폼"></div>
+          <div class="meta">02. UX/UI・Web</div>
+          <h3>Inex-교육원 플랫폼</h3>
+          <div class="desc">늘어나는 교육 카테고리를 한눈에 보여주는 교육원 사이트 리뉴얼</div>
+          <div class="tags"><span class="tag red">B2B</span><span class="tag blue">IA</span></div>
+        </a>
+        <a class="project-card" href="inex-ai-chatbot%20.html">
+          <div class="thumb"><img src="../assets/figma/inex-homepage/thumb-chatbot.png" alt="Inex AI 챗봇"></div>
+          <div class="meta">03. UX/UI・Web</div>
+          <h3>Inex-AI챗봇</h3>
+          <div class="desc">실무 테스트를 위한 코퍼레이트 교육 AI 챗봇 디자인</div>
+          <div class="tags"><span class="tag red">AI UX</span><span class="tag brown">Education</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>Ⓒ 2024 SEOYEONGYEONG・INDUSTRIAL DESIGN</div>
+      <div>DESIGNED &amp; BUILT IN SEOUL</div>
+      <div>V.5 / SEP 2024</div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Jone — Sooniy Seo</title>
+
+<!-- 폰트: 한글은 Pretendard, 숫자/영문 라벨은 Space Grotesk -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+
+<style>
+  /* ============================================
+     DESIGN TOKENS — 원본 SVG(피그마)에서 추출한 값
+     ============================================ */
+  :root {
+    /* Color */
+    --bg: #FAFAFA;
+    --surface: #FFFFFF;
+    --text: #171717;
+    --text-secondary: #6D6D6D;
+    --text-tertiary: #A3A3A3;
+    --border: #E1E1E1;
+    --border-light: #F0F0F0;
+    --placeholder: #D9D9D9;
+    --placeholder-2: #F0F0F0;
+    --card-bg: #F4F4F4;
+    --accent-blue: #3762EA;
+    --accent-blue-bg: #E9EFFC;
+    --accent-red: #B15555;
+    --accent-red-bg: #FFF1F1;
+    --accent-tan: #F7EEEB;
+    --badge-black: #111111;
+
+    /* Type */
+    --font-kr: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    --font-en: 'Space Grotesk', var(--font-kr);
+
+    /* Layout */
+    --content-max: 1200px;
+    --sidebar-w: 200px;
+    --gutter: 40px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-kr);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ============================================
+     HEADER
+     ============================================ */
+  .site-header {
+    border-bottom: 1px solid var(--border-light);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .site-header .wrap {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .back-link svg { width: 16px; height: 16px; }
+  .site-header .brand {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .site-header .spacer { width: 60px; } /* back-link 폭 균형용 */
+
+  /* ============================================
+     HERO
+     ============================================ */
+  .hero {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .hero .eyebrow {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+  .hero .eyebrow .divider { margin: 0 6px; color: var(--text-tertiary); }
+  .hero h1 {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    max-width: 820px;
+    margin-bottom: 28px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .badge-shipped {
+    background: var(--badge-black);
+    color: #fff;
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 7px 14px;
+    border-radius: 100px;
+  }
+  .pill {
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  /* ============================================
+     TL;DR — 사이드바 + 요약 테이블
+     ============================================ */
+  .tldr {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    gap: var(--gutter);
+    padding: 48px 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .tldr-label {
+    font-family: var(--font-en);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+  }
+  .sidebar-nav {
+    position: sticky;
+    top: 88px;
+    align-self: start;
+  }
+  .sidebar-nav a {
+    display: block;
+    padding: 7px 12px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    border-radius: 6px;
+    border: 1px solid transparent;
+  }
+  .sidebar-nav a:hover { color: var(--text); }
+  .sidebar-nav a.active {
+    color: var(--text);
+    font-weight: 600;
+    border-color: var(--accent-blue);
+    background: var(--accent-blue-bg);
+  }
+
+  .tldr-table { border-top: 1px solid var(--border-light); }
+  .tldr-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .tldr-row .k {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+  .tldr-row .v { font-size: 15px; }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 32px;
+  }
+  .stat-row .stat + .stat { border-left: 1px solid var(--border-light); padding-left: 32px; }
+  .stat .num {
+    font-family: var(--font-en);
+    font-size: 40px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .stat .num .arrow { color: var(--text-tertiary); font-weight: 400; }
+  .stat .label { font-size: 13.5px; color: var(--text-secondary); margin-top: 6px; }
+
+  /* ============================================
+     CONTENT SECTIONS (Background / Problem / Approach ...)
+     ============================================ */
+  .section {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    gap: var(--gutter);
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border-light);
+    scroll-margin-top: 88px;
+  }
+  .section-tag {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .section-body { max-width: 760px; }
+  .section-body h2 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  .section-body p {
+    font-size: 15.5px;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .section-body p.muted { color: var(--text-secondary); }
+
+  .media-grid { display: grid; gap: 10px; margin-top: 28px; }
+  .media-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .media-block {
+    background: var(--placeholder);
+    border-radius: 8px;
+    aspect-ratio: 16/10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9c9c9c;
+    font-size: 13px;
+  }
+  .media-block.tall { aspect-ratio: 16/13; }
+  .media-block.dark { background: #0A0A0A; color: #555; }
+
+  .observation {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .observation.right { justify-content: flex-end; }
+  .observation .dot {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--placeholder);
+    flex-shrink: 0;
+  }
+  .observation .bubble {
+    background: var(--placeholder-2);
+    border-radius: 10px;
+    padding: 16px 18px;
+    max-width: 560px;
+  }
+  .observation .bubble .obs-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .observation .bubble p { font-size: 14px; margin: 0; color: var(--text); }
+
+  .list-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 32px;
+    margin: 20px 0;
+  }
+  .list-2col div {
+    font-size: 14.5px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .list-2col div::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--text-tertiary);
+  }
+
+  .toggle-group {
+    display: inline-flex;
+    background: var(--placeholder-2);
+    border-radius: 100px;
+    padding: 4px;
+    margin: 4px 0 20px;
+  }
+  .toggle-group button {
+    font-family: var(--font-en);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 8px 20px;
+    border-radius: 100px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+  .toggle-group button.is-active { background: var(--badge-black); color: #fff; }
+
+  .caption-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 28px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .caption-list span::before { content: "•"; margin-right: 8px; color: var(--text-tertiary); }
+
+  .process-flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 28px;
+  }
+  .process-chip {
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 14px 26px;
+    text-align: center;
+  }
+  .process-chip .t { font-size: 14px; font-weight: 500; }
+  .process-chip .s {
+    font-family: var(--font-en);
+    font-size: 10px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.04em;
+    margin-top: 3px;
+  }
+  .process-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 14px;
+  }
+  .process-link .line { width: 20px; height: 1px; background: var(--border); }
+  .process-link .pt { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-blue); }
+
+  .outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 24px;
+  }
+  .outcome-grid .stat + .stat { border-left: 1px solid var(--border-light); padding-left: 32px; }
+  .outcome-grid .stat .desc { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+
+  /* ============================================
+     TRY IT / MORE CASE STUDIES / FOOTER
+     ============================================ */
+  .more-projects {
+    padding: 56px 0;
+  }
+  .more-projects .heading { font-size: 15px; color: var(--text-secondary); margin-bottom: 24px; }
+  .project-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .project-card { }
+  .project-card .thumb {
+    background: var(--placeholder);
+    border-radius: 8px;
+    aspect-ratio: 16/10;
+    margin-bottom: 18px;
+    overflow: hidden;
+  }
+  .project-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .project-card .meta { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+  .project-card h3 { font-size: 19px; font-weight: 600; margin-bottom: 8px; }
+  .project-card .desc { font-size: 14px; color: var(--text-secondary); margin-bottom: 14px; }
+  .project-card .tags { display: flex; gap: 6px; }
+  .tag {
+    font-size: 11.5px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    background: var(--accent-tan);
+    color: #8A6A56;
+  }
+  .tag.blue { background: var(--accent-blue-bg); color: var(--accent-blue); }
+  .tag.red { background: var(--accent-red-bg); color: var(--accent-red); }
+
+  .site-footer {
+    border-top: 1px solid var(--border-light);
+    padding: 28px 0;
+  }
+  .site-footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: var(--text-tertiary);
+  }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 860px) {
+    .tldr, .section { grid-template-columns: 1fr; }
+    .sidebar-nav { position: static; display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+    .sidebar-nav a { padding: 6px 10px; }
+    .tldr-row, .list-2col, .media-grid.cols-2, .outcome-grid, .stat-row, .project-cards {
+      grid-template-columns: 1fr;
+    }
+    .stat-row .stat + .stat, .outcome-grid .stat + .stat { border-left: none; padding-left: 0; border-top: 1px solid var(--border-light); padding-top: 16px; margin-top: 16px; }
+    .hero h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============================================
+       HEADER
+       ============================================ -->
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        Back
+      </a>
+      <div class="brand">Sooniy Seo</div>
+      <div class="spacer"></div>
+    </div>
+  </header>
+
+  <!-- ============================================
+       HERO
+       프로젝트마다 교체: 상단 라벨 / 타이틀 / 배지 / 메타 pill
+       ============================================ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Case study<span class="divider">·</span>Wellness App</div>
+      <h1>의료기기가 아니라 일상으로 — AI 비서 닥터존과 함께하는 심전도 기반 웰니스 앱.</h1>
+      <div class="hero-meta">
+        <span class="badge-shipped">SHIPPED</span>
+        <span class="pill">2023.01.01 – 2023.07.01 · 6개월</span>
+        <span class="pill">UI/UX Designer</span>
+        <span class="pill">MEZOO · Wellness</span>
+        <span class="pill">Figma</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TL;DR — 좌측 sticky 사이드 내비 + 우측 요약 테이블 + 핵심 지표
+       ============================================ -->
+  <section class="tldr">
+    <aside>
+      <div class="tldr-label">TL;DR</div>
+      <nav class="sidebar-nav">
+        <a href="#background">Background</a>
+        <a href="#problem">Problem</a>
+        <a href="#approach">Approach</a>
+        <a href="#process" class="active">Process</a>
+        <a href="#outcome">Outcome</a>
+        <a href="#learned">Learned</a>
+        <a href="#tryit">Try It</a>
+      </nav>
+    </aside>
+    <div>
+      <div class="tldr-table">
+        <div class="tldr-row">
+          <div class="k">Background</div>
+          <div class="v">MEZOO의 의료용 심전도 기술을, 일반 사용자를 위한 웰니스 앱으로 확장하는 프로젝트였다.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="k">Problem</div>
+          <div class="v">의료용이 아닌 일반 사용자가 하이카디로 자신의 심전도를 기록하고, 운동 등 다양한 활동을 트래킹하고 싶어했다. 참고할 만한 기존 앱이 없어 차별점을 스스로 찾아야 했다.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="k">Approach</div>
+          <div class="v">AI 비서 "닥터존" 캐릭터를 배치해 건강 상태와 정보를 안내하고, 지인과 심전도·위치 정보를 실시간 공유하는 소셜 기능을 더했다.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="k">Outcome</div>
+          <div class="v">실제로 메디카 박람회에서 시연·구현한 경험이 있는, 존재하지 않던 카테고리의 웰니스 앱이 됐다.</div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">1</div>
+          <div class="label">AI 비서 캐릭터 "닥터존"</div>
+        </div>
+        <div class="stat">
+          <div class="num">6개월</div>
+          <div class="label">기획부터 시연까지</div>
+        </div>
+        <div class="stat">
+          <div class="num">Live</div>
+          <div class="label">메디카 박람회 실제 시연</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BACKGROUND
+       ============================================ -->
+  <section class="section" id="background">
+    <div class="section-tag">Background</div>
+    <div class="section-body">
+      <h2>심전도는 병원에서만 재는 게 아니어도 됐다.</h2>
+      <p>MEZOO의 하이카디는 원래 의료 현장을 위한 기기였다. 하지만 일반 사용자도 자신의 심전도를 기록하고, 운동이나 일상 활동과 함께 건강 상태를 관리하고 싶어했다.</p>
+      <p class="muted">의료기기를 웰니스 앱으로 가져오는 것 — 이전에 없던 카테고리를 만드는 일이었다.</p>
+      <div class="media-grid cols-2">
+        <div class="media-block">Dr. Jone 온보딩 · 홈 화면</div>
+        <div class="media-block">닥터존 AI 비서 캐릭터</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PROBLEM — 관찰(Observation) 카드 형식
+       ============================================ -->
+  <section class="section" id="problem">
+    <div class="section-tag">Problem</div>
+    <div class="section-body">
+      <h2>참고할 앱이 없다는 건, 기준도 스스로 만들어야 한다는 뜻이었다.</h2>
+      <p>기존 웰니스 앱들은 심전도를 다루지 않았고, 의료 앱들은 일상적으로 쓰기엔 너무 무거웠다. 그 사이 어딘가에서 새로운 톤을 찾아야 했다.</p>
+      <div class="observation">
+        <div class="dot"></div>
+        <div class="bubble">
+          <div class="obs-label">Observation #1</div>
+          <p>심전도라는 의료 데이터를, 일반 사용자에게 부담스럽지 않게 전달할 방법이 필요했다.</p>
+        </div>
+      </div>
+      <div class="observation right">
+        <div class="bubble">
+          <div class="obs-label">Observation #2</div>
+          <p>혼자 기록만 하는 앱이 아니라, 지인과 건강 정보를 나누고 싶어하는 사용자 니즈가 있었다.</p>
+        </div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       APPROACH — 리스트 + Before/After 토글
+       ============================================ -->
+  <section class="section" id="approach">
+    <div class="section-tag">Approach</div>
+    <div class="section-body">
+      <h2>AI 비서를 두고, 기록을 대화로 만들었다.</h2>
+      <p>단순 기록 앱이 아니라, 닥터존이라는 AI 비서가 사용자의 심전도와 활동 데이터를 바탕으로 건강 상태를 안내해주는 방식으로 설계했다. 여기에 소셜 공유 기능을 더해 혼자 쓰는 앱에서 벗어나게 했다.</p>
+      <div class="list-2col">
+        <div>AI 비서 "닥터존" 캐릭터 및 대화형 안내 UI</div>
+        <div>심전도 기록과 운동·활동 트래킹 통합</div>
+        <div>지인과 심전도·위치 정보 실시간 공유 기능</div>
+        <div>의료 데이터를 웰니스 톤으로 시각화</div>
+      </div>
+      <div class="media-block">닥터존 대화형 건강 안내 화면</div>
+    </div>
+  </section>
+
+  <section class="section" id="approach-2">
+    <div class="section-tag"></div>
+    <div class="section-body">
+      <div class="toggle-group">
+        <button class="is-active">BEFORE</button>
+        <button>AFTER</button>
+      </div>
+      <div class="media-block tall">소셜 공유 화면 — 지인과 심전도·위치 정보 실시간 공유</div>
+      <div class="caption-list">
+        <span>기존엔 존재하지 않던 심전도 기반 소셜 기능</span>
+        <span>위치·건강 정보를 함께 공유</span>
+        <span>의료 데이터를 관계 안에서 자연스럽게 노출</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       WORKFLOW / PROCESS — 프로세스 단계 칩
+       ============================================ -->
+  <section class="section" id="process">
+    <div class="section-tag">Workflow</div>
+    <div class="section-body">
+      <h2>레퍼런스가 없어서, 리서치부터 다시 시작했다.</h2>
+      <p>참고할 만한 심전도 기반 웰니스 앱이 없어, 기존 웰니스 앱들을 폭넓게 조사하며 이 카테고리만의 차별점을 찾아나갔다. 그 위에 AI 비서 컨셉을 얹었다.</p>
+      <div class="process-flow">
+        <div class="process-chip"><div class="t">웰니스 앱 리서치</div><div class="s">RESEARCH</div></div>
+        <div class="process-link"><div class="line"></div><div class="pt"></div><div class="line"></div></div>
+        <div class="process-chip"><div class="t">차별점 정의</div><div class="s">POSITIONING</div></div>
+        <div class="process-link"><div class="line"></div><div class="pt"></div><div class="line"></div></div>
+        <div class="process-chip"><div class="t">닥터존 컨셉 설계</div><div class="s">AI PERSONA</div></div>
+        <div class="process-link"><div class="line"></div><div class="pt"></div><div class="line"></div></div>
+        <div class="process-chip"><div class="t">메디카 시연</div><div class="s">DEMO</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       OUTCOME — 3단 지표
+       ============================================ -->
+  <section class="section" id="outcome">
+    <div class="section-tag">Outcome</div>
+    <div class="section-body">
+      <h2>기록만 하던 앱이, 함께 나누는 앱이 됐다.</h2>
+      <div class="outcome-grid">
+        <div class="stat">
+          <div class="num">1</div>
+          <div class="label">새로운 카테고리</div>
+          <div class="desc">심전도 기반 웰니스 앱</div>
+        </div>
+        <div class="stat">
+          <div class="num">Live</div>
+          <div class="label">메디카 박람회 시연</div>
+          <div class="desc">실제 구현·시연까지 진행</div>
+        </div>
+        <div class="stat">
+          <div class="num">Social</div>
+          <div class="label">지인과 정보 공유</div>
+          <div class="desc">심전도 · 위치 실시간 공유</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       LEARNED — 회고
+       ============================================ -->
+  <section class="section" id="learned">
+    <div class="section-tag">Learned</div>
+    <div class="section-body">
+      <h2>의료 데이터를 다룰 땐, 톤이 8할이다.</h2>
+      <p>같은 심전도 데이터라도 "측정값"으로 보여주느냐 "오늘의 컨디션"으로 보여주느냐에 따라 사용자가 느끼는 부담이 완전히 달라졌다. AI 비서 캐릭터는 그 온도를 조절하는 장치였다.</p>
+      <p>존재하지 않던 카테고리를 만들 때는, 기능보다 먼저 이 앱이 사용자에게 어떤 존재로 느껴져야 하는지를 정의하는 게 우선이라는 걸 배웠다.</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TRY IT — 인터랙티브 데모 (해당 시)
+       ============================================ -->
+  <section class="section" id="tryit">
+    <div class="section-tag">Result</div>
+    <div class="section-body">
+      <h2>박람회 현장에서, 실제로 작동한 컨셉.</h2>
+      <p>Dr. Jone은 메디카 박람회에서 실제로 시연·구현됐다. 존재하지 않던 카테고리였던 만큼, 실제로 작동하는 걸 보여주는 것 자체가 검증이었다.</p>
+      <div class="media-block dark">Dr. Jone 최종 화면 — 닥터존 · 소셜 공유</div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MORE CASE STUDIES — 다음 프로젝트 2개
+       ============================================ -->
+  <section class="more-projects">
+    <div class="wrap">
+      <div class="heading">More case studies</div>
+      <div class="project-cards">
+        <a class="project-card" href="smart-view.html">
+          <div class="thumb"><img src="" alt="Smart View"></div>
+          <div class="meta">06. UX/UI · Mobile App</div>
+          <h3>Smart View</h3>
+          <div class="desc">실시간 심전도 게이트웨이 모바일 앱, 판독 속도 2.5배 개선</div>
+          <div class="tags"><span class="tag red">Healthcare</span><span class="tag">Mobile</span></div>
+        </a>
+        <a class="project-card" href="ninja.html">
+          <div class="thumb"><img src="" alt="Ninja"></div>
+          <div class="meta">08. Product Design</div>
+          <h3>Ninja</h3>
+          <div class="desc">오토바이 블루투스 제품의 자사 고유 외형 콘셉트 디자인</div>
+          <div class="tags"><span class="tag">Electronic Product</span><span class="tag">Manufacturing</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>© 2026 SOONIY SEO · UI/UX DESIGN</div>
+      <div>DESIGNED &amp; BUILT IN SEOUL</div>
+      <div>V.1</div>
+    </div>
+  </footer>
+
+</body>
+</html>

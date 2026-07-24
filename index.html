@@ -284,6 +284,16 @@
         border-radius: 38px;
       }
 
+      .project-card[data-href] {
+        cursor: pointer;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .project-card[data-href]:hover {
+        transform: translateY(-4px);
+        box-shadow: 4px 8px 24px rgba(0, 0, 0, 0.18);
+      }
+
       .media {
         position: relative;
         height: 343px;
@@ -311,6 +321,10 @@
         background: #cdb1ff;
       }
 
+      .media.navy {
+        background: #110095;
+      }
+
       .media.tall {
         height: 407px;
       }
@@ -320,6 +334,44 @@
         object-fit: cover;
         border-radius: 6px;
         box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .edu-glow-1,
+      .edu-glow-2 {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(24px);
+      }
+
+      .edu-glow-1 {
+        width: 131.9%;
+        height: 215.7%;
+        left: -15.9%;
+        top: -7.9%;
+        background: radial-gradient(circle, rgba(94, 114, 255, 0.55) 0%, rgba(94, 114, 255, 0) 70%);
+      }
+
+      .edu-glow-2 {
+        width: 85.9%;
+        height: 140.5%;
+        left: 7.1%;
+        top: 29.7%;
+        background: radial-gradient(circle, rgba(140, 96, 255, 0.5) 0%, rgba(140, 96, 255, 0) 70%);
+      }
+
+      .edu-shot-1 {
+        width: 48.45%;
+        height: 167.94%;
+        left: 44.9%;
+        top: -47.8%;
+      }
+
+      .edu-shot-2 {
+        width: 57.14%;
+        height: 279%;
+        left: 10.16%;
+        top: 17.79%;
       }
 
       .inex-imac {
@@ -679,6 +731,18 @@
         opacity: 0.25;
       }
 
+      .footer-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 26px 0 60px;
+        font-size: 18px;
+        letter-spacing: 0.1em;
+        color: rgba(0, 0, 0, 0.7);
+      }
+
       @media (max-width: 900px) {
         .container {
           width: min(100% - 28px, 640px);
@@ -802,9 +866,18 @@
         .socials a {
           font-size: 18px;
         }
+
+        .footer-meta {
+          justify-content: flex-start;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+          padding: 20px 0 40px;
+          font-size: 12px;
+        }
       }
     </style>
-  <style>.hero{display:none !important} .project-card:not(#tmp-check){display:none !important}</style></head>
+  </head>
   <body>
     <main class="page">
       <div class="glow glow-1"></div>
@@ -837,7 +910,7 @@
       <section class="work-section container" id="work">
         <h2 class="section-title">Project 2025 -</h2>
         <div class="work-grid">
-          <article class="project-card wide">
+          <article class="project-card wide" data-href="케이스 스터디 상세 페이지/inex-homepage%20.html">
             <div class="media purple-solid tall">
               <img class="inex-imac" src="assets/figma/imac.png" alt="Inex homepage on iMac mockup" />
               <img class="inex-browser" src="assets/figma/inex-solution.png" alt="Inex solution page screen" />
@@ -871,7 +944,25 @@
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-href="케이스 스터디 상세 페이지/inex-education-platform%20.html">
+            <div class="media navy">
+              <div class="edu-glow-1"></div>
+              <div class="edu-glow-2"></div>
+              <img class="edu-shot-1" src="assets/figma/inex-edu-platform-1.png" alt="AiNex Edu 교육원 서브 화면" />
+              <img class="edu-shot-2" src="assets/figma/inex-edu-platform-2.png" alt="AiNex Edu 교육원 메인 화면" />
+            </div>
+            <div class="project-body">
+              <p class="project-kicker">03. Recent・Education UX</p>
+              <h3 class="project-title">Inex-교육원 플랫폼</h3>
+              <p class="project-desc">늘어나는 교육 카테고리를 한눈에 보여주는 교육원 사이트 리뉴얼</p>
+              <div class="tags">
+                <span class="tag red">B2B</span>
+                <span class="tag blue">IA</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-href="케이스 스터디 상세 페이지/ai-video-case-production.html">
             <div class="media soft-blue">
               <img class="ai-shot-left" src="assets/figma/ai-workflow-2.png" alt="AI workflow screen" />
               <img class="ai-shot-center" src="assets/figma/ai-workflow-3.png" alt="AI workflow main screen" />
@@ -888,7 +979,7 @@
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-href="케이스 스터디 상세 페이지/inex-ai-chatbot%20.html">
             <div class="media soft-purple">
               <img class="full-shot" src="assets/figma/chatbot.png" alt="Inex AI chatbot screen" />
             </div>
@@ -909,7 +1000,7 @@
       <section class="work-section container">
         <h2 class="section-title">Project 2023 -</h2>
         <div class="work-grid">
-          <article class="project-card wide">
+          <article class="project-card wide" data-href="케이스 스터디 상세 페이지/live-studio.html">
             <div class="media white">
               <img class="live-bg" src="assets/figma/live-studio-bg.png" alt="Live Studio background pattern" />
               <img class="live-mockup" src="assets/figma/live-mockup.png" alt="Live Studio dashboard on iMac mockup" />
@@ -931,7 +1022,7 @@
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-href="케이스 스터디 상세 페이지/smart-view.html">
             <div class="media soft-blue">
               <img class="phone" src="assets/figma/phone.png" alt="Smart View mobile mockup" />
               <img class="phone-ui" src="assets/figma/phone-ui.png" alt="Smart View interface diagram" />
@@ -947,7 +1038,7 @@
             </div>
           </article>
 
-          <article class="project-card" id="tmp-check">
+          <article class="project-card" data-href="케이스 스터디 상세 페이지/dr-jone.html">
             <div class="media pale-blue">
               <img class="drjhon-portrait" src="assets/figma/inex-main.png" alt="Dr.Jhon wellness app mockup" />
               <img class="drjhon-card" src="assets/figma/inex-detail.png" alt="Dr.Jhon app detail screen" />
@@ -964,7 +1055,7 @@
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-href="케이스 스터디 상세 페이지/corentec-surgical-case.html">
             <div class="media white">
               <img class="product-shot" src="assets/figma/product-case.png" alt="Corentec surgical case product design" />
             </div>
@@ -980,7 +1071,7 @@
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-href="케이스 스터디 상세 페이지/ninja.html">
             <div class="media white">
               <img class="ninja-shot" src="assets/figma/ninja.png" alt="Ninja motorcycle bluetooth product design" />
             </div>
@@ -995,7 +1086,7 @@
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-href="케이스 스터디 상세 페이지/korail-redesign.html">
             <div class="media white">
               <img class="korail-shot" src="assets/figma/mockup-site.png" alt="Korail redesign app mockup" />
             </div>
@@ -1010,7 +1101,7 @@
             </div>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-href="케이스 스터디 상세 페이지/minsk.html">
             <div class="media white">
               <img class="minsk-shot" src="assets/figma/minsk.png" alt="Minsk branding motion still" />
             </div>
@@ -1026,6 +1117,7 @@
             </div>
           </article>
 
+          <!-- data-href not set: no case study file yet for 브로셔 디자인 -->
           <article class="project-card">
             <div class="media white">
             </div>
@@ -1071,6 +1163,19 @@
       </section>
 
       <div class="footer-line"></div>
+      <div class="footer-meta container">
+        <span>Ⓒ 2024 SEOYEONGYEONG・INDUSTRIAL DESIGN</span>
+        <span>DESIGNED &amp; BUILT IN SEOUL</span>
+        <span>V.5 / SEP 2024</span>
+      </div>
     </main>
+
+    <script>
+      document.querySelectorAll(".project-card[data-href]").forEach((card) => {
+        card.addEventListener("click", () => {
+          window.location.href = card.dataset.href;
+        });
+      });
+    </script>
   </body>
 </html>
