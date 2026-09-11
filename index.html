@@ -169,8 +169,7 @@
         height: 63px;
       }
 
-      .hero-mark::before {
-        content: "";
+      .hero-mark-photo {
         position: absolute;
         width: 87%;
         height: 87%;
@@ -178,8 +177,9 @@
         top: 50%;
         transform: translate(-50%, -50%);
         border-radius: 50%;
-        background: #d9d9d9;
+        object-fit: cover;
         border: 3px solid #fff;
+        display: block;
       }
 
       .hero-mark::after {
@@ -934,7 +934,9 @@
 
       <section class="hero container">
         <h1 class="hero-copy">
-          <span class="hero-mark" aria-hidden="true"></span>
+          <span class="hero-mark" aria-hidden="true"
+            ><img class="hero-mark-photo" src="assets/profile-photo.jpg" alt=""
+          /></span>
           I'm Seo Yeon-gyeong — a UIUX Designer who structures complex digital
           experiences. I started in physical product design and moved into
           healthcare, web, and AI-related UX — turning complex systems, data,
