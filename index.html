@@ -291,6 +291,12 @@
         white-space: nowrap;
       }
 
+      .prompt-ask {
+        font-family: inherit;
+        letter-spacing: inherit;
+        cursor: pointer;
+      }
+
       .marquee-star {
         flex: 0 0 auto;
         width: clamp(34px, 4vw, 57px);
@@ -1248,8 +1254,8 @@
             style="width: 16px; height: 16px; left: 5px; top: 43px"
           ></span>
           <a class="prompt" href="#work" data-ko="see my work ↓" data-en="see my work ↙">see my work ↙</a>
-          <span class="prompt" data-ko="what designer are you?" data-en="what designer are you?">what designer are you?</span>
-          <span class="prompt" data-ko="what's your availability?" data-en="what's your availability?">what's your availability?</span>
+          <button type="button" class="prompt prompt-ask" data-ko="what designer are you?" data-en="what designer are you?">what designer are you?</button>
+          <button type="button" class="prompt prompt-ask" data-ko="what's your availability?" data-en="what's your availability?">what's your availability?</button>
           <a class="prompt" href="resume.html" target="_blank" rel="noopener" data-ko="resume ↗" data-en="resume ↗">resume ↗</a>
         </div>
         <form class="searchbar" id="askForm">
@@ -2099,6 +2105,12 @@
           askAndReply(question);
         });
       }
+
+      document.querySelectorAll(".prompt-ask").forEach((button) => {
+        button.addEventListener("click", () => {
+          askAndReply(button.textContent.trim());
+        });
+      });
 
       if (chatPageForm && chatPageInput) {
         chatPageForm.addEventListener("submit", (event) => {
