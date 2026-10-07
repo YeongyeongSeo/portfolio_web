@@ -12,9 +12,17 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+      href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css"
     />
     <style>
+      @font-face {
+        font-family: "GmarketSans";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+          format("woff");
+        font-weight: 500;
+        font-display: swap;
+      }
+
       * {
         box-sizing: border-box;
       }
@@ -41,7 +49,7 @@
         color: var(--ink);
         font-family:
           Inter,
-          Pretendard,
+          "SUIT Variable",
           -apple-system,
           BlinkMacSystemFont,
           "Segoe UI",
@@ -148,6 +156,40 @@
         background: #111;
       }
 
+      .lang-toggle {
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        padding: 4px;
+        border: 1.5px solid var(--chip-line);
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.12);
+      }
+
+      .lang-btn {
+        border: 0;
+        background: transparent;
+        padding: 6px 16px;
+        border-radius: 999px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--muted);
+        cursor: pointer;
+        transition: background 0.15s ease, color 0.15s ease;
+      }
+
+      .lang-btn.is-active {
+        background: #111;
+        color: #fff;
+      }
+
       .hero {
         padding: 115px 0 300px;
       }
@@ -159,6 +201,20 @@
         font-weight: 500;
         line-height: 1.1;
         letter-spacing: -0.02em;
+      }
+
+      /* 한글 버전 히어로 문구 — Figma: Gmarket Sans Medium 55/77, rgba(0,0,0,0.8) */
+      html[lang="ko"] .hero-copy {
+        font-family: "GmarketSans", "SUIT Variable", "Inter", sans-serif;
+        line-height: 1.4;
+        letter-spacing: 0;
+        color: rgba(0, 0, 0, 0.8);
+      }
+
+      /* Figma 배치: 프롬프트 2개씩 2줄 */
+      html[lang="ko"] .hero-copy + .prompt-row {
+        max-width: 520px;
+        margin-top: 47px;
       }
 
       .hero-mark {
@@ -264,6 +320,7 @@
       .searchbar {
         display: flex;
         align-items: center;
+        gap: 10px;
         width: min(100%, 1289px);
         height: 69px;
         margin-top: 14px;
@@ -277,9 +334,143 @@
         letter-spacing: 0.08em;
       }
 
+      .searchbar-caret {
+        flex: 0 0 auto;
+      }
+
+      .searchbar-input {
+        flex: 1;
+        min-width: 0;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        padding: 0;
+        font: inherit;
+        color: var(--ink);
+        letter-spacing: inherit;
+      }
+
+      .searchbar-input::placeholder {
+        color: var(--muted);
+      }
+
+      .chat-log {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .chat-message {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        opacity: 0;
+        transform: translateY(8px);
+        animation: chat-in 0.3s ease forwards;
+      }
+
+      @keyframes chat-in {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .chat-avatar {
+        flex: 0 0 auto;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #fff;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.12);
+      }
+
+      .chat-bubble {
+        flex: 1;
+        padding: 20px 28px;
+        border-radius: 20px;
+        border: 1.5px solid var(--line);
+        background: #fff;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.12);
+        font-size: 18px;
+        line-height: 1.5;
+        color: var(--ink);
+        white-space: pre-line;
+      }
+
+      .chat-message.is-user {
+        justify-content: flex-end;
+      }
+
+      .chat-message.is-user .chat-bubble {
+        flex: 0 1 auto;
+        max-width: 70%;
+        border-color: transparent;
+        background: var(--ink);
+        color: #fff;
+      }
+
+      .chat-page {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: none;
+        flex-direction: column;
+        background: linear-gradient(
+          120deg,
+          #f6eef9 0%,
+          #ddc9ef 26%,
+          #cbb8ee 42%,
+          #c9d2f7 66%,
+          #eaf1fb 100%
+        );
+      }
+
+      .chat-page.is-open {
+        display: flex;
+      }
+
+      .chat-page-close {
+        position: absolute;
+        top: 28px;
+        right: 32px;
+        width: 44px;
+        height: 44px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.18);
+      }
+
+      .chat-page-scroll {
+        flex: 1;
+        overflow-y: auto;
+        padding: 100px 10% 40px;
+      }
+
+      .chat-page .chat-log {
+        gap: 48px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .chat-page-form {
+        padding: 0 10% 40px;
+      }
+
+      .chat-page-form .searchbar {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
       .section-title {
         margin: 0 0 42px;
-        font-family: "Pretendard", "Inter", sans-serif;
+        font-family: "SUIT Variable", "Inter", sans-serif;
         font-size: clamp(34px, 4.5vw, 55px);
         font-weight: 600;
         line-height: 1.09;
@@ -612,7 +803,7 @@
 
       .project-title {
         margin: 0 0 12px;
-        font-family: "Pretendard", "Inter", sans-serif;
+        font-family: "SUIT Variable", "Inter", sans-serif;
         font-size: clamp(26px, 2.6vw, 33px);
         font-weight: 700;
         line-height: 1.33;
@@ -688,7 +879,7 @@
       }
 
       .marquee-track span {
-        font-family: "Pretendard", "Inter", sans-serif;
+        font-family: "SUIT Variable", "Inter", sans-serif;
         font-size: clamp(34px, 4vw, 64px);
         font-weight: 700;
         line-height: 1.23;
@@ -769,7 +960,7 @@
         border-radius: 100px;
         background: linear-gradient(90deg, #b0b9ff, #bd97ff);
         color: #fff;
-        font-family: "Pretendard", "Inter", sans-serif;
+        font-family: "SUIT Variable", "Inter", sans-serif;
         font-size: clamp(24px, 3.2vw, 44px);
         font-weight: 700;
       }
@@ -797,7 +988,7 @@
       }
 
       .socials a {
-        font-family: "Pretendard", "Inter", sans-serif;
+        font-family: "SUIT Variable", "Inter", sans-serif;
         font-size: 28px;
         color: #1e1e1e;
       }
@@ -830,6 +1021,16 @@
         .brand {
           padding-top: 28px;
           font-size: 18px;
+        }
+
+        .lang-toggle {
+          right: 14px;
+          padding: 3px;
+        }
+
+        .lang-btn {
+          padding: 5px 11px;
+          font-size: 11px;
         }
 
         .hero {
@@ -867,6 +1068,41 @@
           padding: 0 20px;
           font-size: 14px;
           letter-spacing: 0.04em;
+        }
+
+        .chat-log {
+          gap: 14px;
+        }
+
+        .chat-avatar {
+          width: 36px;
+          height: 36px;
+        }
+
+        .chat-page-close {
+          top: 16px;
+          right: 16px;
+          width: 38px;
+          height: 38px;
+          font-size: 15px;
+        }
+
+        .chat-page-scroll {
+          padding: 70px 6% 24px;
+        }
+
+        .chat-page .chat-log {
+          gap: 24px;
+        }
+
+        .chat-page-form {
+          padding: 0 6% 24px;
+        }
+
+        .chat-bubble {
+          padding: 14px 18px;
+          border-radius: 16px;
+          font-size: 14px;
         }
 
         .section-title {
@@ -966,17 +1202,28 @@
       <div class="glow glow-3"></div>
       <div class="glow glow-4"></div>
 
-      <header class="brand">Sooniy Seo</header>
+      <header class="brand">
+        Sooniy Seo
+        <div class="lang-toggle" role="group" aria-label="language toggle">
+          <button type="button" class="lang-btn" id="langKo" data-lang="ko">KO</button>
+          <button type="button" class="lang-btn" id="langEn" data-lang="en">EN</button>
+        </div>
+      </header>
 
       <section class="hero container">
         <h1 class="hero-copy">
           <span class="hero-mark" aria-hidden="true"
             ><img class="hero-mark-photo" src="assets/profile-photo.jpg" alt=""
           /></span>
-          I'm Seo Yeon-gyeong — a UIUX Designer who structures complex digital
-          experiences. I started in physical product design and moved into
-          healthcare, web, and AI-related UX — turning complex systems, data,
-          and user contexts into clear, usable interfaces.
+          <span
+            class="hero-copy-text"
+            data-ko="저는 서연경입니다 — 복잡한 디지털 경험을 구조화하는 UIUX 디자이너예요. 실물 제품 디자인에서 시작해 헬스케어, 웹, AI 관련 UX로 영역을 넓혀오며, 복잡한 시스템과 데이터, 사용자 맥락을 명확하고 사용하기 쉬운 인터페이스로 풀어냅니다."
+            data-en="I'm Seo Yeon-gyeong — a UIUX Designer who structures complex digital experiences. I started in physical product design and moved into healthcare, web, and AI-related UX — turning complex systems, data, and user contexts into clear, usable interfaces."
+            >I'm Seo Yeon-gyeong — a UIUX Designer who structures complex digital
+            experiences. I started in physical product design and moved into
+            healthcare, web, and AI-related UX — turning complex systems, data,
+            and user contexts into clear, usable interfaces.</span
+          >
         </h1>
 
         <div class="prompt-row" aria-label="quick questions">
@@ -1000,16 +1247,27 @@
             aria-hidden="true"
             style="width: 16px; height: 16px; left: 5px; top: 43px"
           ></span>
-          <a class="prompt" href="#work">see my work ↙</a>
-          <span class="prompt">what designer are you?</span>
-          <span class="prompt">what's your availability?</span>
-          <a class="prompt" href="resume.html" target="_blank" rel="noopener">resume ↗</a>
+          <a class="prompt" href="#work" data-ko="see my work ↓" data-en="see my work ↙">see my work ↙</a>
+          <span class="prompt" data-ko="what designer are you?" data-en="what designer are you?">what designer are you?</span>
+          <span class="prompt" data-ko="what's your availability?" data-en="what's your availability?">what's your availability?</span>
+          <a class="prompt" href="resume.html" target="_blank" rel="noopener" data-ko="resume ↗" data-en="resume ↗">resume ↗</a>
         </div>
-        <div class="searchbar">&gt;_ ask Leah anything...</div>
+        <form class="searchbar" id="askForm">
+          <span class="searchbar-caret" aria-hidden="true">&gt;_</span>
+          <input
+            class="searchbar-input"
+            id="askInput"
+            type="text"
+            autocomplete="off"
+            placeholder="ask Sooniy anything..."
+            data-ko-placeholder="ask Leah anything..."
+            data-en-placeholder="ask Sooniy anything..."
+          />
+        </form>
       </section>
 
       <section class="work-section container" id="work">
-        <h2 class="section-title">Project 2025 -</h2>
+        <h2 class="section-title" data-ko="프로젝트 2025 -" data-en="Project 2025 -">Project 2025 -</h2>
         <div class="work-grid">
           <article
             class="project-card wide"
@@ -1033,9 +1291,25 @@
               />
             </div>
             <div class="project-body">
-              <p class="project-kicker">01. Recent main・Education UX</p>
-              <h3 class="project-title">Inex 홈페이지 디자인</h3>
-              <p class="project-desc">
+              <p
+                class="project-kicker"
+                data-ko="01. Recent main・Education UX"
+                data-en="01. Recent main · Education UX"
+              >
+                01. Recent main・Education UX
+              </p>
+              <h3
+                class="project-title"
+                data-ko="Inex 홈페이지 디자인"
+                data-en="Inex Homepage Design"
+              >
+                Inex 홈페이지 디자인
+              </h3>
+              <p
+                class="project-desc"
+                data-ko="늘어나는 교육 카테고리를 법정교육・공통역량・대인심리・안전보건・직무역량 5개 축으로 재정의하고, 홈 화면에서 바로 탐색할 수 있는 정보구조로 재구성한 교육원 홈페이지 리뉴얼"
+                data-en="Redefined the growing education categories into five axes — mandatory training, core competency, interpersonal psychology, safety &amp; health, and job competency — and rebuilt the homepage's information architecture for direct exploration."
+              >
                 늘어나는 교육 카테고리를
                 법정교육・공통역량・대인심리・안전보건・직무역량 5개 축으로
                 재정의하고, 홈 화면에서 바로 탐색할 수 있는 정보구조로 재구성한
@@ -1061,9 +1335,25 @@
               />
             </div>
             <div class="project-body">
-              <p class="project-kicker">02. Recent・Education UX</p>
-              <h3 class="project-title">Inex 아카이브</h3>
-              <p class="project-desc">
+              <p
+                class="project-kicker"
+                data-ko="02. Recent・Education UX"
+                data-en="02. Recent · Education UX"
+              >
+                02. Recent・Education UX
+              </p>
+              <h3
+                class="project-title"
+                data-ko="Inex 아카이브"
+                data-en="Inex Archive"
+              >
+                Inex 아카이브
+              </h3>
+              <p
+                class="project-desc"
+                data-ko="법정교육, 공통역량, 리더십역량 등 확장된 교육 카테고리를 사용자가 빠르게 탐색하도록 구조화한 웹 UX"
+                data-en="Structured the expanding education categories — mandatory training, core competency, leadership competency — into a web UX that lets users explore quickly."
+              >
                 법정교육, 공통역량, 리더십역량 등 확장된 교육 카테고리를
                 사용자가 빠르게 탐색하도록 구조화한 웹 UX
               </p>
@@ -1094,9 +1384,25 @@
               />
             </div>
             <div class="project-body">
-              <p class="project-kicker">03. Recent・Education UX</p>
-              <h3 class="project-title">Inex-교육원 플랫폼</h3>
-              <p class="project-desc">
+              <p
+                class="project-kicker"
+                data-ko="03. Recent・Education UX"
+                data-en="03. Recent · Education UX"
+              >
+                03. Recent・Education UX
+              </p>
+              <h3
+                class="project-title"
+                data-ko="Inex-교육원 플랫폼"
+                data-en="Inex Education Platform"
+              >
+                Inex-교육원 플랫폼
+              </h3>
+              <p
+                class="project-desc"
+                data-ko="늘어나는 교육 카테고리를 한눈에 보여주는 교육원 사이트 리뉴얼"
+                data-en="A training-site renewal that shows the growing number of education categories at a glance."
+              >
                 늘어나는 교육 카테고리를 한눈에 보여주는 교육원 사이트 리뉴얼
               </p>
               <div class="tags">
@@ -1128,9 +1434,25 @@
               />
             </div>
             <div class="project-body">
-              <p class="project-kicker">04. Recent・AI Workflow</p>
-              <h3 class="project-title">AI 영상 사례 생산</h3>
-              <p class="project-desc">
+              <p
+                class="project-kicker"
+                data-ko="04. Recent・AI Workflow"
+                data-en="04. Recent · AI Workflow"
+              >
+                04. Recent・AI Workflow
+              </p>
+              <h3
+                class="project-title"
+                data-ko="AI 영상 사례 생산"
+                data-en="AI Video Case Production"
+              >
+                AI 영상 사례 생산
+              </h3>
+              <p
+                class="project-desc"
+                data-ko="Claude 프롬프트, 대본 생성, 73장 자막 PNG 제작 흐름을 연결해 대량 콘텐츠 생산 속도를 높인 업무 자동화 사례"
+                data-en="Connected Claude prompting, script generation, and 73-slide subtitle PNG production into one workflow — a work-automation case that sped up bulk content production."
+              >
                 Claude 프롬프트, 대본 생성, 73장 자막 PNG 제작 흐름을 연결해
                 대량 콘텐츠 생산 속도를 높인 업무 자동화 사례
               </p>
@@ -1153,9 +1475,25 @@
               />
             </div>
             <div class="project-body">
-              <p class="project-kicker">05. Recent・AI UX</p>
-              <h3 class="project-title">Inex AI 챗봇</h3>
-              <p class="project-desc">
+              <p
+                class="project-kicker"
+                data-ko="05. Recent・AI UX"
+                data-en="05. Recent · AI UX"
+              >
+                05. Recent・AI UX
+              </p>
+              <h3
+                class="project-title"
+                data-ko="Inex AI 챗봇"
+                data-en="Inex AI Chatbot"
+              >
+                Inex AI 챗봇
+              </h3>
+              <p
+                class="project-desc"
+                data-ko="AI 특화 교육 과정 안에서 학습자가 테스트를 수행할 수 있도록 답변 영역, 질문 제안, 입력 구조를 설계한 챗봇 UI"
+                data-en="Designed a chatbot UI — answer area, suggested questions, input structure — so learners can take tests within an AI-focused curriculum."
+              >
                 AI 특화 교육 과정 안에서 학습자가 테스트를 수행할 수 있도록 답변
                 영역, 질문 제안, 입력 구조를 설계한 챗봇 UI
               </p>
@@ -1170,7 +1508,7 @@
       </section>
 
       <section class="work-section container">
-        <h2 class="section-title">Project 2023 -</h2>
+        <h2 class="section-title" data-ko="프로젝트 2023 -" data-en="Project 2023 -">Project 2023 -</h2>
         <div class="work-grid">
           <article
             class="project-card wide"
@@ -1216,7 +1554,11 @@
             <div class="project-body">
               <p class="project-kicker">05. Healthcare Web</p>
               <h3 class="project-title">Live Studio</h3>
-              <p class="project-desc">
+              <p
+                class="project-desc"
+                data-ko="복잡한 심전도 데이터를 판독자 중심으로 재구성하고 필터링 UI와 디자인 시스템을 개선한 의료 웹 UX 대표 프로젝트"
+                data-en="A flagship medical web UX project that restructured complex ECG data around the reader's workflow and improved the filtering UI and design system."
+              >
                 복잡한 심전도 데이터를 판독자 중심으로 재구성하고 필터링 UI와
                 디자인 시스템을 개선한 의료 웹 UX 대표 프로젝트
               </p>
@@ -1247,7 +1589,11 @@
             <div class="project-body">
               <p class="project-kicker">06. Mobile UX</p>
               <h3 class="project-title">Smart View</h3>
-              <p class="project-desc">
+              <p
+                class="project-desc"
+                data-ko="ECG, 12Lead, 산소포화도, 호흡 등 확장되는 의료 데이터를 모바일 화면 안에서 우선순위에 따라 정리한 모니터링 앱"
+                data-en="A monitoring app that organizes expanding medical data — ECG, 12-lead, SpO2, respiration — by priority within a mobile screen."
+              >
                 ECG, 12Lead, 산소포화도, 호흡 등 확장되는 의료 데이터를 모바일
                 화면 안에서 우선순위에 따라 정리한 모니터링 앱
               </p>
@@ -1275,9 +1621,19 @@
               />
             </div>
             <div class="project-body">
-              <p class="project-kicker">07. UX Case・Wellness</p>
+              <p
+                class="project-kicker"
+                data-ko="07. UX Case・Wellness"
+                data-en="07. UX Case · Wellness"
+              >
+                07. UX Case・Wellness
+              </p>
               <h3 class="project-title">Dr.Jhon</h3>
-              <p class="project-desc">
+              <p
+                class="project-desc"
+                data-ko="의료기기 기반 심전도 데이터를 일반 사용자가 이해 가능한 건강관리 경험으로 확장한 웰니스 모바일 앱"
+                data-en="A wellness mobile app that expands device-based ECG data into a health-management experience everyday users can understand."
+              >
                 의료기기 기반 심전도 데이터를 일반 사용자가 이해 가능한 건강관리
                 경험으로 확장한 웰니스 모바일 앱
               </p>
@@ -1301,9 +1657,19 @@
               />
             </div>
             <div class="project-body">
-              <p class="project-kicker">08. UX Root ・Product Design</p>
+              <p
+                class="project-kicker"
+                data-ko="08. UX Root ・Product Design"
+                data-en="08. UX Root · Product Design"
+              >
+                08. UX Root ・Product Design
+              </p>
               <h3 class="project-title">Corentec Surfical Case</h3>
-              <p class="project-desc">
+              <p
+                class="project-desc"
+                data-ko="수술 현장 관찰과 수술 프로세스 분석을 바탕으로 인공관절 케이스 내부를 모듈화하고 양산・수상까지 이어진 프로젝트"
+                data-en="Based on surgical-site observation and process analysis, modularized the interior of an artificial-joint case — a project that went on to mass production and an award."
+              >
                 수술 현장 관찰과 수술 프로세스 분석을 바탕으로 인공관절 케이스
                 내부를 모듈화하고 양산・수상까지 이어진 프로젝트
               </p>
@@ -1329,7 +1695,11 @@
             <div class="project-body">
               <p class="project-kicker">09. Product Design</p>
               <h3 class="project-title">Ninja</h3>
-              <p class="project-desc">
+              <p
+                class="project-desc"
+                data-ko="오토바이 블루투스 제품의 자사 고유 외형 콘셉트를 제안하고 실제 생산・양산까지 연결한 전자제품 디자인 프로젝트"
+                data-en="Proposed a proprietary form concept for a motorcycle Bluetooth product — an electronics design project carried through to actual production."
+              >
                 오토바이 블루투스 제품의 자사 고유 외형 콘셉트를 제안하고 실제
                 생산・양산까지 연결한 전자제품 디자인 프로젝트
               </p>
@@ -1354,7 +1724,11 @@
             <div class="project-body">
               <p class="project-kicker">11. App Redesign</p>
               <h3 class="project-title">Korail Redesign</h3>
-              <p class="project-desc">
+              <p
+                class="project-desc"
+                data-ko="코레일 앱의 주요 기능 접근성과 화면 흐름을 사용성 관점에서 다시 정리한 개인 앱 리디자인 프로젝트"
+                data-en="A personal redesign project that reorganized the Korail app's key feature accessibility and screen flow from a usability perspective."
+              >
                 코레일 앱의 주요 기능 접근성과 화면 흐름을 사용성 관점에서 다시
                 정리한 개인 앱 리디자인 프로젝트
               </p>
@@ -1377,9 +1751,19 @@
               />
             </div>
             <div class="project-body">
-              <p class="project-kicker">12. Branding ・Motion</p>
+              <p
+                class="project-kicker"
+                data-ko="12. Branding ・Motion"
+                data-en="12. Branding · Motion"
+              >
+                12. Branding ・Motion
+              </p>
               <h3 class="project-title">Minsk</h3>
-              <p class="project-desc">
+              <p
+                class="project-desc"
+                data-ko="모피 산업의 문제의식을 페이크 퍼 브랜드의 홍보 영상으로 풀어낸 브랜딩・스토리텔링 기반 졸업작품"
+                data-en="A branding/storytelling graduation project that channels concerns about the fur industry into a promotional video for a faux-fur brand."
+              >
                 모피 산업의 문제의식을 페이크 퍼 브랜드의 홍보 영상으로 풀어낸
                 브랜딩・스토리텔링 기반 졸업작품
               </p>
@@ -1396,22 +1780,28 @@
       <section class="marquee-band" aria-label="design statement">
         <div class="marquee-track">
           <i class="marquee-star gray" aria-hidden="true"></i>
-          <span>좋은 디자인은 보이지 않습니다</span>
+          <span data-ko="좋은 디자인은 보이지 않습니다" data-en="Good design is invisible">좋은 디자인은 보이지 않습니다</span>
           <i class="marquee-star grad" aria-hidden="true"></i>
-          <span>let's build something</span>
+          <span data-ko="무언가를 함께 만들어요" data-en="let's build something">let's build something</span>
           <i class="marquee-star grad" aria-hidden="true"></i>
-          <span>From data to objects</span>
+          <span data-ko="데이터에서 사물로" data-en="From data to objects">From data to objects</span>
           <i class="marquee-star gray" aria-hidden="true"></i>
-          <span>좋은 디자인은 보이지 않습니다</span>
+          <span data-ko="좋은 디자인은 보이지 않습니다" data-en="Good design is invisible">좋은 디자인은 보이지 않습니다</span>
           <i class="marquee-star grad" aria-hidden="true"></i>
-          <span>let's build something</span>
+          <span data-ko="무언가를 함께 만들어요" data-en="let's build something">let's build something</span>
           <i class="marquee-star grad" aria-hidden="true"></i>
-          <span>From data to objects</span>
+          <span data-ko="데이터에서 사물로" data-en="From data to objects">From data to objects</span>
         </div>
       </section>
 
       <section class="contact container" id="contact">
-        <h2 class="contact-title">Let's make <span>something good.</span></h2>
+        <h2
+          class="contact-title"
+          data-ko-html="함께 <span>좋은 걸 만들어요.</span>"
+          data-en-html="Let's make <span>something good.</span>"
+        >
+          Let's make <span>something good.</span>
+        </h2>
         <a class="email-pill" href="mailto:werqrs200@gmail.com"
           >werqrs200@gmail.com</a
         >
@@ -1431,11 +1821,302 @@
       </div>
     </main>
 
+    <div class="chat-page" id="chatPage" aria-hidden="true">
+      <button
+        class="chat-page-close"
+        id="chatPageClose"
+        aria-label="닫기"
+        data-ko-aria="닫기"
+        data-en-aria="Close"
+      >
+        ✕
+      </button>
+      <div class="chat-page-scroll">
+        <div class="chat-log" id="chatPageLog" aria-live="polite"></div>
+      </div>
+      <form class="chat-page-form" id="chatPageForm">
+        <div class="searchbar">
+          <span class="searchbar-caret" aria-hidden="true">&gt;_</span>
+          <input
+            class="searchbar-input"
+            id="chatPageInput"
+            type="text"
+            autocomplete="off"
+            placeholder="ask Sooniy anything..."
+            data-ko-placeholder="수니에게 무엇이든 물어보세요..."
+            data-en-placeholder="ask Sooniy anything..."
+          />
+        </div>
+      </form>
+    </div>
+
     <script>
       document.querySelectorAll(".project-card[data-href]").forEach((card) => {
         card.addEventListener("click", () => {
           window.location.href = card.dataset.href;
         });
+      });
+
+      const askForm = document.getElementById("askForm");
+      const askInput = document.getElementById("askInput");
+      const chatPage = document.getElementById("chatPage");
+      const chatPageClose = document.getElementById("chatPageClose");
+      const chatPageLog = document.getElementById("chatPageLog");
+      const chatPageForm = document.getElementById("chatPageForm");
+      const chatPageInput = document.getElementById("chatPageInput");
+      const AVATAR_SRC = "assets/profile-photo.jpg";
+
+      // ---------- Language toggle (KO / EN) ----------
+      const LANG_KEY = "site-lang";
+      const langButtons = document.querySelectorAll(".lang-btn");
+      let currentLang = "ko";
+
+      function applyLang(lang) {
+        currentLang = lang === "en" ? "en" : "ko";
+        document.documentElement.lang = currentLang;
+
+        document.querySelectorAll("[data-ko]").forEach((el) => {
+          const text = currentLang === "en" ? el.dataset.en : el.dataset.ko;
+          if (text !== undefined) el.textContent = text;
+        });
+
+        document.querySelectorAll("[data-ko-html]").forEach((el) => {
+          const html =
+            currentLang === "en" ? el.dataset.enHtml : el.dataset.koHtml;
+          if (html !== undefined) el.innerHTML = html;
+        });
+
+        document.querySelectorAll("[data-ko-placeholder]").forEach((el) => {
+          const text =
+            currentLang === "en"
+              ? el.dataset.enPlaceholder
+              : el.dataset.koPlaceholder;
+          if (text !== undefined) el.placeholder = text;
+        });
+
+        document.querySelectorAll("[data-ko-aria]").forEach((el) => {
+          const text =
+            currentLang === "en" ? el.dataset.enAria : el.dataset.koAria;
+          if (text !== undefined) el.setAttribute("aria-label", text);
+        });
+
+        langButtons.forEach((btn) => {
+          btn.classList.toggle("is-active", btn.dataset.lang === currentLang);
+        });
+
+        try {
+          localStorage.setItem(LANG_KEY, currentLang);
+        } catch (e) {
+          /* localStorage unavailable (e.g. private mode) — ignore */
+        }
+      }
+
+      let initialLang = "ko";
+      try {
+        initialLang = localStorage.getItem(LANG_KEY) || "ko";
+      } catch (e) {
+        /* ignore */
+      }
+      applyLang(initialLang);
+
+      langButtons.forEach((btn) => {
+        btn.addEventListener("click", () => applyLang(btn.dataset.lang));
+      });
+
+      // ---------- Chat replies (language-aware, based on resume.html) ----------
+      // Topics are checked in order; the first MAX_TOPICS matches are combined.
+      const REPLIES = [
+        {
+          test: /메쥬|mezoo|mezu|헬스케어|healthcare|health care/i,
+          ko: "㈜메쥬 디자인팀에서 주임연구원으로 2년 6개월(2022.08 - 2025.01) 일했어요. 헬스케어 디바이스와 플랫폼의 UI·UX를 설계하며 메인 UI 구조 설계, 사용자 플로우 맵 작성, 디자인 시스템 구축을 맡았고, 신규 앱 UI 개편으로 기존 분석 속도를 1/2로 줄였어요. (Figma, Adobe XD, Notion, After Effects)",
+          en: "I spent 2.5 years (Aug 2022 – Jan 2025) as a Senior Researcher on the design team at MEZOO, designing UI/UX for healthcare devices and platforms. I owned the main UI structure, user flow maps, and the design system — the app redesign cut analysis time in half. (Figma, Adobe XD, Notion, After Effects)",
+        },
+        {
+          test: /hrde|아임웹|imweb|최근|현재|요즘|recent|current|latest/i,
+          ko: "가장 최근에는 ㈜HRDe솔루션 디자인팀(2025.11 - 2026.05)에서 웹·앱 화면 UI 디자인을 하며 AI 이미지·영상 콘텐츠를 일 평균 120개 제작했고, 아임웹으로 웹페이지 구현까지 직접 맡았어요. 콘텐츠 제작부터 실서비스 적용까지 빠르게 처리하는 역량을 키운 시간이었어요.",
+          en: "Most recently I was on the design team at HRDe Solution (Nov 2025 – May 2026), designing web/app UI, producing around 120 AI image and video assets a day, and building web pages myself with Imweb — taking content from creation all the way to a live service.",
+        },
+        {
+          test: /더블랙|the ?black|블루투스|bluetooth|오토바이|motorcycle/i,
+          ko: "더블랙 제품개발부서(2021.02 - 2021.12)에서 오토바이 블루투스 기기와 액세서리 개발을 담당했어요. 기획부터 설계·양산까지 참여해 신규 액세서리 2종을 출시했고, 초기 생산 목표 대비 120% 판매를 달성했어요. (Rhino, KeyShot, AutoCAD, Illustrator)",
+          en: "At The Black (Feb – Dec 2021) I developed motorcycle Bluetooth devices and accessories, from planning through mechanical design to mass production. We launched two new accessories that sold 120% of the initial production target. (Rhino, KeyShot, AutoCAD, Illustrator)",
+        },
+        {
+          test: /코렌텍|corentec|인공관절|의료기기|medical device|artificial joint/i,
+          ko: "코렌텍에서 프리랜서 산업디자이너 겸 사용자 조사 연구원(2020.02 - 2020.10)으로 의료기기 부품 디자인과 사용자 조사를 수행했어요. 실제 수술을 참관하고 의료진을 인터뷰해 인공관절 케이스를 리디자인했고, 의료진 평가에서 기존 대비 안정성이 25% 향상됐어요. 이 작업으로 iF 디자인 어워드도 받았어요.",
+          en: "As a freelance industrial designer and user researcher at Corentec (Feb – Oct 2020), I redesigned an artificial-joint case after observing real surgeries and interviewing surgeons. Medical staff rated it 25% more stable than the previous design, and it went on to win an iF Design Award.",
+        },
+        {
+          test: /수상|어워드|award|공모전|competition|contest|\bif\b|상을|상 받|받은 상/i,
+          ko: "수상 경력은 iF DESIGN AWARD(2021), 인간공학디자인상 BEST OF BEST(EDA, 2020), 삼성웰스토리 공모전 장려상(2017)이 있어요. 특히 iF와 인간공학디자인상은 코렌텍 인공관절 케이스를 깊은 사용자 조사로 리디자인한 작업이에요.",
+          en: "Awards: iF DESIGN AWARD (2021), Ergonomic Design Award – Best of Best (EDA, 2020), and an Honorable Mention at the Samsung Welstory competition (2017). The iF and EDA wins came from the Corentec artificial-joint case, redesigned through in-depth user research.",
+        },
+        {
+          test: /학력|학교|대학|전공|졸업|성신|education|university|college|school|major|degree/i,
+          ko: "성신여자대학교에서 산업디자인을 전공하고 2020년에 졸업했어요(2015.03 - 2020.02). 산업디자인에서 시작해 지금은 UI·UX로 영역을 넓혔어요.",
+          en: "I studied Industrial Design at Sungshin Women's University (2015–2020). I started in industrial design and have since expanded into UI/UX.",
+        },
+        {
+          test: /스킬|툴|도구|프로그램|기술|역량|피그마|figma|skill|tool|software|stack|photoshop|illustrator|3d|cad|rhino/i,
+          ko: "UI·UX 툴로는 Figma, Adobe XD, Sketch, Photoshop, Illustrator, InDesign, After Effects를 쓰고, 제품·3D 쪽으로는 Rhino, KeyShot, 3ds Max, Maya, SketchUp, CAD, 3D 프린터까지 다룰 수 있어요. 최근엔 ChatGPT·Gemini 같은 AI 도구와 아임웹도 실무에 활용하고 있어요.",
+          en: "For UI/UX I use Figma, Adobe XD, Sketch, Photoshop, Illustrator, InDesign, and After Effects. On the product/3D side I work with Rhino, KeyShot, 3ds Max, Maya, SketchUp, CAD, and 3D printing. Lately I also use AI tools like ChatGPT and Gemini, plus Imweb, in my day-to-day work.",
+        },
+        {
+          test: /\bai\b|인공지능|chatgpt|gpt|gemini|제미나이/i,
+          ko: "AI와 디자인의 접목에 관심이 많아요. 오즈 코딩스쿨(2025.01 - 2025.07)에서 ChatGPT·Gemini로 사용자 경험을 개선하는 방법을 공부했고, HRDe솔루션에서는 AI 이미지·영상 콘텐츠를 일 평균 120개 제작했어요. 아래 Project 섹션의 AI 챗봇 UI 케이스 스터디도 확인해보세요!",
+          en: "I'm very interested in combining AI with design. At OZ Coding School (Jan – Jul 2025) I studied how to improve UX with ChatGPT and Gemini, and at HRDe Solution I produced around 120 AI image/video assets a day. Check out the AI chatbot UI case study in the Project section below!",
+        },
+        {
+          test: /디자인 ?시스템|design ?system/i,
+          ko: "메쥬에서 헬스케어 앱을 개편할 때 디자인 시스템을 직접 구축했어요. 여러 스타트업에서 개발자와의 소통이 어려웠던 부분을 디자인 시스템을 빠르게 만들어 해결한 경험도 있어요.",
+          en: "I built the design system myself when redesigning MEZOO's healthcare app, and at several startups I've solved developer handoff issues by quickly setting up a design system.",
+        },
+        {
+          test: /장점|강점|잘하는|strength|good at/i,
+          ko: "제 장점은 문제를 구조화해서 빠르게 실행하는 힘이에요. 작업 전에 핵심 메시지와 우선순위를 먼저 정리하고, 사용자가 어디서 막히는지 플로우로 정리한 뒤 개발자와 공유할 수 있는 화면 기준을 만들어요.",
+          en: "My strength is structuring problems and executing quickly. Before starting, I clarify the core message and priorities, map out where users get stuck, and set screen standards that developers can work from.",
+        },
+        {
+          test: /단점|약점|부족|weakness|weak point/i,
+          ko: "초반에 완성도 기준을 높게 잡아 검토 시간이 길어질 때가 있어요. 그래서 요즘은 작업 전에 핵심 목표와 우선순위를 먼저 정하고, 중간 공유로 방향을 빠르게 맞추며 보완하고 있어요.",
+          en: "I sometimes set a very high quality bar early on, which can stretch out review time. Now I set core goals and priorities up front and share work-in-progress early to align direction quickly.",
+        },
+        {
+          test: /협업|소통|커뮤니케이션|팀워크|팀|collaborat|communicat|teamwork|team/i,
+          ko: "협업할 때는 명확한 업무 분배와 원활한 정보 공유를 가장 중요하게 생각해요. 아이디어는 스케치 같은 시각 자료로 공유해 다른 전공 팀원들과도 빠르게 합의하고, 개발자와는 디자인 시스템으로 기준을 맞춰요. iF 어워드도 다른 전공 팀원들과 함께 이뤄낸 결과예요.",
+          en: "In collaboration I value clear task division and smooth information sharing. I share ideas visually (e.g. sketches) to align quickly with people from other disciplines, and use design systems to stay in sync with developers. The iF Award itself was a cross-disciplinary team effort.",
+        },
+        {
+          test: /프로세스|과정|방식|철학|가치관|리서치|사용자 ?조사|인터뷰|process|approach|philosophy|research|interview|how do you design/i,
+          ko: "저는 디자인을 '보기 좋은 결과물'보다 사용자가 겪는 불편을 발견하고 더 쉽게 이해할 수 있는 형태로 바꾸는 일이라고 생각해요. 그래서 인터뷰, 설문, 현장 관찰 같은 사용자 조사로 숨은 니즈를 찾고, 플로우로 문제를 구조화한 뒤 화면으로 풀어내요.",
+          en: "To me, design isn't about making something pretty — it's about finding the friction users face and turning it into something easier to understand. I uncover hidden needs through interviews, surveys, and field observation, structure the problem as flows, then solve it on screen.",
+        },
+        {
+          test: /대외활동|활동|교육|코딩 ?스쿨|부트캠프|오즈|산학|서포터즈|activit|bootcamp|course|supporter/i,
+          ko: "대외활동으로는 오즈 코딩스쿨(2025, UI/UX·AI 활용 학습), 삼성 산학협력 프로젝트(2018, 차량 사용자 인터페이스 조사와 아이디어 영상 제작), 삼성웰스토리 서포터즈(2017-2018, 7개 팀 중 2위)가 있어요.",
+          en: "Activities: OZ Coding School (2025, UI/UX and applied AI), a Samsung industry-academia project (2018, in-car UI research and concept video), and Samsung Welstory Supporters (2017–2018, 2nd of 7 teams).",
+        },
+        {
+          test: /경력|경험|회사|이력|연차|몇 ?년|career|experience|background|history|companies|years/i,
+          ko: "총 4년 9개월의 경력이 있어요. ㈜HRDe솔루션(2025.11 - 2026.05, 웹·앱 UI 및 AI 콘텐츠), ㈜메쥬(2022.08 - 2025.01, 헬스케어 UI·UX), 더블랙(2021, 블루투스 기기 제품개발), 코렌텍(2020, 의료기기 디자인·사용자 조사 프리랜서)에서 일했어요. 회사 이름으로 더 물어보시면 자세히 알려드릴게요!",
+          en: "I have 4 years 9 months of experience: HRDe Solution (2025–2026, web/app UI and AI content), MEZOO (2022–2025, healthcare UI/UX), The Black (2021, Bluetooth device product development), and Corentec (2020, freelance medical-device design and user research). Ask about any company for details!",
+        },
+        {
+          test: /연락|이메일|메일|컨택|contact|email|mail|reach/i,
+          ko: "werqrs200@gmail.com 으로 편하게 연락 주세요! 아래 소셜 링크로도 연락하실 수 있어요.",
+          en: "Feel free to reach me at werqrs200@gmail.com, or via the social links below!",
+        },
+        {
+          test: /채용|구직|지원|포지션|직무|일자리|근무|입사|hire|hiring|job|position|role|available|availab|open to/i,
+          ko: "UI·UX 디자이너와 산업디자이너 포지션을 찾고 있어요. 서울 지역 정규직을 희망하고, 새로운 기회 이야기는 언제든 환영이에요! werqrs200@gmail.com 으로 연락 주세요.",
+          en: "I'm looking for UI/UX designer or industrial designer roles — ideally full-time in Seoul. Always happy to talk about new opportunities: werqrs200@gmail.com.",
+        },
+        {
+          test: /resume|이력서|cv/i,
+          ko: "이력서는 위쪽 'resume ↗' 버튼에서 전체 내용을 확인하실 수 있어요.",
+          en: "You can see my full resume via the 'resume ↗' button above.",
+        },
+        {
+          test: /work|project|포트폴리오|작업|프로젝트|케이스/i,
+          ko: "제 작업이 궁금하시군요! 헬스케어 앱, 웹, AI 챗봇 UI 등 케이스 스터디를 아래 Project 섹션에서 확인해보세요.",
+          en: "Curious about my work! Check out the case studies — healthcare apps, web, AI chatbot UI and more — in the Project section below.",
+        },
+        {
+          test: /누구|소개|이름|디자이너|어떤 사람|who|about you|introduce|name|designer|yourself/i,
+          ko: "안녕하세요, UI·UX 디자이너 서연경(수니)이에요. 산업디자인을 전공하고 의료기기·제품 디자인에서 시작해 헬스케어 앱, 웹, AI 콘텐츠까지 4년 9개월 동안 영역을 넓혀왔어요. 사람과 함께, 사람을 위한 디자인을 하는 게 목표예요.",
+          en: "Hi, I'm Yeongyeong (Sooniy) Seo, a UI/UX designer. I majored in Industrial Design, started with medical-device and product design, and over 4 years 9 months expanded into healthcare apps, web, and AI content. My goal is design made with people, for people.",
+        },
+        {
+          test: /안녕|하이|반가|^hi\b|hello|^hey/i,
+          ko: "안녕하세요! 수니의 경력, 프로젝트, 스킬, 수상 경력 등 무엇이든 물어보세요.",
+          en: "Hi there! Ask me anything about Sooniy's experience, projects, skills, or awards.",
+        },
+      ];
+
+      const MAX_TOPICS = 2;
+
+      const DEFAULT_REPLY = {
+        ko: "음, 그 부분은 잘 모르겠어요. 경력, 프로젝트, 스킬, 학력, 수상 경력, 장단점, 협업 방식 등에 대해 물어봐 주세요!",
+        en: "Hmm, I'm not sure about that one. Try asking about Sooniy's experience, projects, skills, education, awards, strengths, or how she collaborates!",
+      };
+
+      function appendChatBubble(text, role = "bot") {
+        const message = document.createElement("div");
+        message.className = "chat-message";
+
+        const bubble = document.createElement("div");
+        bubble.className = "chat-bubble";
+        bubble.textContent = text;
+
+        if (role === "user") {
+          message.classList.add("is-user");
+          message.append(bubble);
+        } else {
+          const avatar = document.createElement("img");
+          avatar.className = "chat-avatar";
+          avatar.src = AVATAR_SRC;
+          avatar.alt = "";
+          message.append(avatar, bubble);
+        }
+
+        chatPageLog.append(message);
+        message.scrollIntoView({ behavior: "smooth", block: "end" });
+      }
+
+      function pickReply(question) {
+        const matches = REPLIES.filter((reply) => reply.test.test(question));
+        const entries = matches.length
+          ? matches.slice(0, MAX_TOPICS)
+          : [DEFAULT_REPLY];
+        return entries.map((entry) => entry[currentLang] || entry.ko).join("\n\n");
+      }
+
+      function openChatPage() {
+        chatPage.classList.add("is-open");
+        chatPage.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeChatPage() {
+        chatPage.classList.remove("is-open");
+        chatPage.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function askAndReply(question) {
+        if (!question) return;
+        openChatPage();
+        appendChatBubble(question, "user");
+        appendChatBubble(pickReply(question));
+        if (chatPageInput) chatPageInput.focus();
+      }
+
+      if (askForm && askInput) {
+        askForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const question = askInput.value.trim();
+          askInput.value = "";
+          askAndReply(question);
+        });
+      }
+
+      if (chatPageForm && chatPageInput) {
+        chatPageForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const question = chatPageInput.value.trim();
+          chatPageInput.value = "";
+          askAndReply(question);
+        });
+      }
+
+      if (chatPageClose) {
+        chatPageClose.addEventListener("click", closeChatPage);
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && chatPage.classList.contains("is-open")) {
+          closeChatPage();
+        }
       });
     </script>
   </body>
