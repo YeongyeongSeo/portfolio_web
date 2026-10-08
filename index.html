@@ -321,6 +321,29 @@
         margin-top: 58px;
       }
 
+      .sparkle-1 {
+        width: 22px;
+        height: 22px;
+        left: 169px;
+        top: -13px;
+      }
+
+      .sparkle-2 {
+        width: 16px;
+        height: 16px;
+        left: 196px;
+        top: 4px;
+      }
+
+      /* KO 첫 버튼("작업 보기")이 짧아 Figma와 같은 비율로 버튼 오른쪽 끝에 배치 */
+      html[lang="ko"] .sparkle-1 {
+        left: 112px;
+      }
+
+      html[lang="ko"] .sparkle-2 {
+        left: 139px;
+      }
+
       .sparkle-3 {
         width: 22px;
         height: 22px;
@@ -1409,22 +1432,14 @@
         </h1>
 
         <div class="prompt-row" aria-label="quick questions">
-          <span
-            class="sparkle"
-            aria-hidden="true"
-            style="width: 22px; height: 22px; left: 169px; top: -13px"
-          ></span>
-          <span
-            class="sparkle"
-            aria-hidden="true"
-            style="width: 16px; height: 16px; left: 196px; top: 4px"
-          ></span>
+          <span class="sparkle sparkle-1" aria-hidden="true"></span>
+          <span class="sparkle sparkle-2" aria-hidden="true"></span>
           <span class="sparkle sparkle-3" aria-hidden="true"></span>
           <span class="sparkle sparkle-4" aria-hidden="true"></span>
-          <a class="prompt" href="#work" data-ko="see my work ↓" data-en="see my work ↙">see my work ↙</a>
-          <button type="button" class="prompt prompt-ask" data-ko="what designer are you?" data-en="what designer are you?">what designer are you?</button>
-          <button type="button" class="prompt prompt-ask" data-ko="what's your availability?" data-en="what's your availability?">what's your availability?</button>
-          <a class="prompt" href="resume.html" target="_blank" rel="noopener" data-ko="resume ↗" data-en="resume ↗">resume ↗</a>
+          <a class="prompt" href="#work" data-ko="작업 보기 ↓" data-en="see my work ↙">see my work ↙</a>
+          <button type="button" class="prompt prompt-ask" data-ko="어떤 디자이너인가요?" data-en="what designer are you?">what designer are you?</button>
+          <button type="button" class="prompt prompt-ask" data-ko="언제부터 근무 가능한가요?" data-en="what's your availability?">what's your availability?</button>
+          <a class="prompt" href="resume.html" target="_blank" rel="noopener" data-ko="이력서 ↗" data-en="resume ↗">resume ↗</a>
         </div>
         <form class="searchbar" id="askForm">
           <span class="searchbar-caret" aria-hidden="true">&gt;_</span>
@@ -1434,7 +1449,7 @@
             type="text"
             autocomplete="off"
             placeholder="ask Leah anything..."
-            data-ko-placeholder="ask Leah anything..."
+            data-ko-placeholder="Leah에게 무엇이든 물어보세요..."
             data-en-placeholder="ask Leah anything..."
           />
         </form>
