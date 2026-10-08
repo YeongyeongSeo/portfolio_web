@@ -14,6 +14,26 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+    />
+    <script>
+      // 데스크톱(901~1919px)에서는 1920px Figma 레이아웃 그대로 비율 축소
+      (function () {
+        var DESIGN_WIDTH = 1920;
+        var root = document.documentElement;
+        function fitToDesign() {
+          root.style.zoom = "";
+          var w = root.clientWidth || window.innerWidth;
+          var scaled = w > 900 && w < DESIGN_WIDTH;
+          root.classList.toggle("is-scaled", scaled);
+          if (scaled) root.style.zoom = w / DESIGN_WIDTH;
+        }
+        fitToDesign();
+        window.addEventListener("resize", fitToDesign);
+      })();
+    </script>
     <style>
       @font-face {
         font-family: "GmarketSans";
@@ -55,6 +75,20 @@
           "Segoe UI",
           sans-serif;
         -webkit-font-smoothing: antialiased;
+      }
+
+      html[lang="ko"] .work-section,
+      html[lang="ko"] .work-section *,
+      html[lang="ko"] .marquee-band,
+      html[lang="ko"] .marquee-band *,
+      html[lang="ko"] .contact,
+      html[lang="ko"] .contact * {
+        font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      html[lang="ko"] .contact .contact-title,
+      html[lang="ko"] .contact .contact-title * {
+        font-family: "Abyssinica SIL", Georgia, serif;
       }
 
       a {
@@ -158,29 +192,29 @@
 
       .lang-toggle {
         position: absolute;
-        right: 40px;
-        top: 50%;
-        transform: translateY(-50%);
+        right: 46px;
+        top: 37px;
         display: inline-flex;
         align-items: center;
-        gap: 2px;
-        padding: 4px;
-        border: 1.5px solid var(--chip-line);
-        border-radius: 999px;
+        gap: 3px;
+        height: 55px;
+        padding: 0 4px;
+        border: 2px solid var(--line);
+        border-radius: 40px;
         background: #fff;
-        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.12);
       }
 
       .lang-btn {
+        width: 69px;
+        height: 44px;
         border: 0;
         background: transparent;
-        padding: 6px 16px;
-        border-radius: 999px;
-        font-family: inherit;
-        font-size: 13px;
+        padding: 0;
+        border-radius: 50px;
+        font-family: Pretendard, "Inter", sans-serif;
+        font-size: 20px;
         font-weight: 600;
-        letter-spacing: 0.02em;
-        color: var(--muted);
+        color: #949494;
         cursor: pointer;
         transition: background 0.15s ease, color 0.15s ease;
       }
@@ -211,10 +245,22 @@
         color: rgba(0, 0, 0, 0.8);
       }
 
+      /* 영문 히어로 문구 — Figma: Pretendard Medium 55/63, black */
+      html[lang="en"] .hero-copy {
+        font-family: Pretendard, "Inter", sans-serif;
+        line-height: 1.145;
+        letter-spacing: 0;
+        color: #000;
+      }
+
       /* Figma 배치: 프롬프트 2개씩 2줄 */
-      html[lang="ko"] .hero-copy + .prompt-row {
+      .hero-copy + .prompt-row {
         max-width: 520px;
         margin-top: 47px;
+      }
+
+      html[lang="en"] .hero-copy + .prompt-row {
+        margin-top: 54px;
       }
 
       .hero-mark {
@@ -273,6 +319,30 @@
         gap: 13px;
         max-width: 780px;
         margin-top: 58px;
+      }
+
+      .sparkle-3 {
+        width: 22px;
+        height: 22px;
+        left: 32px;
+        top: 60px;
+      }
+
+      .sparkle-4 {
+        width: 16px;
+        height: 16px;
+        left: 5px;
+        top: 43px;
+      }
+
+      html[lang="ko"] .sparkle-3 {
+        left: 10px;
+        top: 38px;
+      }
+
+      html[lang="ko"] .sparkle-4 {
+        left: -11px;
+        top: 27px;
       }
 
       .prompt {
@@ -475,12 +545,11 @@
       }
 
       .section-title {
-        margin: 0 0 42px;
-        font-family: "SUIT Variable", "Inter", sans-serif;
+        margin: 0 0 55px;
+        font-family: Pretendard, "Inter", sans-serif;
         font-size: clamp(34px, 4.5vw, 55px);
-        font-weight: 600;
+        font-weight: 300;
         line-height: 1.09;
-        letter-spacing: -0.02em;
       }
 
       .work-section {
@@ -802,6 +871,7 @@
 
       .project-kicker {
         margin: 0 0 12px;
+        font-family: Inter, Pretendard, sans-serif;
         font-size: 20px;
         font-weight: 700;
         line-height: 1.7;
@@ -809,7 +879,7 @@
 
       .project-title {
         margin: 0 0 12px;
-        font-family: "SUIT Variable", "Inter", sans-serif;
+        font-family: Pretendard, "Inter", sans-serif;
         font-size: clamp(26px, 2.6vw, 33px);
         font-weight: 700;
         line-height: 1.33;
@@ -827,6 +897,14 @@
         display: flex;
         flex-wrap: wrap;
         gap: 15px;
+      }
+
+      .project-body {
+        padding-top: 40px;
+      }
+
+      .tags {
+        gap: 10px;
       }
 
       .tag {
@@ -885,7 +963,7 @@
       }
 
       .marquee-track span {
-        font-family: "SUIT Variable", "Inter", sans-serif;
+        font-family: Pretendard, "Inter", sans-serif;
         font-size: clamp(34px, 4vw, 64px);
         font-weight: 700;
         line-height: 1.23;
@@ -949,6 +1027,9 @@
 
       .contact-title span {
         display: block;
+        /* background-clip:text는 박스 안만 칠하므로 g 하단(디센더)이 잘리지 않게 여유 확보 */
+        padding-bottom: 0.2em;
+        margin-bottom: -0.2em;
         color: transparent;
         background: linear-gradient(90deg, #8e9bff, #843dff);
         -webkit-background-clip: text;
@@ -966,7 +1047,7 @@
         border-radius: 100px;
         background: linear-gradient(90deg, #b0b9ff, #bd97ff);
         color: #fff;
-        font-family: "SUIT Variable", "Inter", sans-serif;
+        font-family: Pretendard, "Inter", sans-serif;
         font-size: clamp(24px, 3.2vw, 44px);
         font-weight: 700;
       }
@@ -994,15 +1075,14 @@
       }
 
       .socials a {
-        font-family: "SUIT Variable", "Inter", sans-serif;
+        font-family: Pretendard, "Inter", sans-serif;
         font-size: 28px;
         color: #1e1e1e;
       }
 
       .footer-line {
-        width: 100vw;
+        width: 100%;
         height: 1px;
-        margin-left: calc(50% - 50vw);
         background: #111;
         opacity: 0.25;
       }
@@ -1019,6 +1099,95 @@
         color: rgba(0, 0, 0, 0.7);
       }
 
+      /* ---------- Figma 레이아웃 (KO 962:399 / EN 722:712 공통) ---------- */
+      @media (min-width: 901px) {
+        .hero {
+          padding: 103px 0 375px;
+        }
+
+        /* Figma: 본문은 프롬프트보다 68px 안쪽에서 시작, 폭 1326 */
+        .hero-copy {
+          width: calc(100% + 28px);
+          max-width: none;
+          margin-left: 68px;
+        }
+
+        .work-section {
+          width: min(1150px, calc(100% - 440px));
+          padding-bottom: 147px;
+        }
+
+        .marquee-band {
+          margin-top: 96px;
+        }
+
+        .work-grid {
+          row-gap: 55px;
+        }
+
+        /* Figma 카드 높이: Inex 홈페이지 658, Live Studio 609 */
+        .project-card.wide {
+          min-height: 609px;
+        }
+
+        .project-card.wide:has(.media.tall) {
+          min-height: 658px;
+        }
+
+        .contact {
+          padding: 166px 0 165px;
+        }
+
+        .email-pill {
+          min-width: 789px;
+        }
+
+        .footer-meta {
+          width: calc(100% - 132px);
+          padding: 52px 0 56px;
+        }
+      }
+
+      .marquee-star {
+        width: 57px;
+        height: 57px;
+        margin: 0 8px;
+        clip-path: none;
+        background: url("assets/figma/marquee-star-gray.svg") center / contain
+          no-repeat;
+      }
+
+      .marquee-star.grad {
+        background-image: url("assets/figma/marquee-star-grad.svg");
+      }
+
+      /* 901~1919px: 1920px Figma 화면을 비율 축소(zoom)해서 보여줄 때는 vw 기반 clamp 대신 Figma 값 고정 */
+      html.is-scaled .hero-copy,
+      html.is-scaled .section-title {
+        font-size: 55px;
+      }
+
+      html.is-scaled .project-title {
+        font-size: 33px;
+      }
+
+      html.is-scaled .marquee-track span {
+        font-size: 64px;
+      }
+
+      html.is-scaled .marquee-star {
+        width: 57px;
+        height: 57px;
+      }
+
+      html.is-scaled .contact-title {
+        font-size: 140px;
+      }
+
+      html.is-scaled .email-pill {
+        font-size: 44px;
+      }
+
       @media (max-width: 900px) {
         .container {
           width: min(100% - 28px, 640px);
@@ -1031,12 +1200,16 @@
 
         .lang-toggle {
           right: 14px;
-          padding: 3px;
+          top: 20px;
+          height: 40px;
+          gap: 2px;
+          padding: 0 3px;
         }
 
         .lang-btn {
-          padding: 5px 11px;
-          font-size: 11px;
+          width: 48px;
+          height: 32px;
+          font-size: 14px;
         }
 
         .hero {
@@ -1046,6 +1219,10 @@
         .hero-copy {
           font-size: clamp(30px, 9vw, 46px);
           line-height: 1.14;
+        }
+
+        .hero-copy-text br {
+          display: none;
         }
 
         .hero-mark {
@@ -1223,8 +1400,8 @@
           /></span>
           <span
             class="hero-copy-text"
-            data-ko="저는 서연경입니다 — 복잡한 디지털 경험을 구조화하는 UIUX 디자이너예요. 실물 제품 디자인에서 시작해 헬스케어, 웹, AI 관련 UX로 영역을 넓혀오며, 복잡한 시스템과 데이터, 사용자 맥락을 명확하고 사용하기 쉬운 인터페이스로 풀어냅니다."
-            data-en="I'm Seo Yeon-gyeong — a UIUX Designer who structures complex digital experiences. I started in physical product design and moved into healthcare, web, and AI-related UX — turning complex systems, data, and user contexts into clear, usable interfaces."
+            data-ko-html="저는 서연경입니다 — 복잡한 디지털 경험을 구조화하는 UIUX 디자이너예요. 실물 제품 디자인에서 시작해 헬스케어, 웹, AI 관련 UX로 영역을 넓혀오며, 복잡한 시스템과 데이터, 사용자 맥락을 명확하고 사용하기 쉬운 인터페이스로 풀어냅니다."
+            data-en-html="I'm Seo Yeon-gyeong — a UIUX Designer who structures complex digital experiences. I started<br /> in physical product design and moved into<br /> healthcare, web, and AI-related UX — turning<br /> complex systems, data, and user contexts into<br /> clear, usable interfaces."
             >I'm Seo Yeon-gyeong — a UIUX Designer who structures complex digital
             experiences. I started in physical product design and moved into
             healthcare, web, and AI-related UX — turning complex systems, data,
@@ -1243,16 +1420,8 @@
             aria-hidden="true"
             style="width: 16px; height: 16px; left: 196px; top: 4px"
           ></span>
-          <span
-            class="sparkle"
-            aria-hidden="true"
-            style="width: 22px; height: 22px; left: 32px; top: 60px"
-          ></span>
-          <span
-            class="sparkle"
-            aria-hidden="true"
-            style="width: 16px; height: 16px; left: 5px; top: 43px"
-          ></span>
+          <span class="sparkle sparkle-3" aria-hidden="true"></span>
+          <span class="sparkle sparkle-4" aria-hidden="true"></span>
           <a class="prompt" href="#work" data-ko="see my work ↓" data-en="see my work ↙">see my work ↙</a>
           <button type="button" class="prompt prompt-ask" data-ko="what designer are you?" data-en="what designer are you?">what designer are you?</button>
           <button type="button" class="prompt prompt-ask" data-ko="what's your availability?" data-en="what's your availability?">what's your availability?</button>
@@ -1265,15 +1434,15 @@
             id="askInput"
             type="text"
             autocomplete="off"
-            placeholder="ask Sooniy anything..."
+            placeholder="ask Leah anything..."
             data-ko-placeholder="ask Leah anything..."
-            data-en-placeholder="ask Sooniy anything..."
+            data-en-placeholder="ask Leah anything..."
           />
         </form>
       </section>
 
       <section class="work-section container" id="work">
-        <h2 class="section-title" data-ko="프로젝트 2025 -" data-en="Project 2025 -">Project 2025 -</h2>
+        <h2 class="section-title" data-ko="Project 2025 -" data-en="Project 2025 -">Project 2025 -</h2>
         <div class="work-grid">
           <article
             class="project-card wide"
@@ -1299,10 +1468,10 @@
             <div class="project-body">
               <p
                 class="project-kicker"
-                data-ko="01. Recent main・Education UX"
-                data-en="01. Recent main · Education UX"
+                data-ko="01. Recent main・Web UX"
+                data-en="01. Recent main・Web UX"
               >
-                01. Recent main・Education UX
+                01. Recent main・Web UX
               </p>
               <h3
                 class="project-title"
@@ -1313,17 +1482,15 @@
               </h3>
               <p
                 class="project-desc"
-                data-ko="늘어나는 교육 카테고리를 법정교육・공통역량・대인심리・안전보건・직무역량 5개 축으로 재정의하고, 홈 화면에서 바로 탐색할 수 있는 정보구조로 재구성한 교육원 홈페이지 리뉴얼"
+                data-ko="기업 홍보 목적에 맞게 교육원 중심 정보와 회사 소개 정보를 분리한 코퍼레이트 사이트 리뉴얼 프로젝트"
                 data-en="Redefined the growing education categories into five axes — mandatory training, core competency, interpersonal psychology, safety &amp; health, and job competency — and rebuilt the homepage's information architecture for direct exploration."
               >
-                늘어나는 교육 카테고리를
-                법정교육・공통역량・대인심리・안전보건・직무역량 5개 축으로
-                재정의하고, 홈 화면에서 바로 탐색할 수 있는 정보구조로 재구성한
-                교육원 홈페이지 리뉴얼
+                기업 홍보 목적에 맞게 교육원 중심 정보와 회사 소개 정보를 분리한
+                코퍼레이트 사이트 리뉴얼 프로젝트
               </p>
               <div class="tags">
                 <span class="tag red">Recent</span>
-                <span class="tag blue">Education UX</span>
+                <span class="tag blue" data-ko="Corporate Web" data-en="Corporate Web">Corporate Web</span>
                 <span class="tag green">AI</span>
               </div>
             </div>
@@ -1344,7 +1511,7 @@
               <p
                 class="project-kicker"
                 data-ko="02. Recent・Education UX"
-                data-en="02. Recent · Education UX"
+                data-en="02. Recent・Education UX"
               >
                 02. Recent・Education UX
               </p>
@@ -1393,7 +1560,7 @@
               <p
                 class="project-kicker"
                 data-ko="03. Recent・Education UX"
-                data-en="03. Recent · Education UX"
+                data-en="03. Recent・Education UX"
               >
                 03. Recent・Education UX
               </p>
@@ -1443,7 +1610,7 @@
               <p
                 class="project-kicker"
                 data-ko="04. Recent・AI Workflow"
-                data-en="04. Recent · AI Workflow"
+                data-en="04. Recent・AI Workflow"
               >
                 04. Recent・AI Workflow
               </p>
@@ -1484,7 +1651,7 @@
               <p
                 class="project-kicker"
                 data-ko="05. Recent・AI UX"
-                data-en="05. Recent · AI UX"
+                data-en="05. Recent・AI UX"
               >
                 05. Recent・AI UX
               </p>
@@ -1505,8 +1672,8 @@
               </p>
               <div class="tags">
                 <span class="tag green">AI UX</span>
-                <span class="tag red">Learning</span>
                 <span class="tag blue">Chatbot</span>
+                <span class="tag red">Learning</span>
               </div>
             </div>
           </article>
@@ -1514,7 +1681,7 @@
       </section>
 
       <section class="work-section container">
-        <h2 class="section-title" data-ko="프로젝트 2023 -" data-en="Project 2023 -">Project 2023 -</h2>
+        <h2 class="section-title" data-ko="Project 2023 -" data-en="Project 2023 -">Project 2023 -</h2>
         <div class="work-grid">
           <article
             class="project-card wide"
@@ -1569,9 +1736,9 @@
                 디자인 시스템을 개선한 의료 웹 UX 대표 프로젝트
               </p>
               <div class="tags">
+                <span class="tag green">Design System</span>
                 <span class="tag blue">Healthcare</span>
                 <span class="tag red">2.5x Impact</span>
-                <span class="tag green">Design System</span>
               </div>
             </div>
           </article>
@@ -1630,7 +1797,7 @@
               <p
                 class="project-kicker"
                 data-ko="07. UX Case・Wellness"
-                data-en="07. UX Case · Wellness"
+                data-en="07. UX Case・Wellness"
               >
                 07. UX Case・Wellness
               </p>
@@ -1666,7 +1833,7 @@
               <p
                 class="project-kicker"
                 data-ko="08. UX Root ・Product Design"
-                data-en="08. UX Root · Product Design"
+                data-en="08. UX Root ・Product Design"
               >
                 08. UX Root ・Product Design
               </p>
@@ -1760,7 +1927,7 @@
               <p
                 class="project-kicker"
                 data-ko="12. Branding ・Motion"
-                data-en="12. Branding · Motion"
+                data-en="12. Branding ・Motion"
               >
                 12. Branding ・Motion
               </p>
@@ -1786,24 +1953,24 @@
       <section class="marquee-band" aria-label="design statement">
         <div class="marquee-track">
           <i class="marquee-star gray" aria-hidden="true"></i>
-          <span data-ko="좋은 디자인은 보이지 않습니다" data-en="Good design is invisible">좋은 디자인은 보이지 않습니다</span>
+          <span data-ko="좋은 디자인은 보이지 않습니다" data-en="좋은 디자인은 보이지 않습니다">좋은 디자인은 보이지 않습니다</span>
           <i class="marquee-star grad" aria-hidden="true"></i>
-          <span data-ko="무언가를 함께 만들어요" data-en="let's build something">let's build something</span>
+          <span data-ko="let's build something" data-en="let's build something">let's build something</span>
           <i class="marquee-star grad" aria-hidden="true"></i>
-          <span data-ko="데이터에서 사물로" data-en="From data to objects">From data to objects</span>
+          <span data-ko="From data to objects" data-en="From data to objects">From data to objects</span>
           <i class="marquee-star gray" aria-hidden="true"></i>
-          <span data-ko="좋은 디자인은 보이지 않습니다" data-en="Good design is invisible">좋은 디자인은 보이지 않습니다</span>
+          <span data-ko="좋은 디자인은 보이지 않습니다" data-en="좋은 디자인은 보이지 않습니다">좋은 디자인은 보이지 않습니다</span>
           <i class="marquee-star grad" aria-hidden="true"></i>
-          <span data-ko="무언가를 함께 만들어요" data-en="let's build something">let's build something</span>
+          <span data-ko="let's build something" data-en="let's build something">let's build something</span>
           <i class="marquee-star grad" aria-hidden="true"></i>
-          <span data-ko="데이터에서 사물로" data-en="From data to objects">From data to objects</span>
+          <span data-ko="From data to objects" data-en="From data to objects">From data to objects</span>
         </div>
       </section>
 
       <section class="contact container" id="contact">
         <h2
           class="contact-title"
-          data-ko-html="함께 <span>좋은 걸 만들어요.</span>"
+          data-ko-html="Let's make <span>something good.</span>"
           data-en-html="Let's make <span>something good.</span>"
         >
           Let's make <span>something good.</span>
